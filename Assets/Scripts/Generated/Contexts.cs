@@ -26,8 +26,9 @@ public partial class Contexts : Entitas.IContexts {
     public GameContext game { get; set; }
     public GameStateContext gameState { get; set; }
     public InputContext input { get; set; }
+    public MetaContext meta { get; set; }
 
-    public Entitas.IContext[] allContexts { get { return new Entitas.IContext [] { config, debug, game, gameState, input }; } }
+    public Entitas.IContext[] allContexts { get { return new Entitas.IContext [] { config, debug, game, gameState, input, meta }; } }
 
     public Contexts() {
         config = new ConfigContext();
@@ -35,6 +36,7 @@ public partial class Contexts : Entitas.IContexts {
         game = new GameContext();
         gameState = new GameStateContext();
         input = new InputContext();
+        meta = new MetaContext();
 
         var postConstructors = System.Linq.Enumerable.Where(
             GetType().GetMethods(),
@@ -65,6 +67,7 @@ public partial class Contexts : Entitas.IContexts {
 public partial class Contexts {
 
     public const string Id = "Id";
+    public const string WorldId = "WorldId";
 
     [Entitas.CodeGeneration.Attributes.PostConstructor]
     public void InitializeEntityIndices() {
@@ -76,6 +79,11 @@ public partial class Contexts {
             Id,
             input.GetGroup(InputMatcher.Id),
             (e, c) => ((IdComponent)c).value));
+
+        game.AddEntityIndex(new Entitas.PrimaryEntityIndex<GameEntity, long>(
+            WorldId,
+            game.GetGroup(GameMatcher.WorldId),
+            (e, c) => ((WorldIdComponent)c).value));
     }
 }
 
@@ -87,6 +95,10 @@ public static class ContextsExtensions {
 
     public static InputEntity GetEntityWithId(this InputContext context, long value) {
         return ((Entitas.PrimaryEntityIndex<InputEntity, long>)context.GetEntityIndex(Contexts.Id)).GetEntity(value);
+    }
+
+    public static GameEntity GetEntityWithWorldId(this GameContext context, long value) {
+        return ((Entitas.PrimaryEntityIndex<GameEntity, long>)context.GetEntityIndex(Contexts.WorldId)).GetEntity(value);
     }
 }
 //------------------------------------------------------------------------------
@@ -109,6 +121,7 @@ public partial class Contexts {
             CreateContextObserver(game);
             CreateContextObserver(gameState);
             CreateContextObserver(input);
+            CreateContextObserver(meta);
         } catch(System.Exception e) {
             UnityEngine.Debug.LogError(e);
         }

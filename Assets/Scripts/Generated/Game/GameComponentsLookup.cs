@@ -8,30 +8,63 @@
 //------------------------------------------------------------------------------
 public static class GameComponentsLookup {
 
-    public const int DebugMessage = 0;
-    public const int Destroyed = 1;
-    public const int DestroyedListener = 2;
-    public const int Id = 3;
-    public const int Timer = 4;
-    public const int TimerManager = 5;
+    public const int CreateWorldCmd = 0;
+    public const int DebugMessage = 1;
+    public const int Destroyed = 2;
+    public const int DestroyedListener = 3;
+    public const int Entity = 4;
+    public const int Id = 5;
+    public const int LevelAddEntityCmd = 6;
+    public const int Level = 7;
+    public const int LevelCreateCommand = 8;
+    public const int LevelLoaded = 9;
+    public const int Position = 10;
+    public const int PositionListener = 11;
+    public const int Timer = 12;
+    public const int TimerManager = 13;
+    public const int View = 14;
+    public const int World = 15;
+    public const int WorldId = 16;
 
-    public const int TotalComponents = 6;
+    public const int TotalComponents = 17;
 
     public static readonly string[] componentNames = {
+        "CreateWorldCmd",
         "DebugMessage",
         "Destroyed",
         "DestroyedListener",
+        "Entity",
         "Id",
+        "LevelAddEntityCmd",
+        "Level",
+        "LevelCreateCommand",
+        "LevelLoaded",
+        "Position",
+        "PositionListener",
         "Timer",
-        "TimerManager"
+        "TimerManager",
+        "View",
+        "World",
+        "WorldId"
     };
 
     public static readonly System.Type[] componentTypes = {
+        typeof(CreateWorldCmdComponent),
         typeof(DebugMessageComponent),
         typeof(DestroyedComponent),
         typeof(DestroyedListenerComponent),
+        typeof(EntityComponent),
         typeof(IdComponent),
+        typeof(LevelAddEntityCmdComponent),
+        typeof(LevelComponent),
+        typeof(LevelCreateCommandComponent),
+        typeof(LevelLoadedComponent),
+        typeof(PositionComponent),
+        typeof(PositionListenerComponent),
         typeof(TimerComponent),
-        typeof(TimerManagerComponent)
+        typeof(TimerManagerComponent),
+        typeof(ViewComponent),
+        typeof(WorldComponent),
+        typeof(WorldIdComponent)
     };
 }

@@ -27,7 +27,7 @@ public class TimerComponentSystem : IExecuteSystem
         long _DT = nowFrame - prefame;
         while (_DT-- > 0)
         {
-            Debug.Log("TimerComponentSystem Execute:" + (nowFrame - _DT));
+            //Debug.Log("TimerComponentSystem Execute:" + (nowFrame - _DT));
         }
         //GameEntity sceneTimerEntity = Contexts.sharedInstance.game.GetEn
     }

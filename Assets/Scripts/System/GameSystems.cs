@@ -4,5 +4,8 @@ public sealed class GameSystems : Feature
     {
         Add(new TimerManagerSystem(contexts));
         Add(new TimerComponentSystem(contexts));
+        Add(new AddWorldSystem(contexts));
+        Add(new AddLevelSystem(contexts));
+        Add(new LevelAddEntitySystem(contexts));
     }
 }
