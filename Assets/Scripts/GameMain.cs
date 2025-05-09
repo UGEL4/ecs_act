@@ -12,7 +12,8 @@ public class GameMain : MonoBehaviour
         var viewService      = new UnityViewService();
         var levelViewService = new UnityLevelViewService();
         var worldViewService = new UnityWorldViewService();
-        var service          = new Service(viewService, levelViewService, worldViewService);
+        var inputService     = new UnityInputService();
+        var service          = new Service(viewService, levelViewService, worldViewService, inputService);
         _serviceSystems      = new ServiceRegisterSystem(contexts, service);
         
         _systems = new GameSystems(contexts);

@@ -8,33 +8,39 @@
 //------------------------------------------------------------------------------
 public static class GameComponentsLookup {
 
-    public const int CreateWorldCmd = 0;
-    public const int DebugMessage = 1;
-    public const int Destroyed = 2;
-    public const int DestroyedListener = 3;
-    public const int Entity = 4;
-    public const int Id = 5;
-    public const int LevelAddEntityCmd = 6;
-    public const int Level = 7;
-    public const int LevelCreateCommand = 8;
-    public const int LevelLoaded = 9;
-    public const int Position = 10;
-    public const int PositionListener = 11;
-    public const int Timer = 12;
-    public const int TimerManager = 13;
-    public const int View = 14;
-    public const int World = 15;
-    public const int WorldId = 16;
+    public const int Action = 0;
+    public const int CreateWorldCmd = 1;
+    public const int DebugMessage = 2;
+    public const int Destroyed = 3;
+    public const int DestroyedListener = 4;
+    public const int Entity = 5;
+    public const int Id = 6;
+    public const int InputController = 7;
+    public const int InputToCommand = 8;
+    public const int LevelAddEntityCmd = 9;
+    public const int Level = 10;
+    public const int LevelCreateCommand = 11;
+    public const int LevelLoaded = 12;
+    public const int Position = 13;
+    public const int PositionListener = 14;
+    public const int Timer = 15;
+    public const int TimerManager = 16;
+    public const int View = 17;
+    public const int World = 18;
+    public const int WorldId = 19;
 
-    public const int TotalComponents = 17;
+    public const int TotalComponents = 20;
 
     public static readonly string[] componentNames = {
+        "Action",
         "CreateWorldCmd",
         "DebugMessage",
         "Destroyed",
         "DestroyedListener",
         "Entity",
         "Id",
+        "InputController",
+        "InputToCommand",
         "LevelAddEntityCmd",
         "Level",
         "LevelCreateCommand",
@@ -49,12 +55,15 @@ public static class GameComponentsLookup {
     };
 
     public static readonly System.Type[] componentTypes = {
+        typeof(ActionComponent),
         typeof(CreateWorldCmdComponent),
         typeof(DebugMessageComponent),
         typeof(DestroyedComponent),
         typeof(DestroyedListenerComponent),
         typeof(EntityComponent),
         typeof(IdComponent),
+        typeof(InputControllerComponent),
+        typeof(InputToCommandComponent),
         typeof(LevelAddEntityCmdComponent),
         typeof(LevelComponent),
         typeof(LevelCreateCommandComponent),
