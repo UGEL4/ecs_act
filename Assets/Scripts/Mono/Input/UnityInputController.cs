@@ -13,6 +13,7 @@ public class UnityInputController : MonoBehaviour, IInputController
         //this.contexts = contexts;
         //this.entity   = (GameEntity)entity;
         inputService  = contexts.input.inputService.instance;
+        inputService.Initialize(contexts, entity);
     }
 
     public List<KeyRecord> GetCommands(long currentFrame)
@@ -31,12 +32,7 @@ public class UnityInputController : MonoBehaviour, IInputController
         float invalidArea = 0.2f;
         bool xHasInput    = Mathf.Abs(dotR) >= invalidArea;
         bool yHasInput    = Mathf.Abs(dotF) >= invalidArea;
-        if (!xHasInput && !yHasInput)
-        {
-            KeyRecord record = new KeyRecord(KeyMap.NoDir, frame);
-            commands.Add(record);
-        }
-        else
+        if (xHasInput || yHasInput)
         {
             KeyRecord record = new KeyRecord(KeyMap.DirInput, frame);
             commands.Add(record);

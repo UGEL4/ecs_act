@@ -1,5 +1,5 @@
 using Entitas;
-using Unity.VisualScripting;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class UnityLevelViewService : ILevelViewService
@@ -11,7 +11,11 @@ public class UnityLevelViewService : ILevelViewService
         var viewGo = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/" + assetName));
         if (viewGo != null)
         {
-            IViewController viewController = viewGo.GetOrAddComponent<MonoLevel>();
+            IViewController viewController = viewGo.GetComponent<MonoLevel>();
+            if (viewController == null)
+            {
+                viewController = viewGo.AddComponent<MonoLevel>();
+            }
             if (viewController != null)
             {
                 if (config != null)
@@ -19,7 +23,15 @@ public class UnityLevelViewService : ILevelViewService
                     viewController.Position = config.position;
                 }
                 var e = (GameEntity)entity;
-                e.AddPosition(viewController.Position);
+                //e.AddPosition(viewController.Position);
+                float3 pos = viewController.Position;
+                float3 scale = viewController.Scale;
+                quaternion rotation = quaternion.Euler(viewController.Rotation);
+                e.AddPosition(pos);
+                e.AddRotation(rotation);
+                e.AddScale(scale);
+                e.AddWorldTransform(TransformComponentExtenstion.TRS(pos, rotation, scale, float4x4.identity));
+
                 viewController.InitializeView(contexts, entity);
             }
 

@@ -11,23 +11,35 @@ public partial class GameEntity {
     public TimerComponent timer { get { return (TimerComponent)GetComponent(GameComponentsLookup.Timer); } }
     public bool hasTimer { get { return HasComponent(GameComponentsLookup.Timer); } }
 
-    public void AddTimer(long newCurFrame, int newHertz, long newAccumulator, bool newIsUnitTimer) {
+    public void AddTimer(long newCurFrame, int newHertz, long newAccumulator, bool newIsUnitTimer, MultiMap<long, long> newTimerId, System.Collections.Generic.Queue<long> newTimeOutTime, System.Collections.Generic.Queue<long> newTimeOutTimerIds, System.Collections.Generic.Dictionary<long, TimerAction> newTimerActionMap, long newMinFrame, long newIdGenerator) {
         var index = GameComponentsLookup.Timer;
         var component = (TimerComponent)CreateComponent(index, typeof(TimerComponent));
         component.curFrame = newCurFrame;
         component.hertz = newHertz;
         component.accumulator = newAccumulator;
         component.isUnitTimer = newIsUnitTimer;
+        component.timerId = newTimerId;
+        component.timeOutTime = newTimeOutTime;
+        component.timeOutTimerIds = newTimeOutTimerIds;
+        component.timerActionMap = newTimerActionMap;
+        component.minFrame = newMinFrame;
+        component.idGenerator = newIdGenerator;
         AddComponent(index, component);
     }
 
-    public void ReplaceTimer(long newCurFrame, int newHertz, long newAccumulator, bool newIsUnitTimer) {
+    public void ReplaceTimer(long newCurFrame, int newHertz, long newAccumulator, bool newIsUnitTimer, MultiMap<long, long> newTimerId, System.Collections.Generic.Queue<long> newTimeOutTime, System.Collections.Generic.Queue<long> newTimeOutTimerIds, System.Collections.Generic.Dictionary<long, TimerAction> newTimerActionMap, long newMinFrame, long newIdGenerator) {
         var index = GameComponentsLookup.Timer;
         var component = (TimerComponent)CreateComponent(index, typeof(TimerComponent));
         component.curFrame = newCurFrame;
         component.hertz = newHertz;
         component.accumulator = newAccumulator;
         component.isUnitTimer = newIsUnitTimer;
+        component.timerId = newTimerId;
+        component.timeOutTime = newTimeOutTime;
+        component.timeOutTimerIds = newTimeOutTimerIds;
+        component.timerActionMap = newTimerActionMap;
+        component.minFrame = newMinFrame;
+        component.idGenerator = newIdGenerator;
         ReplaceComponent(index, component);
     }
 

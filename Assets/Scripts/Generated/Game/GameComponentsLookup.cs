@@ -9,35 +9,57 @@
 public static class GameComponentsLookup {
 
     public const int Action = 0;
-    public const int CreateWorldCmd = 1;
-    public const int DebugMessage = 2;
-    public const int Destroyed = 3;
-    public const int DestroyedListener = 4;
-    public const int Entity = 5;
-    public const int Id = 6;
-    public const int InputController = 7;
-    public const int InputToCommand = 8;
-    public const int LevelAddEntityCmd = 9;
-    public const int Level = 10;
-    public const int LevelCreateCommand = 11;
-    public const int LevelLoaded = 12;
-    public const int Position = 13;
-    public const int PositionListener = 14;
-    public const int Timer = 15;
-    public const int TimerManager = 16;
-    public const int View = 17;
-    public const int World = 18;
-    public const int WorldId = 19;
+    public const int AttackHitBox = 1;
+    public const int AttackHitResult = 2;
+    public const int AttackOrHitTag = 3;
+    public const int CreateWorldCmd = 4;
+    public const int CurrentAction = 5;
+    public const int DebugMessage = 6;
+    public const int Destroyed = 7;
+    public const int DestroyedListener = 8;
+    public const int Entity = 9;
+    public const int HitBox = 10;
+    public const int HitRecord = 11;
+    public const int Id = 12;
+    public const int InputController = 13;
+    public const int InputToCommand = 14;
+    public const int LevelAddEntityCmd = 15;
+    public const int Level = 16;
+    public const int LevelCreateCommand = 17;
+    public const int LevelLoaded = 18;
+    public const int Parent = 19;
+    public const int Position = 20;
+    public const int PositionListener = 21;
+    public const int PreorderAction = 22;
+    public const int Rotation = 23;
+    public const int RotationListener = 24;
+    public const int Scale = 25;
+    public const int ScaleListener = 26;
+    public const int TempBeCancelTag = 27;
+    public const int Timer = 28;
+    public const int TimerManager = 29;
+    public const int TimerUpdateEvent = 30;
+    public const int TimerUpdateEventListener = 31;
+    public const int View = 32;
+    public const int World = 33;
+    public const int WorldId = 34;
+    public const int WorldTransform = 35;
 
-    public const int TotalComponents = 20;
+    public const int TotalComponents = 36;
 
     public static readonly string[] componentNames = {
         "Action",
+        "AttackHitBox",
+        "AttackHitResult",
+        "AttackOrHitTag",
         "CreateWorldCmd",
+        "CurrentAction",
         "DebugMessage",
         "Destroyed",
         "DestroyedListener",
         "Entity",
+        "HitBox",
+        "HitRecord",
         "Id",
         "InputController",
         "InputToCommand",
@@ -45,22 +67,38 @@ public static class GameComponentsLookup {
         "Level",
         "LevelCreateCommand",
         "LevelLoaded",
+        "Parent",
         "Position",
         "PositionListener",
+        "PreorderAction",
+        "Rotation",
+        "RotationListener",
+        "Scale",
+        "ScaleListener",
+        "TempBeCancelTag",
         "Timer",
         "TimerManager",
+        "TimerUpdateEvent",
+        "TimerUpdateEventListener",
         "View",
         "World",
-        "WorldId"
+        "WorldId",
+        "WorldTransform"
     };
 
     public static readonly System.Type[] componentTypes = {
         typeof(ActionComponent),
+        typeof(AttackHitBoxComponent),
+        typeof(AttackHitResultComponent),
+        typeof(AttackOrHitTagComponent),
         typeof(CreateWorldCmdComponent),
+        typeof(CurrentActionComponent),
         typeof(DebugMessageComponent),
         typeof(DestroyedComponent),
         typeof(DestroyedListenerComponent),
         typeof(EntityComponent),
+        typeof(HitBoxComponent),
+        typeof(HitRecordComponent),
         typeof(IdComponent),
         typeof(InputControllerComponent),
         typeof(InputToCommandComponent),
@@ -68,12 +106,22 @@ public static class GameComponentsLookup {
         typeof(LevelComponent),
         typeof(LevelCreateCommandComponent),
         typeof(LevelLoadedComponent),
+        typeof(ParentComponent),
         typeof(PositionComponent),
         typeof(PositionListenerComponent),
+        typeof(PreorderActionComponent),
+        typeof(RotationComponent),
+        typeof(RotationListenerComponent),
+        typeof(ScaleComponent),
+        typeof(ScaleListenerComponent),
+        typeof(TempBeCancelTagComponent),
         typeof(TimerComponent),
         typeof(TimerManagerComponent),
+        typeof(TimerUpdateEventComponent),
+        typeof(TimerUpdateEventListenerComponent),
         typeof(ViewComponent),
         typeof(WorldComponent),
-        typeof(WorldIdComponent)
+        typeof(WorldIdComponent),
+        typeof(WorldTransformComponent)
     };
 }

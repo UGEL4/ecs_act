@@ -4,25 +4,14 @@ using UnityEngine;
 public class GameMain : MonoBehaviour
 {
     Systems _systems;
-    Systems _serviceSystems;
 
     void Start()
     {
-        var contexts         = Contexts.sharedInstance;
-        var viewService      = new UnityViewService();
-        var levelViewService = new UnityLevelViewService();
-        var worldViewService = new UnityWorldViewService();
-        var inputService     = new UnityInputService();
-        var service          = new Service(viewService, levelViewService, worldViewService, inputService);
-        _serviceSystems      = new ServiceRegisterSystem(contexts, service);
-        
+        var contexts = Contexts.sharedInstance;
         _systems = new GameSystems(contexts);
-
-        _serviceSystems.Initialize();
         _systems.Initialize();
-
-        var world = contexts.game.CreateEntity();
-        world.AddCreateWorldCmd(IdGenerator.NextEntityId(), IdGenerator.NextEntityId(), "DefaultWorld", "Levels/Level_01");
+        EventSystem.Instance.AddInvoke(InvokeType.GameLoop, typeof(GameLoopInvoke));
+        //EventSystem.Instance.AddInvoke(InvokeType.EntityUpdate, typeof(EntityUpdateTimer));
     }
 
     void Update()

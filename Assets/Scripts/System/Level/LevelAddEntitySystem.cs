@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using Entitas;
-using UnityEngine;
+using Unity.Mathematics;
 
 public sealed class LevelAddEntitySystem : ReactiveSystem<GameEntity>, IInitializeSystem
 {
@@ -23,6 +23,13 @@ public sealed class LevelAddEntitySystem : ReactiveSystem<GameEntity>, IInitiali
             var objEntity = contexts.game.CreateEntity();
             objEntity.AddEntity(entity.levelAddEntityCmd.levelId);
             objEntity.AddId(entity.levelAddEntityCmd.entityId);
+            float3 pos = float3.zero;
+            float3 scale = new float3(1, 1, 1);
+            quaternion rotation = quaternion.identity;
+            objEntity.AddPosition(pos);
+            objEntity.AddRotation(rotation);
+            objEntity.AddScale(scale);
+            objEntity.AddWorldTransform(TransformComponentExtenstion.TRS(pos, rotation, scale, float4x4.identity));
             viewService.LoadAsset(contexts, objEntity, entity.levelAddEntityCmd.assetName);
             entity.Destroy();
         }

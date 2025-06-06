@@ -25,10 +25,17 @@ public class MonoLevel : MonoBehaviour, IViewController
         set { transform.localScale = value; }
     }
 
+    public Transform GetLevelRoot() { return transform; }
+
     public bool Active { get { return gameObject.activeSelf; } set { gameObject.SetActive(value); } }
 
     public void InitializeView(Contexts contexts, IEntity entity)
     {
+        // var go    = new GameObject("levelRoot");
+        // levelRoot = go.transform;
+        // levelRoot.SetParent(gameObject.transform);
+        // levelRoot.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
+        // levelRoot.localScale = Vector3.one;
         this.contexts = contexts;
         this.entity   = (GameEntity)entity;
         long levelId  = this.entity.id.value;
@@ -46,20 +53,24 @@ public class MonoLevel : MonoBehaviour, IViewController
         var worldObj = MonoGameObjectInstance.GetWorld(worldId);
         if (worldObj == null)
         {
-            Debug.LogError("Could not find world with id:" + worldId);
+            Debug.LogError($"Could not find world with id:{worldId}");
             return;
         }
-        var position   = entity.position.value;
+        var position = entity.position.value;
         var unityWorld = worldObj.GetComponent<MonoWorld>();
         if (unityWorld != null)
         {
             var levelRootTransform = unityWorld.GetLevelRoot();
-            gameObject.transform.SetParent(levelRootTransform);
+            gameObject.transform.SetParent(levelRootTransform, false);
         }
         else
         {
-            gameObject.transform.SetParent(worldObj.transform);
+            Debug.LogError($"Could not find wunityWorld with id:{worldId}");
+            return;
         }
         gameObject.transform.localPosition = position;
+        gameObject.transform.localRotation = entity.rotation.value;
+        gameObject.transform.localScale = entity.scale.value;
+        
     }
 }

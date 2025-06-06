@@ -11,23 +11,19 @@ public partial class GameEntity {
     public ActionComponent action { get { return (ActionComponent)GetComponent(GameComponentsLookup.Action); } }
     public bool hasAction { get { return HasComponent(GameComponentsLookup.Action); } }
 
-    public void AddAction(long newEntityId, System.Collections.Generic.List<ActionInfo> newActions, ActionInfo newCurrentAction, int newCurrentActionFrame) {
+    public void AddAction(long newEntityId, System.Collections.Generic.List<ActionInfo> newActions) {
         var index = GameComponentsLookup.Action;
         var component = (ActionComponent)CreateComponent(index, typeof(ActionComponent));
         component.entityId = newEntityId;
         component.actions = newActions;
-        component.currentAction = newCurrentAction;
-        component.currentActionFrame = newCurrentActionFrame;
         AddComponent(index, component);
     }
 
-    public void ReplaceAction(long newEntityId, System.Collections.Generic.List<ActionInfo> newActions, ActionInfo newCurrentAction, int newCurrentActionFrame) {
+    public void ReplaceAction(long newEntityId, System.Collections.Generic.List<ActionInfo> newActions) {
         var index = GameComponentsLookup.Action;
         var component = (ActionComponent)CreateComponent(index, typeof(ActionComponent));
         component.entityId = newEntityId;
         component.actions = newActions;
-        component.currentAction = newCurrentAction;
-        component.currentActionFrame = newCurrentActionFrame;
         ReplaceComponent(index, component);
     }
 

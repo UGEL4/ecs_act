@@ -47,58 +47,91 @@
     <Analyzer Include="C:\Unity\Editor\Unity 2023.1.0f1c1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Interface\Camera\CameraController.cs" />
     <Compile Include="Assets\Scripts\Service\Service.cs" />
+    <Compile Include="Assets\Scripts\Mono\Input\InputReader.cs" />
     <Compile Include="Assets\Scripts\Generated\Game\Components\GameIdComponent.cs" />
+    <Compile Include="Assets\Scripts\Generated\Events\Systems\RotationEventSystem.cs" />
     <Compile Include="Assets\Scripts\Generated\Debug\DebugComponentsLookup.cs" />
     <Compile Include="Assets\Scripts\Generated\Game\Components\GameViewComponent.cs" />
     <Compile Include="Assets\Scripts\Game\Action\ActionInfo.cs" />
     <Compile Include="Assets\Scripts\Interface\Event\IEventListener.cs" />
+    <Compile Include="Assets\Scripts\Generated\Game\Components\GameTimerUpdateEventComponent.cs" />
+    <Compile Include="Assets\Scripts\Mono\Entity\MainRoleUpdater.cs" />
     <Compile Include="Assets\Scripts\Generated\Game\GameCleanupSystems.cs" />
+    <Compile Include="Assets\Scripts\Timer\Timer.cs" />
     <Compile Include="Assets\Scripts\Mono\Input\UnityInputService.cs" />
     <Compile Include="Assets\Scripts\Generated\Game\Components\GameDestroyedComponent.cs" />
     <Compile Include="Assets\Scripts\Generated\GameState\GameStateMatcher.cs" />
     <Compile Include="Assets\Scripts\Generated\Game\Components\GameLevelCreateCommandComponent.cs" />
-    <Compile Include="Assets\Scripts\MonoComponent\MonoInputComponent.cs" />
+    <Compile Include="Assets\Scripts\Component\Action\PreorderActionComponent.cs" />
+    <Compile Include="Assets\Scripts\Game\Action\FrameIndexRange.cs" />
     <Compile Include="Assets\Scripts\Generated\Game\Components\GamePositionListenerComponent.cs" />
     <Compile Include="Assets\Scripts\System\Timer\TimerComponentSystem.cs" />
+    <Compile Include="Assets\Scripts\Generated\Events\Interfaces\ITimerUpdateEventListener.cs" />
     <Compile Include="Assets\Scripts\Generated\Input\InputContext.cs" />
-    <Compile Include="Assets\Scripts\System\Input\InputProcessSystem.cs" />
     <Compile Include="Assets\Scripts\Interface\Log\ILogService.cs" />
+    <Compile Include="Assets\Scripts\Mono\Entity\MonoCharacter.cs" />
     <Compile Include="Assets\Scripts\Generated\Debug\DebugContext.cs" />
+    <Compile Include="Assets\Scripts\System\Input\InputToCommandSystem.cs" />
     <Compile Include="Assets\Scripts\Generated\Game\GameContext.cs" />
     <Compile Include="Assets\Scripts\Component\View\ViewServiceComponent.cs" />
     <Compile Include="Assets\Scripts\Generated\Events\Components\PositionListenerComponent.cs" />
     <Compile Include="Assets\Scripts\Mono\World\UnityWorldViewService.cs" />
+    <Compile Include="Assets\Scripts\Game\Action\ActionChangeInfo.cs" />
+    <Compile Include="Assets\Scripts\Component\Transform\TransformComponentExtenstion.cs" />
     <Compile Include="Assets\Scripts\Generated\Game\Components\GameDebugMessageComponent.cs" />
     <Compile Include="Assets\Scripts\Generated\Game\Components\GameWorldComponent.cs" />
+    <Compile Include="Assets\Scripts\Generated\Game\Components\GameHitBoxComponent.cs" />
+    <Compile Include="Assets\Scripts\Component\Transform\RotationComponent.cs" />
+    <Compile Include="Assets\Scripts\Generated\Events\Interfaces\IRotationListener.cs" />
     <Compile Include="Assets\Scripts\System\GameSystems.cs" />
     <Compile Include="Assets\Scripts\Generated\Feature.cs" />
+    <Compile Include="Assets\Scripts\Timer\TimerAction.cs" />
+    <Compile Include="Assets\Scripts\Component\Action\PreorderActionComponentExtenstion.cs" />
     <Compile Include="Assets\Scripts\Component\Level\LevelCreateCommandComponent.cs" />
+    <Compile Include="Assets\Scripts\ObjectPool\ObjectPool.cs" />
     <Compile Include="Assets\Scripts\Interface\Input\IInputController.cs" />
     <Compile Include="Assets\Scripts\Component\Id\IdComponent.cs" />
+    <Compile Include="Assets\Scripts\System\Input\InputToCommandProcress.cs" />
     <Compile Include="Assets\Scripts\Component\Level\LevelAddEntityCmdComponent.cs" />
+    <Compile Include="Assets\Scripts\Component\Transform\ParentComponent.cs" />
     <Compile Include="Assets\Scripts\System\Level\LevelAddEntitySystem.cs" />
+    <Compile Include="Assets\Scripts\Game\Action\HitRecordInfo.cs" />
     <Compile Include="Assets\Scripts\Generated\Events\GameEventSystems.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Scripts\Mono\World\MonoWorld.cs" />
     <Compile Include="Assets\Scripts\System\Level\RegisterLevelViewServiceSystem.cs" />
+    <Compile Include="Assets\Scripts\Mono\Entity\PositionListener.cs" />
+    <Compile Include="Assets\Scripts\Generated\Events\Systems\TimerUpdateEventEventSystem.cs" />
     <Compile Include="Assets\Scripts\Generated\Game\Components\GameEntityComponent.cs" />
     <Compile Include="Assets\Scripts\Generated\Debug\DebugMatcher.cs" />
     <Compile Include="Assets\Scripts\Generated\Events\Interfaces\IPositionListener.cs" />
     <Compile Include="Assets\Scripts\Component\Action\ActionComponent.cs" />
+    <Compile Include="Assets\Scripts\Game\Action\ActionCommand.cs" />
+    <Compile Include="Assets\Scripts\Generated\Events\Components\RotationListenerComponent.cs" />
     <Compile Include="Assets\Scripts\Generated\GameState\GameStateAttribute.cs" />
     <Compile Include="Assets\Scripts\Generated\Debug\DebugAttribute.cs" />
     <Compile Include="Assets\Scripts\Generated\Config\ConfigMatcher.cs" />
+    <Compile Include="Assets\Scripts\Game\Action\CancelTag.cs" />
+    <Compile Include="Assets\Scripts\Generated\Game\Components\GameHitRecordComponent.cs" />
+    <Compile Include="Assets\Scripts\Event\IInvoke.cs" />
     <Compile Include="Assets\Scripts\System\View\RegisterViewServiceSystem.cs" />
+    <Compile Include="Assets\Scripts\System\Entity\EntityUpdateLogic.cs" />
     <Compile Include="Assets\Scripts\Generated\Config\ConfigComponentsLookup.cs" />
     <Compile Include="Assets\Scripts\Component\Entity\EntityComponent.cs" />
     <Compile Include="Assets\Scripts\Generated\Events\Components\DestroyedListenerComponent.cs" />
+    <Compile Include="Assets\Scripts\System\MoveSystem.cs" />
     <Compile Include="Assets\Scripts\Generated\GameState\GameStateEntity.cs" />
+    <Compile Include="Assets\Test\GameInitializer.cs" />
     <Compile Include="Assets\Scripts\Generated\Meta\MetaMatcher.cs" />
     <Compile Include="Assets\Scripts\Generated\Game\Components\GamePositionComponent.cs" />
     <Compile Include="Assets\Scripts\Generated\Meta\MetaAttribute.cs" />
     <Compile Include="Assets\Scripts\Component\Input\InputServiceComponent.cs" />
+    <Compile Include="Assets\Scripts\Generated\Game\Components\GameCurrentActionComponent.cs" />
+    <Compile Include="Assets\Scripts\Container\MultiMap.cs" />
     <Compile Include="Assets\Scripts\Generated\Game\Components\GameLevelAddEntityCmdComponent.cs" />
+    <Compile Include="Assets\Scripts\Component\Input\InputCommandExtenstion.cs" />
     <Compile Include="Assets\Scripts\Generated\Input\InputAttribute.cs" />
     <Compile Include="Assets\Scripts\System\World\RegisterWorldViewServiceSystem.cs" />
     <Compile Include="Assets\Scripts\System\Log\DebugMessageSystem.cs" />
@@ -106,79 +139,126 @@
     <Compile Include="Assets\Scripts\System\Level\AddLevelSystem.cs" />
     <Compile Include="Assets\Scripts\Mono\Input\UnityInputController.cs" />
     <Compile Include="Assets\Scripts\Generated\Game\GameComponentsLookup.cs" />
+    <Compile Include="Assets\Scripts\Component\Action\HitRecordComponent.cs" />
+    <Compile Include="Assets\Scripts\Generated\Game\Components\GameWorldTransformComponent.cs" />
+    <Compile Include="Assets\Scripts\Singleton\Singleton.cs" />
     <Compile Include="Assets\Scripts\Generated\Game\GameAttribute.cs" />
+    <Compile Include="Assets\Scripts\Generated\Game\Components\GameScaleComponent.cs" />
+    <Compile Include="Assets\Scripts\Generated\Game\Components\GameRotationListenerComponent.cs" />
     <Compile Include="Assets\Scripts\Mono\View\UnityViewService.cs" />
     <Compile Include="Assets\Scripts\Generated\Game\GameMatcher.cs" />
     <Compile Include="Assets\Scripts\System\Action\ActionControllerSystem.cs" />
     <Compile Include="Assets\Scripts\Generated\Events\Systems\DestroyedEventSystem.cs" />
+    <Compile Include="Assets\Scripts\Game\Action\PreorderActionInfo.cs" />
     <Compile Include="Assets\Scripts\Component\Input\InputToCommandComponent.cs" />
     <Compile Include="Assets\Scripts\Generated\Contexts.cs" />
+    <Compile Include="Assets\Scripts\Generated\Game\Components\GameAttackHitBoxComponent.cs" />
     <Compile Include="Assets\Scripts\Generated\Events\Systems\PositionEventSystem.cs" />
+    <Compile Include="Assets\Scripts\System\Action\DoAttackSystem.cs" />
+    <Compile Include="Assets\Scripts\Component\Action\ActionComponentExtenstion.cs" />
+    <Compile Include="Assets\Scripts\Component\Action\TempBeCancelTagComponent.cs" />
+    <Compile Include="Assets\Scripts\Game\Action\AttackHitBox.cs" />
     <Compile Include="Assets\Scripts\Component\Destroyed\DestroyedComponent.cs" />
     <Compile Include="Assets\Scripts\Generated\Meta\Components\MetaLevelViewServiceComponent.cs" />
     <Compile Include="Assets\Scripts\Log\UnityDebugLogService.cs" />
     <Compile Include="Assets\Scripts\Component\Level\LevelLoadedComponent.cs" />
+    <Compile Include="Assets\Scripts\Component\Action\AttackOrHitTagComponent.cs" />
+    <Compile Include="Assets\Scripts\Component\Timer\TimerManagerComponentExtensitions.cs" />
     <Compile Include="Assets\Scripts\Generated\Config\ConfigContext.cs" />
+    <Compile Include="Assets\Scripts\Generated\Game\Components\GameAttackOrHitTagComponent.cs" />
+    <Compile Include="Assets\Scripts\Component\Timer\TimerUpdateEventComponent.cs" />
     <Compile Include="Assets\Scripts\Interface\View\IViewController.cs" />
     <Compile Include="Assets\Scripts\Generated\Game\GameEntity.cs" />
     <Compile Include="Assets\Scripts\Generated\Game\Components\GameWorldIdComponent.cs" />
+    <Compile Include="Assets\Scripts\Generated\Game\Components\GameRotationComponent.cs" />
     <Compile Include="Assets\Scripts\Interface\View\IViewService.cs" />
+    <Compile Include="Assets\Scripts\Component\Transform\PositionComponent.cs" />
     <Compile Include="Assets\Scripts\Component\Input\InputControllerComponent.cs" />
+    <Compile Include="Assets\Scripts\System\Action\ActionUpdateSystem.cs" />
     <Compile Include="Assets\Scripts\Generated\Input\Components\InputIdComponent.cs" />
+    <Compile Include="Assets\Scripts\Interface\Event\IUpdateEvent.cs" />
+    <Compile Include="Assets\Scripts\Generated\Game\Components\GameScaleListenerComponent.cs" />
+    <Compile Include="Assets\Scripts\Component\Transform\ScaleComponent.cs" />
+    <Compile Include="Assets\Scripts\Generated\Events\Interfaces\IScaleListener.cs" />
     <Compile Include="Assets\Scripts\GameMain.cs" />
     <Compile Include="Assets\Scripts\System\Log\DebugLogSystem.cs" />
+    <Compile Include="Assets\Scripts\System\Action\HitResultCollectSystem.cs" />
+    <Compile Include="Assets\Scripts\Generated\Game\Components\GameTimerUpdateEventListenerComponent.cs" />
     <Compile Include="Assets\Scripts\System\Timer\TimerManagerSystem.cs" />
     <Compile Include="Assets\Scripts\Game\Config\LevelConfig.cs" />
     <Compile Include="Assets\Scripts\Component\World\WorldComponent.cs" />
+    <Compile Include="Assets\Scripts\GameMainLogic.cs" />
+    <Compile Include="Assets\Scripts\Component\Action\AttackHitResultComponent.cs" />
     <Compile Include="Assets\Scripts\Component\Log\DebugLogComponent.cs" />
     <Compile Include="Assets\Scripts\Component\Level\LevelViewServiceComponent.cs" />
-    <Compile Include="Assets\Scripts\System\Input\InputSystem.cs" />
+    <Compile Include="Assets\Scripts\System\GameLoop.cs" />
+    <Compile Include="Assets\Scripts\Game\Action\HitBox.cs" />
     <Compile Include="Assets\Scripts\Generated\Game\Components\GameInputToCommandComponent.cs" />
     <Compile Include="Assets\Scripts\Generated\Game\Components\GameInputControllerComponent.cs" />
+    <Compile Include="Assets\Scripts\Generated\Game\Components\GamePreorderActionComponent.cs" />
     <Compile Include="Assets\Scripts\Generated\Config\ConfigAttribute.cs" />
     <Compile Include="Assets\Scripts\System\Input\RegisterInputServiceSystem.cs" />
+    <Compile Include="Assets\Scripts\Generated\Game\Components\GameAttackHitResultComponent.cs" />
     <Compile Include="Assets\Scripts\Component\Log\DebugMessageComponent.cs" />
+    <Compile Include="Assets\Scripts\Timer\InvokeType.cs" />
+    <Compile Include="Assets\Scripts\Event\EventSystem.cs" />
     <Compile Include="Assets\Scripts\Generated\Game\Components\GameTimerComponent.cs" />
+    <Compile Include="Assets\Scripts\Generated\Game\Components\GameParentComponent.cs" />
     <Compile Include="Assets\Scripts\InputCommand\RecordKey.cs" />
     <Compile Include="Assets\Scripts\Generated\Game\Components\GameLevelLoadedComponent.cs" />
     <Compile Include="Assets\Scripts\Generated\Meta\MetaComponentsLookup.cs" />
+    <Compile Include="Assets\Scripts\System\Invoke\GameLoopInvoke.cs" />
     <Compile Include="Assets\Scripts\Component\Timer\TimerComponent.cs" />
     <Compile Include="Assets\Scripts\Generated\GameState\GameStateComponentsLookup.cs" />
     <Compile Include="Assets\Scripts\System\World\AddWorldSystem.cs" />
     <Compile Include="Assets\Scripts\Generated\Game\Components\GameCreateWorldCmdComponent.cs" />
     <Compile Include="Assets\Scripts\Component\World\CreateWorldCmdComponent.cs" />
+    <Compile Include="Assets\Scripts\Game\Action\AttackHitResultData.cs" />
     <Compile Include="Assets\Scripts\Component\Id\WorldIdComponent.cs" />
     <Compile Include="Assets\Scripts\Generated\Game\Components\GameDestroyedListenerComponent.cs" />
+    <Compile Include="Assets\Scripts\Component\box\AttackHitBoxComponent.cs" />
     <Compile Include="Assets\Scripts\Component\World\WorldViewServiceComponent.cs" />
+    <Compile Include="Assets\Scripts\Component\Action\HitRecordComponentExtenstion.cs" />
     <Compile Include="Assets\Scripts\Component\View\ViewComponent.cs" />
     <Compile Include="Assets\Scripts\Generated\Input\InputComponentsLookup.cs" />
     <Compile Include="Assets\Scripts\Generated\Meta\MetaEntity.cs" />
+    <Compile Include="Assets\Scripts\Interface\Event\IGameEvent.cs" />
     <Compile Include="Assets\Input\PlayerInput.cs" />
     <Compile Include="Assets\Scripts\Interface\Input\IInputService.cs" />
-    <Compile Include="Assets\Scripts\System\Input\InputCommondProcessSystem.cs" />
     <Compile Include="Assets\Scripts\System\ServiceRegisterSystem.cs" />
     <Compile Include="Assets\Scripts\Generated\Config\ConfigEntity.cs" />
+    <Compile Include="Assets\Scripts\Generated\Events\Components\TimerUpdateEventListenerComponent.cs" />
     <Compile Include="Assets\Scripts\Generated\Input\InputMatcher.cs" />
     <Compile Include="Assets\Scripts\Generated\Game\Components\GameLevelComponent.cs" />
+    <Compile Include="Assets\Scripts\Generated\Game\Components\GameTempBeCancelTagComponent.cs" />
     <Compile Include="Assets\Scripts\Generated\Events\Interfaces\IDestroyedListener.cs" />
     <Compile Include="Assets\Scripts\Component\Level\LevelComponent.cs" />
+    <Compile Include="Assets\Scripts\Generated\Events\Systems\ScaleEventSystem.cs" />
+    <Compile Include="Assets\Scripts\Game\Action\ColliderBox.cs" />
     <Compile Include="Assets\Scripts\Generated\Meta\Components\MetaViewServiceComponent.cs" />
+    <Compile Include="Assets\Scripts\Component\box\HitBoxComponent.cs" />
     <Compile Include="Assets\Scripts\Generated\Debug\DebugEntity.cs" />
     <Compile Include="Assets\Scripts\Generated\Debug\Components\DebugDebugLogComponent.cs" />
+    <Compile Include="Assets\Scripts\Game\Action\ActionFrameInfo.cs" />
     <Compile Include="Assets\Scripts\Generated\Components\Interfaces\IIdEntity.cs" />
     <Compile Include="Assets\Scripts\Generated\Game\Components\GameTimerManagerComponent.cs" />
     <Compile Include="Assets\Scripts\Mono\Level\MonoLevel.cs" />
     <Compile Include="Assets\Scripts\Generated\Game\Components\GameActionComponent.cs" />
+    <Compile Include="Assets\Scripts\Generated\Events\Components\ScaleListenerComponent.cs" />
     <Compile Include="Assets\Scripts\Generated\Meta\MetaContext.cs" />
+    <Compile Include="Assets\Scripts\Component\Transform\WorldTransformComponent.cs" />
     <Compile Include="Assets\Scripts\Mono\MonoGameObjectInstance.cs" />
     <Compile Include="Assets\Scripts\Interface\Level\ILevelViewService.cs" />
+    <Compile Include="Assets\Scripts\Math\OrientedBox.cs" />
     <Compile Include="Assets\Scripts\Generated\Input\Components\InputInputServiceComponent.cs" />
     <Compile Include="Assets\Scripts\Generated\Meta\Components\MetaWorldViewServiceComponent.cs" />
-    <Compile Include="Assets\Scripts\Component\Position\PositionComponent.cs" />
     <Compile Include="Assets\Scripts\Generated\Input\InputEntity.cs" />
+    <Compile Include="Assets\Scripts\System\Entity\EntityUpdateTimer.cs" />
+    <Compile Include="Assets\Scripts\Game\Action\HitInfo.cs" />
     <Compile Include="Assets\Scripts\Component\Timer\TimerManagerComponent.cs" />
     <Compile Include="Assets\Scripts\Mono\Level\UnityLevelViewService.cs" />
     <Compile Include="Assets\Scripts\Component\Timer\TimerComponentExtenstion.cs" />
+    <Compile Include="Assets\Scripts\Game\Action\CancelData.cs" />
     <Compile Include="Assets\Scripts\Utils\IdGenerator.cs" />
     <Compile Include="Assets\Scripts\Generated\Game\Systems\DestroyDestroyedGameSystem.cs" />
     <Compile Include="Assets\Scripts\Interface\World\IWorldViewService.cs" />
@@ -1166,8 +1246,8 @@
       <HintPath>Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.ShaderGraph.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll</HintPath>
+    <Reference Include="UniTask.TextMeshPro">
+      <HintPath>Library\ScriptAssemblies\UniTask.TextMeshPro.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.VisualScripting.SettingsProvider.Editor">
@@ -1178,12 +1258,16 @@
       <HintPath>Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.VisualScripting.State.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.State.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Unity.Mathematics">
       <HintPath>Library\ScriptAssemblies\Unity.Mathematics.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.ShaderGraph.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.State.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.State.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Editor">
@@ -1198,12 +1282,20 @@
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="UniTask.Linq">
+      <HintPath>Library\ScriptAssemblies\UniTask.Linq.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.VisualScripting.State">
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.State.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.Mathematics.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Mathematics.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UniTask.Addressables">
+      <HintPath>Library\ScriptAssemblies\UniTask.Addressables.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.UI">
@@ -1234,12 +1326,20 @@
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="UniTask.DOTween">
+      <HintPath>Library\ScriptAssemblies\UniTask.DOTween.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.VisualScripting.Core">
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.Core.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.InputSystem">
       <HintPath>Library\ScriptAssemblies\Unity.InputSystem.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UniTask">
+      <HintPath>Library\ScriptAssemblies\UniTask.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.2D.Runtime">

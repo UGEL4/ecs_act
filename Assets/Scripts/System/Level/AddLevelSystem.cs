@@ -25,6 +25,8 @@ public sealed class AddLevelSystem : ReactiveSystem<GameEntity>, IInitializeSyst
             sceneEntity.AddId(entity.levelCreateCommand.levelId); //关卡的id，用于查找
             viewService.LoadAsset(contexts, sceneEntity, entity.levelCreateCommand.assetName, entity.levelCreateCommand.levelConfigName);
             //var levelService = _levelCreateService.CreateLevel(entity, levelRoot);
+
+            sceneEntity.AddLevelAddEntityCmd(entity.levelCreateCommand.levelId, IdGenerator.NextEntityId(), "Characters/ch_01");
             entity.Destroy();
         }
     }

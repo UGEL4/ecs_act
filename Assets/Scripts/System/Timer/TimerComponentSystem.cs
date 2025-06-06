@@ -16,19 +16,34 @@ public class TimerComponentSystem : IExecuteSystem
     {
         var timerManager     = _gameContext.timerManager;
         var sceneTimerEntity = _gameContext.GetEntityWithId(timerManager.sceneTimerId);
-        var sceneTimer       = sceneTimerEntity.timer;
-        if (sceneTimer == null)
+        if (!sceneTimerEntity.hasTimer)
         {
             return;
         }
-        long prefame = sceneTimer.GetNow();
-        sceneTimer.UpdateFrame(timerManager.accumulator);
-        long nowFrame = sceneTimer.GetNow();
-        long _DT = nowFrame - prefame;
-        while (_DT-- > 0)
+        var sceneTimer = sceneTimerEntity.timer;
+        if (sceneTimer.hertz == 0)
         {
-            //Debug.Log("TimerComponentSystem Execute:" + (nowFrame - _DT));
+            return;
         }
-        //GameEntity sceneTimerEntity = Contexts.sharedInstance.game.GetEn
+
+            //更新子时间轴
+            long instanceCount = timerManager.isntanceIds.Count;
+            while (instanceCount-- > 0)
+            {
+                long instanceId = timerManager.isntanceIds.Dequeue();
+                var e = _gameContext.GetEntityWithId(instanceId);
+                if (e == null)
+                {
+                    continue;
+                }
+                if (!e.hasTimer)
+                {
+                    continue;
+                }
+                var timerComp = e.timer;
+                timerManager.isntanceIds.Enqueue(instanceId);
+                //SceneTimer逻辑帧帧长是固定的， 永远是 1 / 60 s
+                timerComp.UpdateFrame(166666);
+            }
     }
 }

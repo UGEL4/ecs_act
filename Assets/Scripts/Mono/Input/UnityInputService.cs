@@ -12,17 +12,19 @@ public class UnityInputService : IInputService
 
     private PlayerInput playerInput;
     private Contexts contexts;
-    private InputEntity inputEntity;
 
     public void Initialize(Contexts contexts, IEntity entity)
     {
         this.contexts = contexts;
-        inputEntity   = (InputEntity)entity;
+        //inputEntity   = (InputEntity)entity;
 
         playerInput = new PlayerInput();
         playerInput.Player.Move.performed += OnAxis;
+        playerInput.Player.Move.canceled += OnAxis;
+        playerInput.Player.Move.started += OnAxis;
 
         mAxis = Vector2.zero;
+        OnEnable();
     }
 
     public void OnEnable()
@@ -38,6 +40,8 @@ public class UnityInputService : IInputService
     public void Destroy()
     {
         playerInput.Player.Move.performed -= OnAxis;
+        playerInput.Player.Move.canceled -= OnAxis;
+        playerInput.Player.Move.started -= OnAxis;
     }
     
     void OnAxis(InputAction.CallbackContext context)
