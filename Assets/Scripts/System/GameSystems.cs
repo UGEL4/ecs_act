@@ -23,7 +23,15 @@ public sealed class GameLogicSystems : Feature
         Add(new TimerComponentSystem(contexts));
         Add(new InputToCommandSystem(contexts));
         Add(new ActionUpdateSystem(contexts));
+        Add(new GravitySystem(contexts));
+        Add(new KCCSystem(contexts));
         //Add(new MoveSystem(contexts));
         //actionsystem
+
+        //Events (Genetrate)
+        Add(new GameEventSystems(contexts));
+
+        //CleanUp (Genetrate)
+        Add(new GameCleanupSystems(contexts));
     }
 }

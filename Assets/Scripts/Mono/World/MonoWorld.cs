@@ -39,12 +39,24 @@ public class MonoWorld : MonoBehaviour, IViewController
         this.contexts        = contexts;
         this.entity          = (GameEntity)entity;
         long worldId         = this.entity.worldId.value;
+        Link(this.entity);
         MonoGameObjectInstance.AddWorld(worldId, gameObject);
         OnWorldCreate();
     }
 
-    public void DestroyView() {
-        Object.Destroy(this);
+    public void Link(IEntity entity)
+    {
+        gameObject.Link(entity);
+    }
+
+    public void Unlink()
+    {
+        gameObject.Unlink();
+    }
+
+    public void DestroyView()
+    {
+        Destroy(this);
     }
 
     void OnWorldCreate()
@@ -59,5 +71,17 @@ public class MonoWorld : MonoBehaviour, IViewController
         // var position = entity.position.value;
         // gameObject.transform.SetParent(worldObj.transform);
         // gameObject.transform.localPosition = position;
+    }
+
+    void OnDestroy()
+    {
+        Unlink();
+        this.contexts = null;
+        this.entity   = null;
+    }
+
+    public IEntity GetEntity()
+    {
+        return entity;
     }
 }

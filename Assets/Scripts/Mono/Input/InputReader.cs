@@ -9,37 +9,42 @@ using static PlayerInput;
 [CreateAssetMenu(fileName = "InputReader", menuName = "Input/InputReader")]
 public class InputReader : ScriptableObject, IPlayerActions
 {
-    public UnityAction<Vector2, InputActionPhase> Move = delegate {};
-    public UnityAction<Vector2> Look = delegate {};
-    public UnityAction<InputActionPhase> AttackA = delegate {};
-    public UnityAction<InputActionPhase> AttackB = delegate {};
-    public UnityAction<InputActionPhase> ButtonA = delegate {};
-    public UnityAction<InputActionPhase> ButtonB = delegate {};
-    public UnityAction<InputActionPhase> Jump = delegate {};
+    public UnityAction<Vector2, InputActionPhase> LeftStick = delegate {};
+    public UnityAction<Vector2, InputActionPhase> RightStick = delegate {};
+    public UnityAction<InputActionPhase> Button1 = delegate {};
+    public UnityAction<InputActionPhase> Button2 = delegate {};
+    public UnityAction<InputActionPhase> Button3 = delegate {};
+    public UnityAction<InputActionPhase> Button4 = delegate {};
 
     PlayerInput input;
-    public Vector3 Direction => input.Player.Move.ReadValue<Vector2>();
 
-    public void OnMove(InputAction.CallbackContext context)
+    public void OnLeftStick(InputAction.CallbackContext context)
     {
-        Move.Invoke(context.ReadValue<Vector2>(), context.phase);
+        LeftStick.Invoke(context.ReadValue<Vector2>(), context.phase);
     }
-    public void OnLook(InputAction.CallbackContext context)
+    public void OnRightStick(InputAction.CallbackContext context)
     {
-        Look.Invoke(context.ReadValue<Vector2>());
-    }
-    public void OnFire(InputAction.CallbackContext context)
-    {
-
+        RightStick.Invoke(context.ReadValue<Vector2>(), context.phase);
     }
 
-    public void OnAttackA(InputAction.CallbackContext context)
+    public void OnButton1(InputAction.CallbackContext context)
     {
-        AttackA.Invoke(context.phase);
+        Button1.Invoke(context.phase);
     }
-    public void OnAttackB(InputAction.CallbackContext context)
+
+    public void OnButton2(InputAction.CallbackContext context)
     {
-        AttackB.Invoke(context.phase);
+        Button1.Invoke(context.phase);
+    }
+    
+    public void OnButton3(InputAction.CallbackContext context)
+    {
+        Button3.Invoke(context.phase);
+    }
+
+    public void OnButton4(InputAction.CallbackContext context)
+    {
+        Button4.Invoke(context.phase);
     }
 
     private void OnEnable()
@@ -55,20 +60,5 @@ public class InputReader : ScriptableObject, IPlayerActions
     private void OnDisable()
     {
         if (input != null) input.Disable();
-    }
-
-    public void OnJump(InputAction.CallbackContext context)
-    {
-        Jump.Invoke(context.phase);
-    }
-
-    public void OnButtonA(InputAction.CallbackContext context)
-    {
-        ButtonA.Invoke(context.phase);
-    }
-
-    public void OnButtonB(InputAction.CallbackContext context)
-    {
-        ButtonB.Invoke(context.phase);
     }
 }

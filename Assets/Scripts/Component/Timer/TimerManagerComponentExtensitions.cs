@@ -5,10 +5,24 @@ public static class TimerManagerComponentExtensitions
         self.isntanceIds.Enqueue(entityId);
     }
 
-    public static TimerComponent GetSceneTimer(this TimerManagerComponent self, Contexts contexts)
+    public static void OnRemoveUnitTimer(this TimerManagerComponent self, long entityId)
+    {
+        long instanceCount = self.isntanceIds.Count;
+        while (instanceCount-- > 0)
+        {
+            long instanceId = self.isntanceIds.Dequeue();
+            if (instanceId == entityId)
+            {
+                continue;
+            }
+            self.isntanceIds.Enqueue(instanceId);
+        }
+    }
+
+    public static TimerComponent GetSceneTimer(this TimerManagerComponent self, GameContext context)
     {
         long sceneTimerId = self.sceneTimerId;
-        var entity        = contexts.game.GetEntityWithId(sceneTimerId);
+        var entity        = context.GetEntityWithId(sceneTimerId);
         if (entity == null)
         {
             return null;

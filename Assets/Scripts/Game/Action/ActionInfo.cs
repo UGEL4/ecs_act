@@ -21,4 +21,7 @@ public sealed class ActionInfo
     public BeCanceledTag[] beCanceledTags = new BeCanceledTag[0];
     public TempBeCancelledTag[] tempBeCancelledTags = new TempBeCancelledTag[0];
     public HitInfo hitInfo;
+
+    public ScriptMethodInfo rootMotionTween;
+    public bool ApplyGravity;
 }

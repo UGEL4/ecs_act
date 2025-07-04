@@ -5,6 +5,6 @@ public sealed class ServiceRegisterSystem : Feature
         Add(new RegisterViewServiceSystem(contexts, service.viewService));
         Add(new RegisterLevelViewServiceSystem(contexts, service.levelViewService));
         Add(new RegisterWorldViewServiceSystem(contexts, service.worldViewService));
-        Add(new RegisterInputServiceSystem(contexts, service.inputService));
+        //Add(new RegisterInputServiceSystem(contexts, service.inputService));
     }
 }

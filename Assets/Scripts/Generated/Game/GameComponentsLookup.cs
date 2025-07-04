@@ -8,47 +8,57 @@
 //------------------------------------------------------------------------------
 public static class GameComponentsLookup {
 
-    public const int Action = 0;
-    public const int AttackHitBox = 1;
-    public const int AttackHitResult = 2;
-    public const int AttackOrHitTag = 3;
-    public const int CreateWorldCmd = 4;
-    public const int CurrentAction = 5;
-    public const int DebugMessage = 6;
-    public const int Destroyed = 7;
-    public const int DestroyedListener = 8;
-    public const int Entity = 9;
-    public const int HitBox = 10;
-    public const int HitRecord = 11;
-    public const int Id = 12;
-    public const int InputController = 13;
-    public const int InputToCommand = 14;
-    public const int LevelAddEntityCmd = 15;
-    public const int Level = 16;
-    public const int LevelCreateCommand = 17;
-    public const int LevelLoaded = 18;
-    public const int Parent = 19;
-    public const int Position = 20;
-    public const int PositionListener = 21;
-    public const int PreorderAction = 22;
-    public const int Rotation = 23;
-    public const int RotationListener = 24;
-    public const int Scale = 25;
-    public const int ScaleListener = 26;
-    public const int TempBeCancelTag = 27;
-    public const int Timer = 28;
-    public const int TimerManager = 29;
-    public const int TimerUpdateEvent = 30;
-    public const int TimerUpdateEventListener = 31;
-    public const int View = 32;
-    public const int World = 33;
-    public const int WorldId = 34;
-    public const int WorldTransform = 35;
+    public const int ACTGameKCCMotor = 0;
+    public const int ACTGameKCCPhysicalMover = 1;
+    public const int Action = 2;
+    public const int AnimationController = 3;
+    public const int AttackHitBox = 4;
+    public const int AttackHitResult = 5;
+    public const int AttackOrHitTag = 6;
+    public const int CreateWorldCmd = 7;
+    public const int CurrentAction = 8;
+    public const int DebugMessage = 9;
+    public const int Destroyed = 10;
+    public const int DestroyedListener = 11;
+    public const int Entity = 12;
+    public const int ForceMove = 13;
+    public const int Gravity = 14;
+    public const int HitBox = 15;
+    public const int HitRecord = 16;
+    public const int Id = 17;
+    public const int InputController = 18;
+    public const int InputToCommand = 19;
+    public const int LevelAddEntityCmd = 20;
+    public const int Level = 21;
+    public const int LevelCreateCommand = 22;
+    public const int LevelLoaded = 23;
+    public const int Parent = 24;
+    public const int Position = 25;
+    public const int PositionListener = 26;
+    public const int PreorderAction = 27;
+    public const int RootMotion = 28;
+    public const int Rotation = 29;
+    public const int RotationListener = 30;
+    public const int Scale = 31;
+    public const int ScaleListener = 32;
+    public const int TempBeCancelTag = 33;
+    public const int Timer = 34;
+    public const int TimerManager = 35;
+    public const int TimerUpdateEvent = 36;
+    public const int TimerUpdateEventListener = 37;
+    public const int Velocity = 38;
+    public const int View = 39;
+    public const int World = 40;
+    public const int WorldId = 41;
+    public const int WorldTransform = 42;
 
-    public const int TotalComponents = 36;
+    public const int TotalComponents = 43;
 
     public static readonly string[] componentNames = {
+        "ACTGameKCCMotor",
+        "ACTGameKCCPhysicalMover",
         "Action",
+        "AnimationController",
         "AttackHitBox",
         "AttackHitResult",
         "AttackOrHitTag",
@@ -58,6 +68,8 @@ public static class GameComponentsLookup {
         "Destroyed",
         "DestroyedListener",
         "Entity",
+        "ForceMove",
+        "Gravity",
         "HitBox",
         "HitRecord",
         "Id",
@@ -71,6 +83,7 @@ public static class GameComponentsLookup {
         "Position",
         "PositionListener",
         "PreorderAction",
+        "RootMotion",
         "Rotation",
         "RotationListener",
         "Scale",
@@ -80,6 +93,7 @@ public static class GameComponentsLookup {
         "TimerManager",
         "TimerUpdateEvent",
         "TimerUpdateEventListener",
+        "Velocity",
         "View",
         "World",
         "WorldId",
@@ -87,7 +101,10 @@ public static class GameComponentsLookup {
     };
 
     public static readonly System.Type[] componentTypes = {
+        typeof(ACTGame.KCCMotorComponent),
+        typeof(ACTGame.KCCPhysicalMoverComponent),
         typeof(ActionComponent),
+        typeof(AnimationControllerComponent),
         typeof(AttackHitBoxComponent),
         typeof(AttackHitResultComponent),
         typeof(AttackOrHitTagComponent),
@@ -97,6 +114,8 @@ public static class GameComponentsLookup {
         typeof(DestroyedComponent),
         typeof(DestroyedListenerComponent),
         typeof(EntityComponent),
+        typeof(ForceMoveComponent),
+        typeof(GravityComponent),
         typeof(HitBoxComponent),
         typeof(HitRecordComponent),
         typeof(IdComponent),
@@ -110,6 +129,7 @@ public static class GameComponentsLookup {
         typeof(PositionComponent),
         typeof(PositionListenerComponent),
         typeof(PreorderActionComponent),
+        typeof(RootMotionComponent),
         typeof(RotationComponent),
         typeof(RotationListenerComponent),
         typeof(ScaleComponent),
@@ -119,6 +139,7 @@ public static class GameComponentsLookup {
         typeof(TimerManagerComponent),
         typeof(TimerUpdateEventComponent),
         typeof(TimerUpdateEventListenerComponent),
+        typeof(VelocityComponent),
         typeof(ViewComponent),
         typeof(WorldComponent),
         typeof(WorldIdComponent),

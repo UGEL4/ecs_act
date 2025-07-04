@@ -8,5 +8,8 @@ public interface IViewController
     Vector3 Scale {get; set;}
     bool Active {get; set;}
     void InitializeView(Contexts contexts, IEntity Entity);
+    void Link(IEntity entity);
+    void Unlink();
     void DestroyView();
+    IEntity GetEntity();
 }

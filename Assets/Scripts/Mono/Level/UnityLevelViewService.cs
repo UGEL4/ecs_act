@@ -8,7 +8,7 @@ public class UnityLevelViewService : ILevelViewService
     {
         TextAsset configTxt = Resources.Load<TextAsset>("ConfigJson/Levels/" + configName);
         LevelConfig config  = JsonUtility.FromJson<LevelConfig>(configTxt.text);
-        var viewGo = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/" + assetName));
+        var viewGo          = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/" + assetName));
         if (viewGo != null)
         {
             IViewController viewController = viewGo.GetComponent<MonoLevel>();
@@ -23,9 +23,9 @@ public class UnityLevelViewService : ILevelViewService
                     viewController.Position = config.position;
                 }
                 var e = (GameEntity)entity;
-                //e.AddPosition(viewController.Position);
-                float3 pos = viewController.Position;
-                float3 scale = viewController.Scale;
+                // e.AddPosition(viewController.Position);
+                float3 pos          = viewController.Position;
+                float3 scale        = viewController.Scale;
                 quaternion rotation = quaternion.Euler(viewController.Rotation);
                 e.AddPosition(pos);
                 e.AddRotation(rotation);

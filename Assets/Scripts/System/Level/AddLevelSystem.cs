@@ -26,7 +26,7 @@ public sealed class AddLevelSystem : ReactiveSystem<GameEntity>, IInitializeSyst
             viewService.LoadAsset(contexts, sceneEntity, entity.levelCreateCommand.assetName, entity.levelCreateCommand.levelConfigName);
             //var levelService = _levelCreateService.CreateLevel(entity, levelRoot);
 
-            sceneEntity.AddLevelAddEntityCmd(entity.levelCreateCommand.levelId, IdGenerator.NextEntityId(), "Characters/ch_01");
+            sceneEntity.AddLevelAddEntityCmd(entity.levelCreateCommand.levelId, IdGenerator.NextEntityId(), "Characters/pl/pl0000");
             entity.Destroy();
         }
     }

@@ -51,5 +51,9 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "ecs_act.sln"
+    "dotnet.defaultSolution": "ecs_act.sln",
+    "[csharp]":{
+        "editor.defaultFormatter": "moowiz.clang-format-moowiz-fork",
+        "editor.formatOnType": false
+    },
 }
