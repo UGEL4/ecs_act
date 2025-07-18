@@ -75,6 +75,7 @@ public class KCCSystem : IExecuteSystem
         for (int i = 0; i < motorEntities.Length; i++)
         {
             var motor = motorEntities[i].aCTGameKCCMotor.value;
+            //motor.BaseVelocity = motorEntities[i].velocity.value;
             motor.UpdatePhase1(deltaTime);
         }
 
@@ -97,6 +98,7 @@ public class KCCSystem : IExecuteSystem
             motor.UpdatePhase2(deltaTime);
 
             motor.Transform.SetPositionAndRotation(motor.TransientPosition, motor.TransientRotation);
+            //motorEntities[i].velocity.value = motor.BaseVelocity;
         }
 #pragma warning restore 0162
     }

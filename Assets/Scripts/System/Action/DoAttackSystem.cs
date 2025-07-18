@@ -151,11 +151,11 @@ public class DoAttackSystem : ReactiveSystem<GameEntity>
 
                         foreach (var tag in attackerChangeInfo.tempBeCanceledTags)
                         {
-                            attacker.tempBeCancelTag.AddTempBeCancelledTag(attacker, tag);
+                            attacker.tempBeCancelTag.AddTempBeCancelledTag(tag);
                         }
                         foreach (var tag in targetChangeInfo.tempBeCanceledTags)
                         {
-                            target.tempBeCancelTag.AddTempBeCancelledTag(target, tag);
+                            target.tempBeCancelTag.AddTempBeCancelledTag(tag);
                         }
 
                         //产生伤害

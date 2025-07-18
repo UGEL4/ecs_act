@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MethodName: GoStraight
   Params:
-  - 0.4
+  - 0.48
   - 120
   - 220

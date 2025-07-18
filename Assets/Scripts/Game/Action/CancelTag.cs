@@ -5,21 +5,32 @@ public struct CancelTag
 {
     public string tag;
     public int priority;
-    public int startFromFrameIndex;
+    public bool isNowActive;
+
+    public CancelTag(string tag, int priority, bool isNowActive)
+    {
+        this.tag         = tag;
+        this.priority    = priority;
+        this.isNowActive = isNowActive;
+    }
 }
 
 [Serializable]
+public struct ConfigCancelTag
+{
+    public CancelTag cancelTag;
+    public FrameIndexRange validRange;
+}
+
 public struct BeCanceledTag
 {
     public string[] cancelTag;
     public int priority;
     public FrameIndexRange validRange;
 
-
-    public static BeCanceledTag FromTemp(TempBeCancelledTag tag, int fromFrameIndex) => new BeCanceledTag
-    {
-        cancelTag = tag.cancelTag,
-        priority  = tag.increasePriority,
+    public static BeCanceledTag FromTemp(TempBeCancelledTag tag, int fromFrameIndex) => new BeCanceledTag {
+        cancelTag  = tag.cancelTag,
+        priority   = tag.increasePriority,
         validRange = new FrameIndexRange(fromFrameIndex, fromFrameIndex + tag.frameCount)
     };
 }

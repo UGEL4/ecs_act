@@ -1,6 +1,5 @@
 using UnityEngine;
 using ACTGame.KCC;
-using UnityEngine.InputSystem;
 
 namespace ACTGame
 {
@@ -9,50 +8,36 @@ namespace ACTGame
         private MonoCharacter owner;
 
         public float StableMovementSharpness = 15f;
-        public float MaxStableMoveSpeed = 10f;
-        public float OrientationSharpness = 10f;
+        public float MaxStableMoveSpeed      = 10f;
+        public float OrientationSharpness    = 10f;
 
         /// jump
         [Header("跳跃")]
-        [Tooltip("重量，影响在空中时每帧的下落速度，配合跳跃速度可以控制跳跃")]
-        public float Weight = 0.05f;
-        public float MaxAirMoveSpeed = 10f;
-        public float AirAccelerationSpeed = 5f;
-        public float Drag = 0.1f;
+        public float Weight                 = 0.05f;
+        public float MaxAirMoveSpeed        = 10f;
+        public float AirAccelerationSpeed   = 5f;
+        public float Drag                   = 0.1f;
         public bool AllowJumpingWhenSliding = true;
-        [Tooltip("跳跃速度，起跳时的加速度")]
-        public float JumpSpeed = 10f;
-        public float JumpPreGroundingGraceTime = 0.1f;
-        public float JumpPostGroundingGraceTime = 0.1f;
-
-        public Vector3 Gravity = new Vector3(0, -30f, 0);
-        public Transform MeshRoot;
-
-        private bool _jumpRequested = false;
-        private bool _jumpConsumed = false;
-        private bool _jumpedThisFrame = false;
-        private float _timeSinceJumpRequested = Mathf.Infinity;
-        private float _timeSinceLastAbleToJump = 0f;
+        public float MaxJumpTime            = 1f;
+        public float JumpHeight             = 2f;
         /// jump
 
         public void SetOwner(MonoCharacter owner)
         {
-            this.owner          = owner;
-            var inputController = owner.GameEntity.inputController.instance as UnityInputController;
-            inputController.AddButton4Callback(Jump);
+            this.owner = owner;
         }
 
         public void UpdateRotation(ref Quaternion currentRotation, float deltaTime)
         {
-            var gameEntity = owner.GameEntity;
+            var gameEntity      = owner.GameEntity;
             var inputController = gameEntity.inputController.instance as UnityInputController;
             if (inputController.MoveInputVector != Vector3.zero && OrientationSharpness > 0f)
             {
                 Vector3 dir = inputController.CharacterRelativeFlatten(inputController.MoveInputVector);
-                var Motor = gameEntity.aCTGameKCCMotor.value;
+                var Motor   = gameEntity.aCTGameKCCMotor.value;
                 // Smoothly interpolate from current to target look direction
                 Vector3 smoothedLookInputDirection = Vector3.Slerp(Motor.CharacterForward, dir, 1 - Mathf.Exp(-OrientationSharpness * deltaTime)).normalized;
-                currentRotation = Quaternion.LookRotation(smoothedLookInputDirection, Motor.CharacterUp);
+                currentRotation                    = Quaternion.LookRotation(smoothedLookInputDirection, Motor.CharacterUp);
             }
         }
 
@@ -64,139 +49,127 @@ namespace ACTGame
                 return;
             }
 
-            var Motor = gameEntity.aCTGameKCCMotor.value;
-            if (Motor.GroundingStatus.IsStableOnGround)
+            var MoveInputAcceptances = gameEntity.currentAction.MoveInputAcceptance;
+            var Motor                = gameEntity.aCTGameKCCMotor.value;
+
+            //var velocityComp = gameEntity.velocity;
+            var gravityComp = gameEntity.gravity;
+
+            //if (Motor.GroundingStatus.IsStableOnGround)
+            if ((gravityComp.IsGrounded && Motor.GroundingStatus.IsStableOnGround)
+             || (gravityComp.IsGrounded && !Motor.LastGroundingStatus.IsStableOnGround))
             {
                 // rootMotion只是移动距离，需要根据移动方向来叠加
                 Vector3 rootMotion = gameEntity.hasRootMotion ? gameEntity.rootMotion.value : Vector3.zero;
+                if (rootMotion != Vector3.zero)
+                {
+                    // The final velocity is the velocity from root motion reoriented on the ground plane
+                    rootMotion      = Motor.Transform.TransformDirection(rootMotion) / deltaTime;
+                    currentVelocity = rootMotion;
+                }
+                
                 // Reorient source velocity on current ground slope (this is because we don't want our smoothing to cause any velocity losses in slope changes)
                 currentVelocity = Motor.GetDirectionTangentToSurface(currentVelocity, Motor.GroundingStatus.GroundNormal) * currentVelocity.magnitude;
 
                 // Calculate target velocity
-                Vector3 _moveInputVector = owner.GetMoveInputVector();
-                Vector3 inputRight = Vector3.Cross(_moveInputVector, Motor.CharacterUp);
-                Vector3 reorientedInput = Vector3.Cross(Motor.GroundingStatus.GroundNormal, inputRight).normalized * _moveInputVector.magnitude;
-                Vector3 targetMovementVelocity = reorientedInput * MaxStableMoveSpeed;
+                Vector3 _moveInputVector       = owner.GetMoveInputVector();
+                Vector3 inputRight             = Vector3.Cross(_moveInputVector, Motor.CharacterUp);
+                Vector3 reorientedInput        = Vector3.Cross(Motor.GroundingStatus.GroundNormal, inputRight).normalized * _moveInputVector.magnitude;
+                Vector3 targetMovementVelocity = reorientedInput * MaxStableMoveSpeed * MoveInputAcceptances;
 
                 // Smooth movement Velocity
-                rootMotion = Motor.Transform.TransformDirection(rootMotion) / deltaTime;
-                currentVelocity = Vector3.Lerp(currentVelocity, targetMovementVelocity, 1 - Mathf.Exp(-StableMovementSharpness * deltaTime)) + rootMotion;
+                currentVelocity = Vector3.Lerp(currentVelocity, targetMovementVelocity, 1 - Mathf.Exp(-StableMovementSharpness * deltaTime));
             }
             else
             {
-                Vector3 _moveInputVector = owner.GetMoveInputVector();
                 // rootMotion只是移动距离，需要根据移动方向来叠加
                 Vector3 rootMotion = gameEntity.hasRootMotion ? gameEntity.rootMotion.value : Vector3.zero;
-                var gravityComp    = gameEntity.hasGravity ? gameEntity.gravity : null;
-                if (_moveInputVector.magnitude > 0f)
+                if (rootMotion != Vector3.zero)
                 {
-                    var targetMovementVelocity = _moveInputVector * MaxAirMoveSpeed;
+                    rootMotion         = Motor.Transform.TransformDirection(rootMotion) / deltaTime;
 
-                    // Prevent climbing on un-stable slopes with air movement
-                    if (Motor.GroundingStatus.FoundAnyGround)
-                    {
-                        Vector3 perpenticularObstructionNormal = Vector3.Cross(Vector3.Cross(Motor.CharacterUp, Motor.GroundingStatus.GroundNormal), Motor.CharacterUp).normalized;
-                        targetMovementVelocity = Vector3.ProjectOnPlane(targetMovementVelocity, perpenticularObstructionNormal);
-                    }
-
-                    rootMotion = Motor.Transform.TransformDirection(rootMotion) / deltaTime;
-                    currentVelocity += rootMotion;
-
-                    Vector3 velocityDiff = Vector3.ProjectOnPlane(targetMovementVelocity - currentVelocity, Gravity);
-                    currentVelocity += velocityDiff * AirAccelerationSpeed * deltaTime;
                 }
-                // Gravity
-                if (gravityComp != null)
+                else
                 {
-                    if (gravityComp.ApplyGravity)
+                    //currentVelocity = velocityComp.value;
+                    Vector3 _moveInputVector = owner.GetMoveInputVector();
+                    if (_moveInputVector.magnitude > 0f)
                     {
-                        if (gravityComp.IsGrounded)
+                        var targetMovementVelocity = _moveInputVector * MoveInputAcceptances * MaxAirMoveSpeed;
+
+                        // Prevent climbing on un-stable slopes with air movement
+                        if (Motor.GroundingStatus.FoundAnyGround)
                         {
-                            gravityComp.IsGrounded = false;
+                            Vector3 perpenticularObstructionNormal = Vector3.Cross(Vector3.Cross(Motor.CharacterUp, Motor.GroundingStatus.GroundNormal), Motor.CharacterUp).normalized;
+                            targetMovementVelocity                 = Vector3.ProjectOnPlane(targetMovementVelocity, perpenticularObstructionNormal);
                         }
-                        // currentVelocity += Gravity * deltaTime;
-                        currentVelocity.y -= gravityComp.CurrentWeight;
-                        //Debug.Log($"gravityComp.CurrentWeight:{gravityComp.CurrentWeight} {currentVelocity}");
 
-                        // Drag
-                        currentVelocity *= (1f / (1f + (Drag * deltaTime)));
+                        Vector3 velocityDiff = Vector3.ProjectOnPlane(targetMovementVelocity - currentVelocity, -Vector3.up);
+                        currentVelocity += velocityDiff * AirAccelerationSpeed * deltaTime;
                     }
                 }
-            }
-
-            // Handle jumping
-            _jumpedThisFrame = false;
-            _timeSinceJumpRequested += deltaTime;
-            if (_jumpRequested)
-            {
-                // See if we actually are allowed to jump
-                if (!_jumpConsumed && ((AllowJumpingWhenSliding ? Motor.GroundingStatus.FoundAnyGround : Motor.GroundingStatus.IsStableOnGround) || _timeSinceLastAbleToJump <= JumpPostGroundingGraceTime))
-                {
-                    // Calculate jump direction before ungrounding
-                    Vector3 jumpDirection = Motor.CharacterUp;
-                    if (Motor.GroundingStatus.FoundAnyGround && !Motor.GroundingStatus.IsStableOnGround)
-                    {
-                        jumpDirection = Motor.GroundingStatus.GroundNormal;
-                    }
-
-                    // Makes the character skip ground probing/snapping on its next update.
-                    // If this line weren't here, the character would remain snapped to the ground when trying to jump. Try commenting this line out and see.
-                    Motor.ForceUnground(0.1f);
-
-                    // Add to the return velocity and reset jump state
-                    currentVelocity += (jumpDirection * JumpSpeed) - Vector3.Project(currentVelocity, Motor.CharacterUp);
-                    _jumpRequested = false;
-                    _jumpConsumed = true;
-                    _jumpedThisFrame = true;
-
-                    if (gameEntity.hasGravity)
-                    {
-                        var gravityComp = gameEntity.gravity;
-                        gravityComp.IsGrounded = false;
-                        gravityComp.CurrentWeight = 0;
-                        gravityComp.Ticked = 0;
-                    }
-                }
+                // Drag
+                currentVelocity *= (1f / (1f + (Drag * deltaTime)));
             }
         }
 
         public void AfterCharacterUpdate(float deltaTime)
         {
-            // Handle jump-related values
+            var gameEntity = owner.GameEntity;
+            var Motor      = gameEntity.aCTGameKCCMotor.value;
+            // 获取当前和上一帧的稳定状态
+            bool isStable = Motor.GroundingStatus.IsStableOnGround;
+            bool wasStable = Motor.LastGroundingStatus.IsStableOnGround;
+
+            if (wasStable && !isStable)
             {
-                // Handle jumping pre-ground grace period
-                if (_jumpRequested && _timeSinceJumpRequested > JumpPreGroundingGraceTime)
+                if (IsStepping(Motor))
                 {
-                    _jumpRequested = false;
+                    gameEntity.gravity.IsGrounded = false;
                 }
-
-                var gameEntity = owner.GameEntity;
-                var Motor = gameEntity.aCTGameKCCMotor.value;
-                // Handle jumping while sliding
-                if (AllowJumpingWhenSliding ? Motor.GroundingStatus.FoundAnyGround : Motor.GroundingStatus.IsStableOnGround)
+                else if (IsWalkingOffLedge(Motor))
                 {
-                    // If we're on a ground surface, reset jumping values
-                    if (!_jumpedThisFrame)
+                    gameEntity.gravity.IsGrounded = false;
+                    if (!gameEntity.jump.IsJumping)
                     {
-                        _jumpConsumed = false;
-
-                        if (gameEntity.hasGravity && !gameEntity.gravity.IsGrounded)
-                        {
-                            var gravityComp = gameEntity.gravity;
-                            gravityComp.IsGrounded = true;
-                            gravityComp.CurrentWeight = 0;
-                            gravityComp.Ticked = 0;
-                            gameEntity.preorderAction.value.Add(new PreorderActionInfo("JumpLand"));
-                        }
+                        gameEntity.preorderAction.value.Add(new PreorderActionInfo("JumpLoop", 3));
                     }
-                    _timeSinceLastAbleToJump = 0f;
                 }
                 else
                 {
-                    // Keep track of time since we were last able to jump (for grace period)
-                    _timeSinceLastAbleToJump += deltaTime;
+                    if (!gameEntity.jump.IsJumping)
+                    {
+                        gameEntity.gravity.IsGrounded = false;
+                        gameEntity.preorderAction.value.Add(new PreorderActionInfo("JumpLoop", 3));
+                    }
                 }
             }
+
+            if (isStable && !wasStable)
+            {
+                if (gameEntity.hasGravity && !gameEntity.gravity.IsGrounded)
+                {
+                    var gravityComp        = gameEntity.gravity;
+                    gravityComp.IsGrounded = true;
+                    gravityComp.Gravity    = gravityComp.DefaultGravity;
+                    gameEntity.preorderAction.value.Add(new PreorderActionInfo("JumpLand"));
+                }
+            }
+
+            if (gameEntity.jump.IsJumping)
+            {
+                gameEntity.jump.IsJumping = false;
+            }
+        }
+
+        bool IsStepping(KinematicCharacterMotor motor)
+        {
+            return motor.GroundingStatus.ValidStepDetected;
+        }
+
+        bool IsWalkingOffLedge(KinematicCharacterMotor motor)
+        {
+            return motor.GroundingStatus.LedgeDetected && motor.GroundingStatus.IsMovingTowardsEmptySideOfLedge;
         }
 
         public void BeforeCharacterUpdate(float deltaTime)
@@ -228,25 +201,13 @@ namespace ACTGame
         {
         }
 
-        void Jump(InputActionPhase phase)
-        {
-            if (phase == InputActionPhase.Started)
-            {
-                _jumpRequested = true;
-                _timeSinceJumpRequested = 0f;
-            }
-        }
-
         void OnDestroy()
         {
-            owner    = null;
-            MeshRoot = null;
+            owner = null;
         }
 
         public void OnDestroyView()
         {
-            var inputController = owner.GameEntity.inputController.instance as UnityInputController;
-            inputController.RemoveButton4Callback(Jump);
         }
     }
 }

@@ -23,7 +23,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <NoWarn>0169;USG0001</NoWarn>
-    <DefineConstants>UNITY_2023_1_0;UNITY_2023_1;UNITY_2023;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;UNITY_2021_1_OR_NEWER;UNITY_2021_2_OR_NEWER;UNITY_2021_3_OR_NEWER;UNITY_2022_1_OR_NEWER;UNITY_2022_2_OR_NEWER;UNITY_2022_3_OR_NEWER;UNITY_2023_1_OR_NEWER;PLATFORM_ARCH_64;UNITY_64;UNITY_INCLUDE_TESTS;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_VIRTUALTEXTURING;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_EDITOR_GAME_SERVICES;ENABLE_UNITY_GAME_SERVICES_ANALYTICS_SUPPORT;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_GENERATE_NATIVE_PLUGINS_FOR_ASSEMBLIES_API;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_MANAGED_UNITYTLS;INCLUDE_DYNAMIC_GI;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_MARSHALLING_TESTS;ENABLE_VIDEO;ENABLE_ACCELERATOR_CLIENT_DEBUGGING;ENABLE_NAVIGATION_PACKAGE_DEBUG_VISUALIZATION;ENABLE_NAVIGATION_HEIGHTMESH_RUNTIME_SUPPORT;ENABLE_NAVIGATION_UI_REQUIRES_PACKAGE;PLATFORM_STANDALONE;TEXTCORE_1_0_OR_NEWER;PLATFORM_STANDALONE_WIN;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_NVIDIA;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_OUT_OF_PROCESS_CRASH_HANDLER;ENABLE_CLUSTER_SYNC;ENABLE_CLUSTERINPUT;PLATFORM_UPDATES_TIME_OUTSIDE_OF_PLAYER_LOOP;GFXDEVICE_WAITFOREVENT_MESSAGEPUMP;PLATFORM_INITIALIZES_MEMORY_MANAGER_EXPLICITLY;PLATFORM_SUPPORTS_WAIT_FOR_PRESENTATION;ENABLE_MONO;NET_STANDARD_2_0;NET_STANDARD;NET_STANDARD_2_1;NETSTANDARD;NETSTANDARD2_1;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_INPUT_SYSTEM;ENABLE_LEGACY_INPUT_MANAGER;TEXTCORE_FONT_ENGINE_1_5_OR_NEWER;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
+    <DefineConstants>UNITY_2023_1_0;UNITY_2023_1;UNITY_2023;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;UNITY_2021_1_OR_NEWER;UNITY_2021_2_OR_NEWER;UNITY_2021_3_OR_NEWER;UNITY_2022_1_OR_NEWER;UNITY_2022_2_OR_NEWER;UNITY_2022_3_OR_NEWER;UNITY_2023_1_OR_NEWER;PLATFORM_ARCH_64;UNITY_64;UNITY_INCLUDE_TESTS;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_VIRTUALTEXTURING;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_EDITOR_GAME_SERVICES;ENABLE_UNITY_GAME_SERVICES_ANALYTICS_SUPPORT;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_GENERATE_NATIVE_PLUGINS_FOR_ASSEMBLIES_API;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_MANAGED_UNITYTLS;INCLUDE_DYNAMIC_GI;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_MARSHALLING_TESTS;ENABLE_VIDEO;ENABLE_ACCELERATOR_CLIENT_DEBUGGING;ENABLE_NAVIGATION_PACKAGE_DEBUG_VISUALIZATION;ENABLE_NAVIGATION_HEIGHTMESH_RUNTIME_SUPPORT;ENABLE_NAVIGATION_UI_REQUIRES_PACKAGE;PLATFORM_STANDALONE;TEXTCORE_1_0_OR_NEWER;PLATFORM_STANDALONE_WIN;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_NVIDIA;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_OUT_OF_PROCESS_CRASH_HANDLER;ENABLE_CLUSTER_SYNC;ENABLE_CLUSTERINPUT;PLATFORM_UPDATES_TIME_OUTSIDE_OF_PLAYER_LOOP;GFXDEVICE_WAITFOREVENT_MESSAGEPUMP;PLATFORM_INITIALIZES_MEMORY_MANAGER_EXPLICITLY;PLATFORM_SUPPORTS_WAIT_FOR_PRESENTATION;ENABLE_MONO;NET_STANDARD_2_0;NET_STANDARD;NET_STANDARD_2_1;NETSTANDARD;NETSTANDARD2_1;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;UNITY_PRO_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_INPUT_SYSTEM;ENABLE_LEGACY_INPUT_MANAGER;TEXTCORE_FONT_ENGINE_1_5_OR_NEWER;SLATE;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
     <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Interface\Camera\CameraController.cs" />
     <Compile Include="Assets\Scripts\Service\Service.cs" />
+    <Compile Include="Assets\Scripts\Game\Action\MoveInputAcceptance.cs" />
     <Compile Include="Assets\Scripts\KCC\KCCCharacterSystem.cs" />
     <Compile Include="Assets\Scripts\KCC\KCCSettings.cs" />
     <Compile Include="Assets\Scripts\Generated\Debug\DebugComponentsLookup.cs" />
@@ -58,6 +59,7 @@
     <Compile Include="Assets\Scripts\Camera\CameraController01.cs" />
     <Compile Include="Assets\KinematicCharacterController\Walkthrough\14- Climbing Ladders\Scripts\MyCharacterController.cs" />
     <Compile Include="Assets\Scripts\Game\Action\FrameIndexRange.cs" />
+    <Compile Include="Assets\Scripts\Generated\Game\Components\GameJumpComponent.cs" />
     <Compile Include="Assets\Scripts\Generated\Events\Interfaces\ITimerUpdateEventListener.cs" />
     <Compile Include="Assets\Scripts\Generated\Input\InputContext.cs" />
     <Compile Include="Assets\Scripts\Mono\Entity\MonoCharacter.cs" />
@@ -80,6 +82,7 @@
     <Compile Include="Assets\Scripts\Component\Transform\ParentComponent.cs" />
     <Compile Include="Assets\Scripts\System\Level\LevelAddEntitySystem.cs" />
     <Compile Include="Assets\Scripts\Game\Action\HitRecordInfo.cs" />
+    <Compile Include="Assets\Scripts\Game\Action\ActionUtility.cs" />
     <Compile Include="Assets\Scripts\Mono\Entity\PositionListener.cs" />
     <Compile Include="Assets\Scripts\Generated\Events\Systems\TimerUpdateEventEventSystem.cs" />
     <Compile Include="Assets\Scripts\Generated\Game\Components\GameEntityComponent.cs" />
@@ -110,6 +113,7 @@
     <Compile Include="Assets\Scripts\System\Log\DebugMessageSystem.cs" />
     <Compile Include="Assets\Scripts\Generated\GameState\GameStateContext.cs" />
     <Compile Include="Assets\Scripts\System\Level\AddLevelSystem.cs" />
+    <Compile Include="Assets\Scripts\Game\Methods\EditActionInfo.cs" />
     <Compile Include="Assets\Scripts\Component\Action\HitRecordComponent.cs" />
     <Compile Include="Assets\Scripts\Singleton\Singleton.cs" />
     <Compile Include="Assets\Scripts\Mono\Controller\AnimationController.cs" />
@@ -119,6 +123,7 @@
     <Compile Include="Assets\Scripts\Generated\Game\GameMatcher.cs" />
     <Compile Include="Assets\Scripts\KCC\PhysicsMover.cs" />
     <Compile Include="Assets\KinematicCharacterController\Walkthrough\3- Jumping\Scripts\c- Wall Jumping\MyPlayer.cs" />
+    <Compile Include="Assets\Scripts\ActionEditor\Frame\FrameLoopClip.cs" />
     <Compile Include="Assets\Scripts\Game\Action\PreorderActionInfo.cs" />
     <Compile Include="Assets\Scripts\Generated\Game\Components\GameRootMotionComponent.cs" />
     <Compile Include="Assets\Scripts\Component\KCC\KCCMotorComponent.cs" />
@@ -137,6 +142,7 @@
     <Compile Include="Assets\Scripts\Interface\View\IViewController.cs" />
     <Compile Include="Assets\Scripts\Generated\Game\Components\GameRotationComponent.cs" />
     <Compile Include="Assets\Scripts\Component\Input\InputControllerComponent.cs" />
+    <Compile Include="Assets\Scripts\ActionEditor\CustomTrack.cs" />
     <Compile Include="Assets\Scripts\Interface\Event\IUpdateEvent.cs" />
     <Compile Include="Assets\Scripts\Generated\Game\Components\GameScaleListenerComponent.cs" />
     <Compile Include="Assets\Scripts\Generated\Events\Interfaces\IScaleListener.cs" />
@@ -174,6 +180,7 @@
     <Compile Include="Assets\Scripts\Generated\Config\ConfigEntity.cs" />
     <Compile Include="Assets\Scripts\Generated\Input\InputMatcher.cs" />
     <Compile Include="Assets\Scripts\Game\Action\ActionFrameInfo.cs" />
+    <Compile Include="Assets\Scripts\Math\Capsule.cs" />
     <Compile Include="Assets\Scripts\Generated\Events\Components\ScaleListenerComponent.cs" />
     <Compile Include="Assets\KinematicCharacterController\Walkthrough\15- Root motion example\Scripts\MyCharacterController.cs" />
     <Compile Include="Assets\Scripts\Generated\Meta\MetaContext.cs" />
@@ -230,14 +237,15 @@
     <Compile Include="Assets\Scripts\System\Level\RegisterLevelViewServiceSystem.cs" />
     <Compile Include="Assets\KinematicCharacterController\Examples\Scripts\BuildManager.cs" />
     <Compile Include="Assets\Scripts\Generated\Debug\DebugMatcher.cs" />
+    <Compile Include="Assets\Scripts\ActionEditor\CustomClip.cs" />
     <Compile Include="Assets\Scripts\Generated\Events\Components\RotationListenerComponent.cs" />
     <Compile Include="Assets\Scripts\Interface\Animation\IAnimationController.cs" />
+    <Compile Include="Assets\Scripts\Game\Methods\ActionEventMethod.cs" />
     <Compile Include="Assets\KinematicCharacterController\Core\KCCSettings.cs" />
     <Compile Include="Assets\KinematicCharacterController\Walkthrough\8- Creating a moving platform\Scripts\MyPlayer.cs" />
     <Compile Include="Assets\Scripts\Generated\Debug\DebugAttribute.cs" />
     <Compile Include="Assets\Scripts\Generated\Config\ConfigMatcher.cs" />
     <Compile Include="Assets\Scripts\System\Entity\EntityUpdateLogic.cs" />
-    <Compile Include="Assets\Scripts\Generated\Game\Components\GameVelocityComponent.cs" />
     <Compile Include="Assets\Scripts\Component\Entity\EntityComponent.cs" />
     <Compile Include="Assets\Scripts\Generated\Events\Components\DestroyedListenerComponent.cs" />
     <Compile Include="Assets\Test\GameInitializer.cs" />
@@ -260,10 +268,10 @@
     <Compile Include="Assets\Scripts\Component\KCC\KCCPhysicalMoverComponent.cs" />
     <Compile Include="Assets\Scripts\Generated\Game\GameAttribute.cs" />
     <Compile Include="Assets\Scripts\Generated\Game\Components\GameRotationListenerComponent.cs" />
+    <Compile Include="Assets\Scripts\Component\Gravity\JumpComponent.cs" />
     <Compile Include="Assets\Scripts\KCC\ReadOnlyAttribute.cs" />
     <Compile Include="Assets\Scripts\System\Action\ActionControllerSystem.cs" />
     <Compile Include="Assets\Scripts\Generated\Events\Systems\DestroyedEventSystem.cs" />
-    <Compile Include="Assets\Scripts\Component\Transform\VelocityComponent.cs" />
     <Compile Include="Assets\KinematicCharacterController\Walkthrough\12- NoClip state\Scripts\MyPlayer.cs" />
     <Compile Include="Assets\KinematicCharacterController\Core\ICharacterController.cs" />
     <Compile Include="Assets\Scripts\Component\Input\InputToCommandComponent.cs" />
@@ -329,6 +337,7 @@
     <Compile Include="Assets\Scripts\Generated\Meta\Components\MetaViewServiceComponent.cs" />
     <Compile Include="Assets\Scripts\Component\box\HitBoxComponent.cs" />
     <Compile Include="Assets\KinematicCharacterController\Walkthrough\3- Jumping\Scripts\b- Double Jumping\MyCharacterController.cs" />
+    <Compile Include="Assets\Scripts\ActionEditor\Frame\FrameLoopTrack.cs" />
     <Compile Include="Assets\Scripts\Generated\Debug\DebugEntity.cs" />
     <Compile Include="Assets\Scripts\Generated\Debug\Components\DebugDebugLogComponent.cs" />
     <Compile Include="Assets\Scripts\Generated\Components\Interfaces\IIdEntity.cs" />
@@ -337,6 +346,7 @@
     <Compile Include="Assets\Scripts\Mono\Level\MonoLevel.cs" />
     <Compile Include="Assets\KinematicCharacterController\ExampleCharacter\Scripts\ExampleCharacterCamera.cs" />
     <Compile Include="Assets\Scripts\Generated\Game\Components\GameActionComponent.cs" />
+    <Compile Include="Assets\Test\ActionEditor.cs" />
     <Compile Include="Assets\Scripts\Component\Transform\WorldTransformComponent.cs" />
     <Compile Include="Assets\Scripts\Interface\Level\ILevelViewService.cs" />
     <Compile Include="Assets\Scripts\Generated\Input\Components\InputInputServiceComponent.cs" />
@@ -1463,6 +1473,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="SLATE.csproj" />
   </ItemGroup>
   <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
   <ItemGroup>

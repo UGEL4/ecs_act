@@ -11,23 +11,21 @@ public partial class GameEntity {
     public GravityComponent gravity { get { return (GravityComponent)GetComponent(GameComponentsLookup.Gravity); } }
     public bool hasGravity { get { return HasComponent(GameComponentsLookup.Gravity); } }
 
-    public void AddGravity(float newWeight, int newTicked, float newCurrentWeight, bool newApplyGravity, bool newIsGrounded) {
+    public void AddGravity(float newDefaultGravity, float newGravity, bool newApplyGravity, bool newIsGrounded) {
         var index = GameComponentsLookup.Gravity;
         var component = (GravityComponent)CreateComponent(index, typeof(GravityComponent));
-        component.Weight = newWeight;
-        component.Ticked = newTicked;
-        component.CurrentWeight = newCurrentWeight;
+        component.DefaultGravity = newDefaultGravity;
+        component.Gravity = newGravity;
         component.ApplyGravity = newApplyGravity;
         component.IsGrounded = newIsGrounded;
         AddComponent(index, component);
     }
 
-    public void ReplaceGravity(float newWeight, int newTicked, float newCurrentWeight, bool newApplyGravity, bool newIsGrounded) {
+    public void ReplaceGravity(float newDefaultGravity, float newGravity, bool newApplyGravity, bool newIsGrounded) {
         var index = GameComponentsLookup.Gravity;
         var component = (GravityComponent)CreateComponent(index, typeof(GravityComponent));
-        component.Weight = newWeight;
-        component.Ticked = newTicked;
-        component.CurrentWeight = newCurrentWeight;
+        component.DefaultGravity = newDefaultGravity;
+        component.Gravity = newGravity;
         component.ApplyGravity = newApplyGravity;
         component.IsGrounded = newIsGrounded;
         ReplaceComponent(index, component);

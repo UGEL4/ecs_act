@@ -4947,7 +4947,7 @@ MonoBehaviour:
   StableMovementSharpness: 15
   MaxStableMoveSpeed: 0
   OrientationSharpness: 10
-  Weight: 0.05
+  Weight: 4.5
   MaxAirMoveSpeed: 0.5
   AirAccelerationSpeed: 1
   Drag: 0.1
@@ -4955,6 +4955,8 @@ MonoBehaviour:
   JumpSpeed: 10
   JumpPreGroundingGraceTime: 0.1
   JumpPostGroundingGraceTime: 0.1
+  TimeToJumpApex: 1
+  JumpHeight: 2
   Gravity: {x: 0, y: -30, z: 0}
   MeshRoot: {fileID: 0}
 --- !u!136 &-8106467381182353424

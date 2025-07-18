@@ -1,4 +1,6 @@
 using Entitas;
+using Unity.VisualScripting;
+using UnityEngine;
 
 public class GravitySystem : IExecuteSystem
 {
@@ -7,8 +9,7 @@ public class GravitySystem : IExecuteSystem
     public GravitySystem(Contexts contexts)
     {
         this.contexts = contexts;
-        entities      = contexts.game.GetGroup(
-        GameMatcher.Gravity);
+        entities      = contexts.game.GetGroup(GameMatcher.Gravity);
     }
 
     public void Execute()
@@ -28,7 +29,9 @@ public class GravitySystem : IExecuteSystem
             {
                 continue;
             }
-            gravity.CurrentWeight += gravity.Weight;
+
+            var motor = e.aCTGameKCCMotor.value;
+            motor.BaseVelocity.y += -gravity.Gravity * 1f / e.timer.hertz;
         }
     }
 }

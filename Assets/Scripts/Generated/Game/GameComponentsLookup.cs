@@ -28,25 +28,25 @@ public static class GameComponentsLookup {
     public const int Id = 17;
     public const int InputController = 18;
     public const int InputToCommand = 19;
-    public const int LevelAddEntityCmd = 20;
-    public const int Level = 21;
-    public const int LevelCreateCommand = 22;
-    public const int LevelLoaded = 23;
-    public const int Parent = 24;
-    public const int Position = 25;
-    public const int PositionListener = 26;
-    public const int PreorderAction = 27;
-    public const int RootMotion = 28;
-    public const int Rotation = 29;
-    public const int RotationListener = 30;
-    public const int Scale = 31;
-    public const int ScaleListener = 32;
-    public const int TempBeCancelTag = 33;
-    public const int Timer = 34;
-    public const int TimerManager = 35;
-    public const int TimerUpdateEvent = 36;
-    public const int TimerUpdateEventListener = 37;
-    public const int Velocity = 38;
+    public const int Jump = 20;
+    public const int LevelAddEntityCmd = 21;
+    public const int Level = 22;
+    public const int LevelCreateCommand = 23;
+    public const int LevelLoaded = 24;
+    public const int Parent = 25;
+    public const int Position = 26;
+    public const int PositionListener = 27;
+    public const int PreorderAction = 28;
+    public const int RootMotion = 29;
+    public const int Rotation = 30;
+    public const int RotationListener = 31;
+    public const int Scale = 32;
+    public const int ScaleListener = 33;
+    public const int TempBeCancelTag = 34;
+    public const int Timer = 35;
+    public const int TimerManager = 36;
+    public const int TimerUpdateEvent = 37;
+    public const int TimerUpdateEventListener = 38;
     public const int View = 39;
     public const int World = 40;
     public const int WorldId = 41;
@@ -75,6 +75,7 @@ public static class GameComponentsLookup {
         "Id",
         "InputController",
         "InputToCommand",
+        "Jump",
         "LevelAddEntityCmd",
         "Level",
         "LevelCreateCommand",
@@ -93,7 +94,6 @@ public static class GameComponentsLookup {
         "TimerManager",
         "TimerUpdateEvent",
         "TimerUpdateEventListener",
-        "Velocity",
         "View",
         "World",
         "WorldId",
@@ -121,6 +121,7 @@ public static class GameComponentsLookup {
         typeof(IdComponent),
         typeof(InputControllerComponent),
         typeof(InputToCommandComponent),
+        typeof(JumpComponent),
         typeof(LevelAddEntityCmdComponent),
         typeof(LevelComponent),
         typeof(LevelCreateCommandComponent),
@@ -139,7 +140,6 @@ public static class GameComponentsLookup {
         typeof(TimerManagerComponent),
         typeof(TimerUpdateEventComponent),
         typeof(TimerUpdateEventListenerComponent),
-        typeof(VelocityComponent),
         typeof(ViewComponent),
         typeof(WorldComponent),
         typeof(WorldIdComponent),

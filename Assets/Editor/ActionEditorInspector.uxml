@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
+    <ui:Label tabindex="-1" text="Label created in UIBuilder" display-tooltip-when-elided="true" name="Label" />
+    <uie:PropertyField binding-path="ActionName" label="Action Name" />
+    <uie:PropertyField binding-path="FrameCount" label="Frame Num" />
+    <uie:PropertyField binding-path="ActionList" label="Action List" />
+    <ui:Foldout text="Default_Inspector" name="Default_Inspector" />
+</ui:UXML>

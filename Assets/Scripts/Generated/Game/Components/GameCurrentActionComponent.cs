@@ -11,21 +11,25 @@ public partial class GameEntity {
     public CurrentActionComponent currentAction { get { return (CurrentActionComponent)GetComponent(GameComponentsLookup.CurrentAction); } }
     public bool hasCurrentAction { get { return HasComponent(GameComponentsLookup.CurrentAction); } }
 
-    public void AddCurrentAction(ActionInfo newValue, System.Collections.Generic.List<BeCanceledTag> newBeCanceledTags, int newCurrentFrame) {
+    public void AddCurrentAction(ActionInfo newValue, System.Collections.Generic.List<BeCanceledTag> newBeCanceledTags, System.Collections.Generic.List<CancelTag> newAllCancelTag, int newCurrentFrame, float newMoveInputAcceptance) {
         var index = GameComponentsLookup.CurrentAction;
         var component = (CurrentActionComponent)CreateComponent(index, typeof(CurrentActionComponent));
         component.value = newValue;
         component.beCanceledTags = newBeCanceledTags;
+        component.allCancelTag = newAllCancelTag;
         component.currentFrame = newCurrentFrame;
+        component.MoveInputAcceptance = newMoveInputAcceptance;
         AddComponent(index, component);
     }
 
-    public void ReplaceCurrentAction(ActionInfo newValue, System.Collections.Generic.List<BeCanceledTag> newBeCanceledTags, int newCurrentFrame) {
+    public void ReplaceCurrentAction(ActionInfo newValue, System.Collections.Generic.List<BeCanceledTag> newBeCanceledTags, System.Collections.Generic.List<CancelTag> newAllCancelTag, int newCurrentFrame, float newMoveInputAcceptance) {
         var index = GameComponentsLookup.CurrentAction;
         var component = (CurrentActionComponent)CreateComponent(index, typeof(CurrentActionComponent));
         component.value = newValue;
         component.beCanceledTags = newBeCanceledTags;
+        component.allCancelTag = newAllCancelTag;
         component.currentFrame = newCurrentFrame;
+        component.MoveInputAcceptance = newMoveInputAcceptance;
         ReplaceComponent(index, component);
     }
 

@@ -4,24 +4,26 @@ using System.Collections.Generic;
 [Serializable]
 public sealed class ActionInfo
 {
-    public string name = string.Empty;
+    public string name      = string.Empty;
     public string animation = string.Empty;
-    public List<ActionFrameInfo> actionFrameInfos = new List<ActionFrameInfo>();
-    public int FrameCount => actionFrameInfos.Count;
+
+    public List<ActionFrameInfo> actionFrameInfos  = new List<ActionFrameInfo>();
+    public int FrameCount                         => actionFrameInfos.Count;
+    public ActionFrameInfo currentFrame;
 
     public List<ActionCommand> commandList = new();
 
     public int priority = 0;
-    //下一个自然动作
+    // 下一个自然动作
+    public ActionInfo autoNextAction;
     public string autoNextActionName = string.Empty;
-    public bool autoTerminate = false;
-    //public List<ActionFrame> mActionFrames;
-    public bool keepPlayingAnim = false;
-    public CancelTag[] cancelTags = new CancelTag[0];
-    public BeCanceledTag[] beCanceledTags = new BeCanceledTag[0];
-    public TempBeCancelledTag[] tempBeCancelledTags = new TempBeCancelledTag[0];
+    public bool autoTerminate        = false;
+    // public List<ActionFrame> mActionFrames;
+    public bool keepPlayingAnim         = false;
+    public List<CancelData> cancelDatas = new List<CancelData>();
     public HitInfo hitInfo;
 
     public ScriptMethodInfo rootMotionTween;
-    public bool ApplyGravity;
+    public ScriptMethodInfo enterActionEvent;
+    public bool ApplyGravity = true;
 }

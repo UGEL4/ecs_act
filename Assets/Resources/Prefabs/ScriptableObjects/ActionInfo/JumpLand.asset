@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f4d64d38fca5dd479633cfbc27d6aa8, type: 3}
+  m_Name: JumpLand
+  m_EditorClassIdentifier: 
+  ActionName: JumpLand
+  FrameCount: 347
+  Animation: pl0000_00018
+  cancelDatas:
+  - tags:
+    - JumpStartLand
+    - JumpLoopLand
+    priority: 1
+    startFrame: 0
+    tempCancelTags: []
+  beCanceledTags:
+  - cancelTag:
+      tag: JumpLand
+      priority: 1
+      isNowActive: 1
+    validRange:
+      min: 0
+      max: 346
+  commandList: []
+  priority: 2
+  autoNextActionName: Idle
+  autoTerminate: 0
+  keepPlayingAnim: 0
+  hitInfo:
+    frameToHitAgain: 0
+    canHitCount: 0
+  rootMotionTween: {fileID: 11400000, guid: d8045d4248c70354ba5d84d347d4bf15, type: 2}
+  enterActionEvent: {fileID: 0}
+  ApplyGravity: 1
+  MoveInputAcceptances: []
+  frameCapsuleDimensions: []

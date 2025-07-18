@@ -78,6 +78,11 @@ namespace ACTGame
             public Collider GroundCollider;
             public Vector3 GroundPoint;
 
+            public bool ValidStepDetected;
+            public bool LedgeDetected;
+            public bool IsMovingTowardsEmptySideOfLedge;
+            public float DistanceFromLedge;
+
             public void CopyFrom(CharacterTransientGroundingReport transientGroundingReport)
             {
                 FoundAnyGround = transientGroundingReport.FoundAnyGround;
@@ -86,6 +91,11 @@ namespace ACTGame
                 GroundNormal = transientGroundingReport.GroundNormal;
                 InnerGroundNormal = transientGroundingReport.InnerGroundNormal;
                 OuterGroundNormal = transientGroundingReport.OuterGroundNormal;
+
+                ValidStepDetected               = transientGroundingReport.ValidStepDetected;
+                LedgeDetected                   = transientGroundingReport.LedgeDetected;
+                IsMovingTowardsEmptySideOfLedge = transientGroundingReport.IsMovingTowardsEmptySideOfLedge;
+                DistanceFromLedge               = transientGroundingReport.DistanceFromLedge;
 
                 GroundCollider = null;
                 GroundPoint = Vector3.zero;
@@ -104,6 +114,11 @@ namespace ACTGame
             public Vector3 InnerGroundNormal;
             public Vector3 OuterGroundNormal;
 
+            public bool ValidStepDetected;
+            public bool LedgeDetected;
+            public bool IsMovingTowardsEmptySideOfLedge;
+            public float DistanceFromLedge;
+
             public void CopyFrom(CharacterGroundingReport groundingReport)
             {
                 FoundAnyGround = groundingReport.FoundAnyGround;
@@ -112,6 +127,11 @@ namespace ACTGame
                 GroundNormal = groundingReport.GroundNormal;
                 InnerGroundNormal = groundingReport.InnerGroundNormal;
                 OuterGroundNormal = groundingReport.OuterGroundNormal;
+
+                ValidStepDetected               = groundingReport.ValidStepDetected;
+                LedgeDetected                   = groundingReport.LedgeDetected;
+                IsMovingTowardsEmptySideOfLedge = groundingReport.IsMovingTowardsEmptySideOfLedge;
+                DistanceFromLedge               = groundingReport.DistanceFromLedge;
             }
         }
 
@@ -1296,6 +1316,11 @@ namespace ACTGame
                         groundingReport.GroundCollider = groundSweepHit.collider;
                         groundingReport.GroundPoint = groundSweepHit.point;
                         groundingReport.SnappingPrevented = false;
+
+                        groundingReport.ValidStepDetected               = groundHitStabilityReport.ValidStepDetected;
+                        groundingReport.LedgeDetected                   = groundHitStabilityReport.LedgeDetected;
+                        groundingReport.IsMovingTowardsEmptySideOfLedge = groundHitStabilityReport.IsMovingTowardsEmptySideOfLedge;
+                        groundingReport.DistanceFromLedge               = groundHitStabilityReport.DistanceFromLedge;
 
                         // Found stable ground
                         if (groundHitStabilityReport.IsStable)

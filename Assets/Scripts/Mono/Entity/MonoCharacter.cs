@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using ACTGame.Action;
 using Entitas;
 using Entitas.Unity;
 using UnityEngine;
@@ -158,7 +159,12 @@ public class MonoCharacter : MonoBehaviour, IViewController
             contexts.game.timerManager.OnAddUnitTimer(entityId);
         }
 
-        gameEntity.AddGravity(characterController.Weight, 0, 0, true, true);
+        float jumpTime   = characterController.MaxJumpTime;
+        float jumpHeight = characterController.JumpHeight;
+        float time       = jumpTime * 0.5f;
+        float gravity    = 2 * jumpHeight / Mathf.Pow(time, 2);
+        gameEntity.AddGravity(gravity, gravity, true, true);
+        gameEntity.ReplaceJump(false);
 
         AddTestActions();
     }
@@ -166,122 +172,161 @@ public class MonoCharacter : MonoBehaviour, IViewController
     void AddTestActions()
     {
         List<ActionInfo> actionList = new();
-        ActionInfo action           = new ActionInfo();
-        action.name                 = "Idle";
-        action.animation            = "pl0000_00000";
-        for (int i = 0; i < 31; i++)
+        var Idle = Resources.Load<EditActionInfo>("Prefabs/ScriptableObjects/ActionInfo/Idle");
+        if (Idle)
         {
-            action.actionFrameInfos.Add(new ActionFrameInfo() { frameId = i });
+            ActionInfo action = ActionUtility.CreateActionInfo(Idle);
+            actionList.Add(action);
         }
-        action.commandList.Add(new ActionCommand() { keySequences = new KeyMap[0], validInFrameCount = 1 });
-        action.priority           = 0;
-        action.keepPlayingAnim    = true;
-        action.autoNextActionName = "Idle";
-        // canceltag
-        action.beCanceledTags = new BeCanceledTag[] {
-            new BeCanceledTag() { cancelTag = new string[] { "IdleAction" }, priority = 0, validRange = new FrameIndexRange(0, 30) }
-        };
-        action.ApplyGravity = true;
-        actionList.Add(action);
+        // ActionInfo action           = new ActionInfo();
+        // action.name                 = "Idle";
+        // action.animation            = "pl0000_00000";
+        // for (int i = 0; i < 31; i++)
+        // {
+        //     action.actionFrameInfos.Add(new ActionFrameInfo() { frameId = i });
+        // }
+        // action.commandList.Add(new ActionCommand() { keySequences = new KeyMap[0], validInFrameCount = 1 });
+        // action.priority           = 0;
+        // action.keepPlayingAnim    = true;
+        // action.autoNextActionName = "Idle";
+        // // canceltag
+        // action.beCanceledTags = new BeCanceledTag[] {
+        //     new BeCanceledTag() { cancelTag = new string[] { "IdleAction" }, priority = 0, validRange = new FrameIndexRange(0, 30) }
+        // };
+        // action.ApplyGravity = true;
+        // actionList.Add(action);
 
-        action           = new ActionInfo();
-        action.name      = "Walk";
-        action.animation = "pl0000_00002";
-        for (int i = 0; i < 31; i++)
+        var Run = Resources.Load<EditActionInfo>("Prefabs/ScriptableObjects/ActionInfo/Run");
+        if (Run)
         {
-            action.actionFrameInfos.Add(new ActionFrameInfo() { frameId = i });
+            ActionInfo action = ActionUtility.CreateActionInfo(Run);
+            actionList.Add(action);
         }
-        action.commandList.Add(new ActionCommand() { keySequences = new[] { KeyMap.DirInput }, validInFrameCount = 1 });
-        action.priority           = 1;
-        action.keepPlayingAnim    = true;
-        action.autoNextActionName = "Idle";
-        action.autoTerminate      = true;
-        action.cancelTags         = new CancelTag[] {
-            new CancelTag() { tag = "IdleAction", priority = 0, startFromFrameIndex = 0 },
-            new CancelTag() { tag = "RunAction", priority = 0, startFromFrameIndex = 0 },
-            new CancelTag() { tag = "JumpLand", priority = 2, startFromFrameIndex = 0 },
-        };
-        action.beCanceledTags = new BeCanceledTag[] {
-            new BeCanceledTag() { cancelTag = new string[] { "RunAction" }, priority = 1, validRange = new FrameIndexRange(0, 30) }
-        };
-        var rootMotionMethod   = Resources.Load<ScriptMethodInfo>("Prefabs/ScriptableObjects/ScriptMethodInfo/RootMotion/GoStraight");
-        action.rootMotionTween = rootMotionMethod;
-        action.ApplyGravity    = true;
-        actionList.Add(action);
+        // action           = new ActionInfo();
+        // action.name      = "Walk";
+        // action.animation = "pl0000_00002";
+        // for (int i = 0; i < 67; i++)
+        // {
+        //     action.actionFrameInfos.Add(new ActionFrameInfo() { frameId = i });
+        // }
+        // action.commandList.Add(new ActionCommand() { keySequences = new[] { KeyMap.DirInput }, validInFrameCount = 1 });
+        // action.priority           = 1;
+        // action.keepPlayingAnim    = true;
+        // action.autoNextActionName = "Idle";
+        // action.autoTerminate      = true;
+        // action.cancelTags         = new CancelTag[] {
+        //     new CancelTag() { tag = "IdleAction", priority = 0, startFromFrameIndex = 0 },
+        //     new CancelTag() { tag = "RunAction", priority = 0, startFromFrameIndex = 0 },
+        //     new CancelTag() { tag = "JumpLand", priority = 2, startFromFrameIndex = 0 },
+        // };
+        // action.beCanceledTags = new BeCanceledTag[] {
+        //     new BeCanceledTag() { cancelTag = new string[] { "RunAction" }, priority = 1, validRange = new FrameIndexRange(0, 66) }
+        // };
+        // var rootMotionMethod        = Resources.Load<ScriptMethodInfo>("Prefabs/ScriptableObjects/ScriptMethodInfo/RootMotion/GoStraight");
+        // action.rootMotionTween      = rootMotionMethod;
+        // action.ApplyGravity         = true;
+        // action.MoveInputAcceptances = new MoveInputAcceptance[] {
+        //     new MoveInputAcceptance() { FrameRange = new FrameIndexRange(0, 66), Rate = 1f }
+        // };
+        // actionList.Add(action);
 
-        action           = new ActionInfo();
-        action.name      = "JumpStart";
-        action.animation = "pl0000_00016";
-        for (int i = 0; i < 56; i++)
+        var JumpStart = Resources.Load<EditActionInfo>("Prefabs/ScriptableObjects/ActionInfo/JumpStart");
+        if (JumpStart)
         {
-            action.actionFrameInfos.Add(new ActionFrameInfo() { frameId = i });
+            ActionInfo action = ActionUtility.CreateActionInfo(JumpStart);
+            actionList.Add(action);
         }
-        action.commandList.Add(new ActionCommand() { keySequences = new[] { KeyMap.ButtonA }, validInFrameCount = 2 });
-        action.priority           = 1;
-        action.keepPlayingAnim    = false;
-        action.autoNextActionName = "JumpLoop";
-        action.autoTerminate      = false;
-        action.cancelTags         = new CancelTag[] {
-            new CancelTag() { tag = "IdleAction", priority = 1, startFromFrameIndex = 0 },
-            new CancelTag() { tag = "RunAction", priority = 2, startFromFrameIndex = 0 }
-        };
-        action.beCanceledTags = new BeCanceledTag[] {
-            new BeCanceledTag() { cancelTag = new string[] { "JumpStartLand" }, priority = 1, validRange = new FrameIndexRange(0, 55) }
-        };
-        //var rootMotionMethod   = Resources.Load<ScriptMethodInfo>("Prefabs/ScriptableObjects/ScriptMethodInfo/RootMotion/GoStraight");
-        //action.rootMotionTween = rootMotionMethod;
-        action.ApplyGravity    = true;
-        actionList.Add(action);
+        // action           = new ActionInfo();
+        // action.name      = "JumpStart";
+        // action.animation = "pl0000_00016";
+        // for (int i = 0; i < 56; i++)
+        // {
+        //     action.actionFrameInfos.Add(new ActionFrameInfo() { frameId = i });
+        // }
+        // action.commandList.Add(new ActionCommand() { keySequences = new[] { KeyMap.ButtonA }, validInFrameCount = 2 });
+        // action.priority           = 1;
+        // action.keepPlayingAnim    = false;
+        // action.autoNextActionName = "JumpLoop";
+        // action.autoTerminate      = false;
+        // action.cancelTags         = new CancelTag[] {
+        //     new CancelTag() { tag = "IdleAction", priority = 1, startFromFrameIndex = 0 },
+        //     new CancelTag() { tag = "RunAction", priority = 2, startFromFrameIndex = 0 }
+        // };
+        // action.beCanceledTags = new BeCanceledTag[] {
+        //     new BeCanceledTag() { cancelTag = new string[] { "JumpStartLand" }, priority = 1, validRange = new FrameIndexRange(0, 55) }
+        // };
+        // var enterActionMethod   = Resources.Load<ScriptMethodInfo>("Prefabs/ScriptableObjects/ScriptMethodInfo/ActionEvent/EnterJump");
+        // action.enterActionEvent = enterActionMethod;
+        // action.ApplyGravity         = true;
+        // action.MoveInputAcceptances = new MoveInputAcceptance[] {
+        //     new MoveInputAcceptance() { FrameRange = new FrameIndexRange(0, 55), Rate = 1f }
+        // };
+        // actionList.Add(action);
 
-        action           = new ActionInfo();
-        action.name      = "JumpLoop";
-        action.animation = "pl0000_00017";
-        for (int i = 0; i < 10; i++)
+        var JumpLoop = Resources.Load<EditActionInfo>("Prefabs/ScriptableObjects/ActionInfo/JumpLoop");
+        if (JumpLoop)
         {
-            action.actionFrameInfos.Add(new ActionFrameInfo() { frameId = i });
+            ActionInfo action = ActionUtility.CreateActionInfo(JumpLoop);
+            actionList.Add(action);
         }
-        //action.commandList.Add(new ActionCommand() { keySequences = new[] { KeyMap.ButtonA }, validInFrameCount = 1 });
-        action.priority           = 1;
-        action.keepPlayingAnim    = true;
-        action.autoNextActionName = "JumpLoop";
-        action.autoTerminate      = true;
-        action.cancelTags         = new CancelTag[] {
-            //new CancelTag() { tag = "IdleAction", priority = 1, startFromFrameIndex = 0 },
-            //new CancelTag() { tag = "RunAction", priority = 1, startFromFrameIndex = 0 }
-        };
-        action.beCanceledTags = new BeCanceledTag[] {
-            new BeCanceledTag() { cancelTag = new string[] { "JumpLoopLand" }, priority = 1, validRange = new FrameIndexRange(0, 9) }
-        };
-        action.ApplyGravity    = true;
-        actionList.Add(action);
+        // action           = new ActionInfo();
+        // action.name      = "JumpLoop";
+        // action.animation = "pl0000_00017";
+        // for (int i = 0; i < 10; i++)
+        // {
+        //     action.actionFrameInfos.Add(new ActionFrameInfo() { frameId = i });
+        // }
+        // //action.commandList.Add(new ActionCommand() { keySequences = new[] { KeyMap.ButtonA }, validInFrameCount = 1 });
+        // action.priority           = 1;
+        // action.keepPlayingAnim    = true;
+        // action.autoNextActionName = "JumpLoop";
+        // action.autoTerminate      = true;
+        // action.cancelTags         = new CancelTag[] {
+        //     //new CancelTag() { tag = "IdleAction", priority = 1, startFromFrameIndex = 0 },
+        //     //new CancelTag() { tag = "RunAction", priority = 1, startFromFrameIndex = 0 }
+        // };
+        // action.beCanceledTags = new BeCanceledTag[] {
+        //     new BeCanceledTag() { cancelTag = new string[] { "JumpLoopLand" }, priority = 1, validRange = new FrameIndexRange(0, 9) }
+        // };
+        // action.ApplyGravity    = true;
+        // actionList.Add(action);
 
-        action           = new ActionInfo();
-        action.name      = "JumpLand";
-        action.animation = "pl0000_00018";
-        for (int i = 0; i < 251; i++)
+        var JumpLand = Resources.Load<EditActionInfo>("Prefabs/ScriptableObjects/ActionInfo/JumpLand");
+        if (JumpLand)
         {
-            action.actionFrameInfos.Add(new ActionFrameInfo() { frameId = i });
+            ActionInfo action = ActionUtility.CreateActionInfo(JumpLand);
+            actionList.Add(action);
         }
-        //action.commandList.Add(new ActionCommand() { keySequences = new[] { KeyMap.ButtonA }, validInFrameCount = 1 });
-        action.priority           = 2;
-        action.keepPlayingAnim    = false;
-        action.autoNextActionName = "Idle";
-        action.autoTerminate      = false;
-        action.cancelTags         = new CancelTag[] {
-            new CancelTag() { tag = "JumpStartLand", priority = 1, startFromFrameIndex = 0 },
-            new CancelTag() { tag = "JumpLoopLand", priority = 1, startFromFrameIndex = 0 }
-        };
-        action.beCanceledTags = new BeCanceledTag[] {
-            new BeCanceledTag() { cancelTag = new string[] { "JumpLand" }, priority = 1, validRange = new FrameIndexRange(0, 250) }
-        };
-        action.ApplyGravity    = true;
-        rootMotionMethod       = Resources.Load<ScriptMethodInfo>("Prefabs/ScriptableObjects/ScriptMethodInfo/RootMotion/JumpLand");
-        action.rootMotionTween = rootMotionMethod;
-        actionList.Add(action);
+        // action           = new ActionInfo();
+        // action.name      = "JumpLand";
+        // action.animation = "pl0000_00018";
+        // for (int i = 0; i < 251; i++)
+        // {
+        //     action.actionFrameInfos.Add(new ActionFrameInfo() { frameId = i });
+        // }
+        // //action.commandList.Add(new ActionCommand() { keySequences = new[] { KeyMap.ButtonA }, validInFrameCount = 1 });
+        // action.priority           = 2;
+        // action.keepPlayingAnim    = false;
+        // action.autoNextActionName = "Idle";
+        // action.autoTerminate      = false;
+        // action.cancelTags         = new CancelTag[] {
+        //     new CancelTag() { tag = "JumpStartLand", priority = 1, startFromFrameIndex = 0 },
+        //     new CancelTag() { tag = "JumpLoopLand", priority = 1, startFromFrameIndex = 0 }
+        // };
+        // action.beCanceledTags = new BeCanceledTag[] {
+        //     new BeCanceledTag() { cancelTag = new string[] { "JumpLand" }, priority = 1, validRange = new FrameIndexRange(0, 250) }
+        // };
+        // action.ApplyGravity    = true;
+        // rootMotionMethod       = Resources.Load<ScriptMethodInfo>("Prefabs/ScriptableObjects/ScriptMethodInfo/RootMotion/JumpLand");
+        // action.rootMotionTween = rootMotionMethod;
+        // actionList.Add(action);
 
 
         gameEntity.AddAction(gameEntity.id.value, actionList);
-        gameEntity.AddCurrentAction(actionList[0], new List<BeCanceledTag>() { actionList[0].beCanceledTags[0] }, 0);
+        var component   = gameEntity.CreateCurrentAction();
+        component.value = actionList[0];
+        //component.beCanceledTags.Add(actionList[0].beCanceledTags[0]);
+        gameEntity.ReplaceCurrentAction(component);
 
         gameEntity.AddPreorderAction(new());
 
@@ -303,7 +348,7 @@ public class MonoCharacter : MonoBehaviour, IViewController
             gameEntity.ReplaceACTGameKCCMotor(null);
             gameEntity.ReplaceInputToCommand(0, new());
             gameEntity.ReplaceAction(0, new());
-            gameEntity.ReplaceCurrentAction(null, new(), 0);
+            gameEntity.ReplaceCurrentAction(null);
             gameEntity.ReplacePreorderAction(new());
             gameEntity.ReplaceHitRecord(new());
             gameEntity.ReplaceAttackHitResult(new());

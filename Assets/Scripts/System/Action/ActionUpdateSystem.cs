@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using ACTGame.Action;
 using Entitas;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -46,9 +47,9 @@ public sealed class ActionUpdateSystem : IExecuteSystem
             var preorderList = e.preorderAction.value;
             foreach (var act in action.actions)
             {
-                if (CanActionCancelCurrentAction(act, true, input, curAction.currentFrame, curFrame, curAction.beCanceledTags, out CancelTag foundTag, out BeCanceledTag beCanceledTag))
+                if (ActionUtility.CanActionCancelCurrentAction(act, curAction, true, input, curFrame, out CancelData foundCancelData, out CancelTag cancelTag))
                 {
-                    preorderList.Add(new PreorderActionInfo(act.name, act.priority + foundTag.priority + beCanceledTag.priority));
+                    preorderList.Add(new PreorderActionInfo(act.name, act.priority + foundCancelData.priority + cancelTag.priority, foundCancelData.startFrame));
                 }
             }
             if (preorderList.Count <= 0 && (curAction.currentFrame == 0 || curAction.value.autoTerminate))
@@ -74,11 +75,14 @@ public sealed class ActionUpdateSystem : IExecuteSystem
             // 更新当前帧的碰撞数据
             UpdateFrameHitBoxes(e, curAction.value.actionFrameInfos[curAction.currentFrame]);
 
+            //移动输入接受
+            CalculateInputAcceptance(curAction.currentFrame, curAction);
+
             // 动作产生的rootmotion
             // 算一下2帧之间的RootMotion变化
             ScriptMethodInfo rootMotion = curAction.value.rootMotionTween;
             var rootMotionComp          = e.hasRootMotion ? e.rootMotion : null;
-            if (rootMotion && !String.IsNullOrEmpty(rootMotion.MethodName) && RootMotionMethod.Methods.ContainsKey(rootMotion.MethodName))
+            if (rootMotion && !string.IsNullOrEmpty(rootMotion.MethodName) && RootMotionMethod.Methods.ContainsKey(rootMotion.MethodName))
             {
                 int lastFrame = curAction.currentFrame - 1;
                 if (lastFrame < 0) lastFrame = 0;
@@ -88,7 +92,7 @@ public sealed class ActionUpdateSystem : IExecuteSystem
                 {
                     rootMotionComp.value = rmThisTick - rmLastTick;
                 }
-                Debug.Log("RootMotion distance " + rootMotionComp.value + "=>" + curAction.currentFrame + " - " + lastFrame);
+                //Debug.Log("RootMotion distance " + rootMotionComp.value + "=>" + curAction.currentFrame + " - " + lastFrame);
             }
             else
             {
@@ -100,58 +104,17 @@ public sealed class ActionUpdateSystem : IExecuteSystem
         }
     }
 
-    bool CanActionCancelCurrentAction(
-    ActionInfo actionInfo,
-    bool checkCommand,
-    InputToCommandComponent input,
-    long curFrame,
-    long entityGlobalFrame,
-    List<BeCanceledTag> beCanceledTagList,
-    out CancelTag foundTag,
-    out BeCanceledTag beCabceledTag)
+    void CalculateInputAcceptance(int frame, CurrentActionComponent CurrentAction)
     {
-        foundTag      = new CancelTag();
-        beCabceledTag = new BeCanceledTag();
-        foreach (BeCanceledTag bcTagInfo in beCanceledTagList)
+        //float MoveInputAcceptance = 0;
+        if (CurrentAction.value.currentFrame == null) return;
+        /*foreach (MoveInputAcceptance acceptance in CurrentAction.value.MoveInputAcceptances)
         {
-            bool tagFit = false;
-            foreach (string bcTagName in bcTagInfo.cancelTag)
-            {
-                // if (!(_wasPercentage <= bcTagInfo.range.max && curPercent >= bcTagInfo.range.min)) continue;
-                // Log.SimpleLog.Info("CanActionCancelCurrentAction:", mLastFrameIndex, mCurrentFrameIndex);
-                if (!(curFrame <= bcTagInfo.validRange.max && curFrame >= bcTagInfo.validRange.min)) continue;
-                foreach (CancelTag cTag in actionInfo.cancelTags)
-                {
-                    if (bcTagName == cTag.tag)
-                    {
-                        // if (actionInfo.SelfLoopCount > 0 && ActionLoopCount > actionInfo.SelfLoopCount)
-                        // {
-                        //     continue;
-                        // }
-                        tagFit        = true;
-                        foundTag      = cTag;
-                        beCabceledTag = bcTagInfo;
-                        break;
-                    }
-                }
-                if (tagFit) break;
-            }
-            if (!tagFit) continue;
-
-            if (checkCommand)
-            {
-                foreach (ActionCommand cmd in actionInfo.commandList)
-                {
-                    if (input.ActionOccur(cmd, entityGlobalFrame)) return true;
-                }
-            }
-            else
-            {
-                return true;
-            }
-        }
-
-        return false;
+            if (acceptance.FrameRange.min <= frame && acceptance.FrameRange.max >= frame &&
+                (MoveInputAcceptance <= 0 || acceptance.Rate < MoveInputAcceptance))
+                MoveInputAcceptance = acceptance.Rate;
+        }*/
+        CurrentAction.MoveInputAcceptance = CurrentAction.value.currentFrame.moveInputAcceptance;
     }
 
     void KeepAction(ActionInfo actionInfo)
@@ -175,6 +138,19 @@ public sealed class ActionUpdateSystem : IExecuteSystem
         {
             CurrentActionComponent curAction = target.currentAction;
             Debug.Log($"ChangeAction: cur:{curAction.value.name}, new:{foundAction.name}");
+            
+            var enterEvent = foundAction.enterActionEvent;
+            if (enterEvent != null)
+            {
+                if (!string.IsNullOrEmpty(enterEvent.MethodName))
+                {
+                    if (ActionEventMethod.Methods.TryGetValue(enterEvent.MethodName, out var method))
+                    {
+                        method(target, fromFrameIndex, enterEvent.Params);
+                    }
+                }
+            }
+
             if (target.hasAnimationController)
             {
                 var animationController = target.animationController.value;
@@ -185,10 +161,6 @@ public sealed class ActionUpdateSystem : IExecuteSystem
             }
             curAction.value = foundAction;
             curAction.beCanceledTags.Clear();
-            foreach (var tag in foundAction.beCanceledTags)
-            {
-                curAction.beCanceledTags.Add(tag);
-            }
             // 动作切换之后，开启的tempBeCancelTag，这是根据ActionChangeInfo的数据添加进来的
             if (target.hasTempBeCancelTag)
             {
