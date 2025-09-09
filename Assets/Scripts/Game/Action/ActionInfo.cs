@@ -15,15 +15,19 @@ public sealed class ActionInfo
 
     public int priority = 0;
     // 下一个自然动作
-    public ActionInfo autoNextAction;
     public string autoNextActionName = string.Empty;
     public bool autoTerminate        = false;
     // public List<ActionFrame> mActionFrames;
     public bool keepPlayingAnim         = false;
-    public List<CancelData> cancelDatas = new List<CancelData>();
+    public CancelData[] cancelDatas;
     public HitInfo hitInfo;
 
     public ScriptMethodInfo rootMotionTween;
     public ScriptMethodInfo enterActionEvent;
     public bool ApplyGravity = true;
+
+    public static ActionInfo Allocate()
+    {
+        return new ActionInfo();
+    }
 }

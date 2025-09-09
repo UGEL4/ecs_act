@@ -1,10 +1,11 @@
 
 using System;
+
 [Serializable]
-public class CancelData
+public struct CancelData
 {
-    public string[] tags = new string[0];
-    public int priority = 0;
-    public int startFrame = 0;
-    public TempBeCancelledTag[] tempCancelTags = new TempBeCancelledTag[0];
+    public string[] tags;
+    public int priority;
+    public int startFrame;
+    public TempBeCancelledTag[] tempCancelTags;
 }

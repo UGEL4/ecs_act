@@ -1036,7 +1036,7 @@ namespace Slate
 #if UNITY_EDITOR
 
         [ContextMenu("Reset")] //override
-        void Reset() { TryReset(); }
+         void Reset(){ TryReset(); }
         [ContextMenu("Copy Component")] //override
         void CopyComponent() { }
         [ContextMenu("Remove Component")] //override
@@ -1161,10 +1161,10 @@ namespace Slate
 
         void TryReset() {
             if ( directorGroup == null ) {
-                var newDirectorGroup = AddGroup<DirectorGroup>();
-                newDirectorGroup.AddTrack<DirectorActionTrack>();
-                newDirectorGroup.AddTrack<DirectorAudioTrack>();
-                newDirectorGroup.AddTrack<CameraTrack>();
+                //var newDirectorGroup = AddGroup<DirectorGroup>();
+                //newDirectorGroup.AddTrack<DirectorActionTrack>();
+                //newDirectorGroup.AddTrack<DirectorAudioTrack>();
+                //newDirectorGroup.AddTrack<CameraTrack>();
                 CutsceneUtility.selectedObject = null;
                 length = 20;
                 viewTimeMin = -1;

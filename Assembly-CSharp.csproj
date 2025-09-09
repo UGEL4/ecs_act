@@ -42,7 +42,7 @@
     <UnityVersion>2023.1.0f1c1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Users\13659\.vscode\extensions\visualstudiotoolsforunity.vstuc-1.1.2\Analyzers\Microsoft.Unity.Analyzers.dll" />
+    <Analyzer Include="C:\Users\13659\.vscode\extensions\visualstudiotoolsforunity.vstuc-1.1.3\Analyzers\Microsoft.Unity.Analyzers.dll" />
     <Analyzer Include="C:\Unity\Editor\Unity 2023.1.0f1c1\Editor\Data\Tools\Unity.SourceGenerators\Unity.SourceGenerators.dll" />
     <Analyzer Include="C:\Unity\Editor\Unity 2023.1.0f1c1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
@@ -55,11 +55,14 @@
     <Compile Include="Assets\Scripts\Generated\Debug\DebugComponentsLookup.cs" />
     <Compile Include="Assets\Scripts\Game\Action\ActionInfo.cs" />
     <Compile Include="Assets\KinematicCharacterController\Walkthrough\12- NoClip state\Scripts\MyCharacterController.cs" />
+    <Compile Include="Assets\Scripts\ActionEditor\MoveInputAcceptance\MoveInputAcceptanceTrack.cs" />
     <Compile Include="Assets\Scripts\Generated\Game\Components\GameLevelCreateCommandComponent.cs" />
     <Compile Include="Assets\Scripts\Camera\CameraController01.cs" />
     <Compile Include="Assets\KinematicCharacterController\Walkthrough\14- Climbing Ladders\Scripts\MyCharacterController.cs" />
+    <Compile Include="Assets\Scripts\ActionEditor\BaseActionClip.cs" />
     <Compile Include="Assets\Scripts\Game\Action\FrameIndexRange.cs" />
     <Compile Include="Assets\Scripts\Generated\Game\Components\GameJumpComponent.cs" />
+    <Compile Include="Assets\Scripts\ActionEditor\SaveActionData.cs" />
     <Compile Include="Assets\Scripts\Generated\Events\Interfaces\ITimerUpdateEventListener.cs" />
     <Compile Include="Assets\Scripts\Generated\Input\InputContext.cs" />
     <Compile Include="Assets\Scripts\Mono\Entity\MonoCharacter.cs" />
@@ -101,6 +104,7 @@
     <Compile Include="Assets\KinematicCharacterController\Examples\Scripts\ExampleAIController.cs" />
     <Compile Include="Assets\Scripts\Generated\Config\ConfigComponentsLookup.cs" />
     <Compile Include="Assets\Scripts\System\MoveSystem.cs" />
+    <Compile Include="Assets\Scripts\ActionEditor\ActionDataTrack.cs" />
     <Compile Include="Assets\KinematicCharacterController\Walkthrough\7- Orienting towards arbitrary up direction\Scripts\MyCharacterController.cs" />
     <Compile Include="Assets\Scripts\Generated\GameState\GameStateEntity.cs" />
     <Compile Include="Assets\KinematicCharacterController\Walkthrough\10- Multiple movement states setup\Scripts\MyPlayer.cs" />
@@ -141,8 +145,8 @@
     <Compile Include="Assets\Scripts\Generated\Config\ConfigContext.cs" />
     <Compile Include="Assets\Scripts\Interface\View\IViewController.cs" />
     <Compile Include="Assets\Scripts\Generated\Game\Components\GameRotationComponent.cs" />
+    <Compile Include="Assets\Scripts\ActionEditor\CancelTag\CancelTagClip.cs" />
     <Compile Include="Assets\Scripts\Component\Input\InputControllerComponent.cs" />
-    <Compile Include="Assets\Scripts\ActionEditor\CustomTrack.cs" />
     <Compile Include="Assets\Scripts\Interface\Event\IUpdateEvent.cs" />
     <Compile Include="Assets\Scripts\Generated\Game\Components\GameScaleListenerComponent.cs" />
     <Compile Include="Assets\Scripts\Generated\Events\Interfaces\IScaleListener.cs" />
@@ -215,6 +219,7 @@
     <Compile Include="Assets\Scripts\Generated\Game\Components\GamePositionListenerComponent.cs" />
     <Compile Include="Assets\Scripts\System\Timer\TimerComponentSystem.cs" />
     <Compile Include="Assets\Scripts\Generated\Game\Components\GameACTGameKCCPhysicalMoverComponent.cs" />
+    <Compile Include="Assets\Scripts\ActionEditor\ActionDataClip.cs" />
     <Compile Include="Assets\KinematicCharacterController\Walkthrough\5- Adding velocities and impulses\Scripts\MyCharacterController.cs" />
     <Compile Include="Assets\Scripts\Interface\Log\ILogService.cs" />
     <Compile Include="Assets\Scripts\Generated\Game\GameContext.cs" />
@@ -237,7 +242,7 @@
     <Compile Include="Assets\Scripts\System\Level\RegisterLevelViewServiceSystem.cs" />
     <Compile Include="Assets\KinematicCharacterController\Examples\Scripts\BuildManager.cs" />
     <Compile Include="Assets\Scripts\Generated\Debug\DebugMatcher.cs" />
-    <Compile Include="Assets\Scripts\ActionEditor\CustomClip.cs" />
+    <Compile Include="Assets\Scripts\ActionEditor\CancelData\CancelDataTrack.cs" />
     <Compile Include="Assets\Scripts\Generated\Events\Components\RotationListenerComponent.cs" />
     <Compile Include="Assets\Scripts\Interface\Animation\IAnimationController.cs" />
     <Compile Include="Assets\Scripts\Game\Methods\ActionEventMethod.cs" />
@@ -246,6 +251,7 @@
     <Compile Include="Assets\Scripts\Generated\Debug\DebugAttribute.cs" />
     <Compile Include="Assets\Scripts\Generated\Config\ConfigMatcher.cs" />
     <Compile Include="Assets\Scripts\System\Entity\EntityUpdateLogic.cs" />
+    <Compile Include="Assets\Scripts\ActionEditor\CancelTag\CancelTagTrack.cs" />
     <Compile Include="Assets\Scripts\Component\Entity\EntityComponent.cs" />
     <Compile Include="Assets\Scripts\Generated\Events\Components\DestroyedListenerComponent.cs" />
     <Compile Include="Assets\Test\GameInitializer.cs" />
@@ -259,6 +265,7 @@
     <Compile Include="Assets\Scripts\System\World\RegisterWorldViewServiceSystem.cs" />
     <Compile Include="Assets\Scripts\Generated\Game\Components\GameACTGameKCCMotorComponent.cs" />
     <Compile Include="Assets\KinematicCharacterController\Examples\Scripts\PlanetManager.cs" />
+    <Compile Include="Assets\Scripts\ActionEditor\CancelData\CancelDataClip.cs" />
     <Compile Include="Assets\Scripts\Component\Action\RootMotionComponent.cs" />
     <Compile Include="Assets\KinematicCharacterController\Walkthrough\8- Creating a moving platform\Scripts\MyCharacterController.cs" />
     <Compile Include="Assets\Scripts\Mono\Input\UnityInputController.cs" />
@@ -319,6 +326,8 @@
     <Compile Include="Assets\KinematicCharacterController\Walkthrough\2- Basic Movement and Gravity\Scripts\MyPlayer.cs" />
     <Compile Include="Assets\KinematicCharacterController\Walkthrough\1- Player Camera Character Setup\Scripts\MyPlayer.cs" />
     <Compile Include="Assets\Scripts\Component\Id\WorldIdComponent.cs" />
+    <Compile Include="Assets\Scripts\ActionEditor\MoveInputAcceptance\MoveInputAcceptanceClip.cs" />
+    <Compile Include="Assets\Scripts\Game\Config\ActionInfo\ActionConfig.cs" />
     <Compile Include="Assets\Scripts\Generated\Game\Components\GameDestroyedListenerComponent.cs" />
     <Compile Include="Assets\Scripts\Component\Action\HitRecordComponentExtenstion.cs" />
     <Compile Include="Assets\Scripts\Generated\Input\InputComponentsLookup.cs" />

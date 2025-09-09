@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 [Serializable]
 public struct CancelTag
@@ -15,10 +16,15 @@ public struct CancelTag
     }
 }
 
+
+/// <summary>
+/// CancelTag的配置数据
+/// 在一段有效帧下，可以有多个CancelTag生效
+/// </summary>
 [Serializable]
 public struct ConfigCancelTag
 {
-    public CancelTag cancelTag;
+    public List<CancelTag> cancelTags;
     public FrameIndexRange validRange;
 }
 

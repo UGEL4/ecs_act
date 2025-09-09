@@ -40,6 +40,14 @@ namespace Slate
             return cutscene;
         }
 
+        [MenuItem("Tools/SLATE/Create/New Action", false, 500)]
+        public static Cutscene CreateAction() {
+            var cutscene = Cutscene.Create();
+            CutsceneEditor.ShowWindow(cutscene);
+            Selection.activeObject = cutscene;
+            return cutscene;
+        }
+
         [MenuItem("Tools/ParadoxNotion/SLATE/Create/Shot Camera", false, 500)]
         public static ShotCamera CreateShot() {
             var shot = ShotCamera.Create();

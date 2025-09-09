@@ -16,7 +16,7 @@ namespace ACTGame.Action
             actionInfo.autoNextActionName = actionConfig.autoNextActionName;
             actionInfo.autoTerminate      = actionConfig.autoTerminate;
             actionInfo.keepPlayingAnim    = actionConfig.keepPlayingAnim;
-            actionInfo.cancelDatas        = actionConfig.cancelDatas;
+            actionInfo.cancelDatas        = actionConfig.cancelDatas.ToArray();
             actionInfo.hitInfo            = actionConfig.hitInfo;
             actionInfo.rootMotionTween    = actionConfig.rootMotionTween;
             actionInfo.enterActionEvent   = actionConfig.enterActionEvent;
@@ -27,6 +27,11 @@ namespace ACTGame.Action
             }
 
             return actionInfo;
+        }
+
+        public static ActionInfo CreateActionInfo(ActionConfig actionConfig)
+        {
+            return actionConfig.GetActionInfo();
         }
 
         /*public static bool CanActionCancelCurrentAction(
@@ -94,14 +99,14 @@ namespace ACTGame.Action
             out CancelTag cancelTag
         )
         {
-            foundCancelData       = null;
+            foundCancelData       = new CancelData();
             cancelTag             = new CancelTag();
             var currentActionInfo = curActionComp.value;
             
             curActionComp.allCancelTag.Clear();
             //当前动作本帧所有的cancelTag
             var currentFrameInfo = currentActionInfo.currentFrame;
-            for (int j = 0; j < currentFrameInfo.cancelTags.Count; j++)
+            for (int j = 0; j < currentFrameInfo.cancelTags.Length; j++)
             {
                 curActionComp.allCancelTag.Add(currentFrameInfo.cancelTags[j]);
             }
@@ -116,7 +121,12 @@ namespace ACTGame.Action
                 }
             }
 
-            for (int i = 0; i < actionInfo.cancelDatas.Count; i++)
+            if (actionInfo.cancelDatas == null)
+            {
+                return false;
+            }
+
+            for (int i = 0; i < actionInfo.cancelDatas.Length; i++)
             {
                 bool tagFit           = false;
                 CancelData cancelData = actionInfo.cancelDatas[i];

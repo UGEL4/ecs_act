@@ -45,15 +45,37 @@ public class EditActionInfo : ScriptableObject
             ActionFrameInfo frame = new ActionFrameInfo();
             frame.frameId         = i;
             frame.loopFrame       = 1;
-            frame.cancelTags      = new();
+            int count = 0;
             foreach (var beTag in beCanceledTags)
             {
                 if (beTag.validRange.min <= i && i <= beTag.validRange.max)
                 {
-                    var cancelTag = new CancelTag(beTag.cancelTag.tag, beTag.cancelTag.priority, beTag.cancelTag.isNowActive);
-                    frame.cancelTags.Add(cancelTag);
+                    count += beTag.cancelTags.Count;
+                }
+                // {
+                //     var cancelTag = new CancelTag(beTag.cancelTag.tag, beTag.cancelTag.priority, beTag.cancelTag.isNowActive);
+                //     frame.cancelTags.Add(cancelTag);
+                // }
+            }
+            frame.cancelTags = new CancelTag[count];
+            count = 0;
+            for (int j = 0; j < beCanceledTags.Count; j++)
+            {
+                if (beCanceledTags[j].validRange.min <= i && i <= beCanceledTags[j].validRange.max)
+                {
+                    for (int k = 0; k < beCanceledTags[j].cancelTags.Count; k++)
+                    {
+                        frame.cancelTags[count] = beCanceledTags[j].cancelTags[k];
+                        count++;
+                    }
+                    Array.Copy(
+                        beCanceledTags[j].cancelTags.ToArray(),
+                        frame.cancelTags,
+                        beCanceledTags[j].cancelTags.Count
+                    );
                 }
             }
+
 
             frame.capsuleDimensions = new FrameCapsuleDimensions {
                 frameRange = new FrameIndexRange(-1, -1),

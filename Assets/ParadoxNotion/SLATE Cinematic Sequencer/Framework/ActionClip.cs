@@ -34,9 +34,13 @@ namespace Slate
             set
             {
                 if ( _startTime != value ) {
+                    float old = _startTime;
                     _startTime = Mathf.Max(value, 0);
                     blendIn = Mathf.Clamp(blendIn, 0, length - blendOut);
                     blendOut = Mathf.Clamp(blendOut, 0, length - blendIn);
+                    #if UNITY_EDITOR
+                        OnStartTimeChanged(old);
+                    #endif
                 }
             }
         }
@@ -47,9 +51,13 @@ namespace Slate
             set
             {
                 if ( startTime + length != value ) {
+                    float old = startTime + length;
                     length = Mathf.Max(value - startTime, 0);
                     blendOut = Mathf.Clamp(blendOut, 0, length - blendIn);
                     blendIn = Mathf.Clamp(blendIn, 0, length - blendOut);
+                    #if UNITY_EDITOR
+                        OnLengthChanged(old);
+                    #endif
                 }
             }
         }
@@ -490,6 +498,8 @@ namespace Slate
         virtual protected void OnClipGUIExternal(Rect left, Rect right) { }
         ///<summary>Override to validate things in editor.</summary>
         virtual protected void OnEditorValidate() { }
+        virtual public void OnStartTimeChanged(float old) {}
+        virtual public void OnLengthChanged(float old) {}
 
         ///----------------------------------------------------------------------------------------------
 #endif

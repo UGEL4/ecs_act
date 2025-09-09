@@ -2494,6 +2494,15 @@ namespace Slate
                 GUI.backgroundColor = Color.white;
             }
 
+            if ( !isAboutButtonPressed ) {
+                GUI.backgroundColor = new Color(0.8f, 0.8f, 1, 1f);
+                if ( GUILayout.Button("New Action", GUILayout.Height(40)) ) {
+                    var action = Commands.CreateAction();
+                    InitializeAll(action);
+                }
+                GUI.backgroundColor = Color.white;
+            }
+
             if ( GUILayout.Button("Documentation", GUILayout.Height(40)) ) {
                 Help.BrowseURL("https://slate.paradoxnotion.com/documentation");
             }

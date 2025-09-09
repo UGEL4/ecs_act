@@ -4,4 +4,5 @@
     <uie:PropertyField binding-path="FrameCount" label="Frame Num" />
     <uie:PropertyField binding-path="ActionList" label="Action List" />
     <ui:Foldout text="Default_Inspector" name="Default_Inspector" />
+    <ui:Button text="Button" display-tooltip-when-elided="true" />
 </ui:UXML>
