@@ -4,31 +4,6 @@ namespace ACTGame.Action
 {
     public static class ActionUtility
     {
-        public static ActionInfo CreateActionInfo(EditActionInfo actionConfig)
-        {
-            ActionInfo actionInfo = new ActionInfo();
-
-            actionInfo.name               = actionConfig.ActionName;
-            actionInfo.animation          = actionConfig.Animation;
-            actionInfo.actionFrameInfos   = actionConfig.InitFrameList();
-            actionInfo.commandList        = actionConfig.commandList;
-            actionInfo.priority           = actionConfig.priority;
-            actionInfo.autoNextActionName = actionConfig.autoNextActionName;
-            actionInfo.autoTerminate      = actionConfig.autoTerminate;
-            actionInfo.keepPlayingAnim    = actionConfig.keepPlayingAnim;
-            actionInfo.cancelDatas        = actionConfig.cancelDatas.ToArray();
-            actionInfo.hitInfo            = actionConfig.hitInfo;
-            actionInfo.rootMotionTween    = actionConfig.rootMotionTween;
-            actionInfo.enterActionEvent   = actionConfig.enterActionEvent;
-            actionInfo.ApplyGravity       = actionConfig.ApplyGravity;
-            if (actionInfo.actionFrameInfos.Count > 0)
-            {
-                actionInfo.currentFrame = actionInfo.actionFrameInfos[0];
-            }
-
-            return actionInfo;
-        }
-
         public static ActionInfo CreateActionInfo(ActionConfig actionConfig)
         {
             return actionConfig.GetActionInfo();
@@ -106,18 +81,22 @@ namespace ACTGame.Action
             curActionComp.allCancelTag.Clear();
             //当前动作本帧所有的cancelTag
             var currentFrameInfo = currentActionInfo.currentFrame;
-            for (int j = 0; j < currentFrameInfo.cancelTags.Length; j++)
+            for (int j = 0; j < currentFrameInfo.CancelTags.Length; j++)
             {
-                curActionComp.allCancelTag.Add(currentFrameInfo.cancelTags[j]);
+                curActionComp.allCancelTag.Add(currentFrameInfo.CancelTags[j]);
             }
             //当前动作临时开启的cancelTag
             for (int j = 0; j < curActionComp.beCanceledTags.Count; j++)
             {
                 BeCanceledTag bcTagInfo = curActionComp.beCanceledTags[j];
-                foreach (string bcTagName in bcTagInfo.cancelTag)
+                foreach (string bcTagName in bcTagInfo.CancelTag)
                 {
-                    if (!(curActionComp.currentFrame <= bcTagInfo.validRange.max && curActionComp.currentFrame >= bcTagInfo.validRange.min)) continue;
-                    curActionComp.allCancelTag.Add(new CancelTag(bcTagName, bcTagInfo.priority, true));
+                    if (!(curActionComp.currentFrame <= bcTagInfo.ValidRange.max && curActionComp.currentFrame >= bcTagInfo.ValidRange.min)) continue;
+                    curActionComp.allCancelTag.Add(new CancelTag {
+                        Tag               = bcTagName,
+                        Priority          = bcTagInfo.Priority,
+                        IsNowActive       = true
+                    });
                 }
             }
 
@@ -130,12 +109,12 @@ namespace ACTGame.Action
             {
                 bool tagFit           = false;
                 CancelData cancelData = actionInfo.cancelDatas[i];
-                foreach (var tagName in cancelData.tags)
+                foreach (var tagName in cancelData.Tags)
                 {
                     // 本帧的所有cancelTag和临时开启的cancelTag，能否被cancelData所cancel
                     for (int j = 0; j < curActionComp.allCancelTag.Count; j++)
                     {
-                        if (tagName == curActionComp.allCancelTag[j].tag)
+                        if (tagName == curActionComp.allCancelTag[j].Tag)
                         {
                             tagFit          = true;
                             foundCancelData = cancelData;

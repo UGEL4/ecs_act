@@ -10,7 +10,7 @@ namespace ACTGame
         public string ActionName;
         public string Animation;
         public int Priority;
-        public string AutoNextActionName;
+        public NextAutoActionInfo AutoNextAction;
         public bool AutoTerminate;
         public bool KeepPlayingAnim;
         public bool ApplyGravity;

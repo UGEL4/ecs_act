@@ -144,6 +144,7 @@
     <Compile Include="Assets\Scripts\Component\Timer\TimerManagerComponentExtensitions.cs" />
     <Compile Include="Assets\Scripts\Generated\Config\ConfigContext.cs" />
     <Compile Include="Assets\Scripts\Interface\View\IViewController.cs" />
+    <Compile Include="Assets\Scripts\Game\Action\ActionAnimationInfo.cs" />
     <Compile Include="Assets\Scripts\Generated\Game\Components\GameRotationComponent.cs" />
     <Compile Include="Assets\Scripts\ActionEditor\CancelTag\CancelTagClip.cs" />
     <Compile Include="Assets\Scripts\Component\Input\InputControllerComponent.cs" />
@@ -314,6 +315,7 @@
     <Compile Include="Assets\KinematicCharacterController\Walkthrough\9- Custom collision filtering\Scripts\MyCharacterController.cs" />
     <Compile Include="Assets\KinematicCharacterController\Examples\Scripts\PrefabLauncher.cs" />
     <Compile Include="Assets\Scripts\Generated\Config\ConfigAttribute.cs" />
+    <Compile Include="Assets\Scripts\Mono\Entity\MonoCharacterConfig.cs" />
     <Compile Include="Assets\Scripts\Timer\InvokeType.cs" />
     <Compile Include="Assets\Scripts\System\KCC\KCCSystem.cs" />
     <Compile Include="Assets\Scripts\Generated\Game\Components\GameGravityComponent.cs" />

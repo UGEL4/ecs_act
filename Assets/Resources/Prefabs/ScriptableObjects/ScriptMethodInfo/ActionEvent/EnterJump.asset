@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MethodName: EnterJump
   Params:
-  - 0.5
-  - 2
+  - 0.46
+  - 2.5

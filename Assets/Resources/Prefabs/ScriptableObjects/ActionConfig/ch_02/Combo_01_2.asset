@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8494fa52f12229c4a8b8f93da62bdb5a, type: 3}
+  m_Name: Combo_01_2
+  m_EditorClassIdentifier: 
+  ActionName: Combo_01_2
+  FrameCount: 80
+  Animation: Combo_01_2
+  CancelDatas:
+  - Tags:
+    - Combo_01_1_Combo
+    Priority: 2
+    StartFrame: 8
+    FadeInPercentage: 0.05
+    AnimStartFromPercentage: 0.1
+    TempCancelTags: []
+  BeCanceledTags:
+  - CancelTags:
+    - Tag: Combo_01_2_Combo
+      Priority: 0
+      IsNowActive: 1
+    ValidRange:
+      min: 24
+      max: 60
+  CommandList:
+  - keySequences: 07000000
+    validInFrameCount: 2
+  Priority: 1
+  AutoNextActionName: Idle
+  AutoNextAction:
+    ActionName: Idle
+    FadeOutPercentage: 0.2
+    FadeInPercentage: 0.2
+    AnimStartFromPercentage: 0.05
+    InFromFrame: 0
+  AutoTerminate: 0
+  KeepPlayingAnim: 0
+  HitInfo:
+    frameToHitAgain: 0
+    canHitCount: 0
+  RootMotionTween: {fileID: 0}
+  EnterActionEvent: {fileID: 0}
+  ApplyGravity: 1
+  MoveInputAcceptances:
+  - FrameRange:
+      min: 0
+      max: 0
+    Rate: 1

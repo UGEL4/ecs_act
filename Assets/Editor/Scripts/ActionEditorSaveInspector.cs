@@ -77,14 +77,15 @@ public class ActionEditorSaveInspector : Editor
             actionCfg.ActionName         = actionClip.ActionName;
             actionCfg.Animation          = actionClip.Animation;
             actionCfg.Priority           = actionClip.Priority;
-            actionCfg.AutoNextActionName = actionClip.AutoNextActionName;
             actionCfg.AutoTerminate      = actionClip.AutoTerminate;
             actionCfg.KeepPlayingAnim    = actionClip.KeepPlayingAnim;
             actionCfg.ApplyGravity       = actionClip.ApplyGravity;
             actionCfg.RootMotionTween    = actionClip.RootMotionTween;
             actionCfg.EnterActionEvent   = actionClip.EnterActionEvent;
             actionCfg.FrameCount         = actionClip.TotalFrame;
-            
+            actionCfg.CommandList        = actionClip.CommandList;
+            actionCfg.AutoNextAction     = actionClip.AutoNextAction;
+
             //CancelTags
             actionCfg.BeCanceledTags = new();
             for (int i = 0; i < cancelTagTracks.Count; i++)
@@ -96,8 +97,8 @@ public class ActionEditorSaveInspector : Editor
                     int startFrame         = clip.StartFrame;
                     int frameNum           = clip.TotalFrame;
                     ConfigCancelTag cfgTag = new ConfigCancelTag();
-                    cfgTag.validRange      = new FrameIndexRange(startFrame, frameNum);
-                    cfgTag.cancelTags      = clip.beCancelTag;
+                    cfgTag.ValidRange      = new FrameIndexRange(startFrame, frameNum);
+                    cfgTag.CancelTags      = clip.beCancelTag;
                     actionCfg.BeCanceledTags.Add(cfgTag);
                 }
             }

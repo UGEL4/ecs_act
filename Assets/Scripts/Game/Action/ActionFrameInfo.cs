@@ -4,25 +4,25 @@ using System.Collections.Generic;
 [Serializable]
 public class ActionFrameInfo
 {
-    public int frameId;
-    public int loopFrame;
-    public CancelTag[] cancelTags;
-    public AttackHitBox[] attackHitBoxes;
-    public ColliderBox[] colliderBoxes;
-    public HitBox[] hitBoxes;
-    public FrameCapsuleDimensions capsuleDimensions;
-    public float moveInputAcceptance;
+    public int FrameId;
+    public int LoopFrame;
+    public CancelTag[] CancelTags;
+    public AttackHitBox[] AttackHitBoxes;
+    public ColliderBox[] ColliderBoxes;
+    public HitBox[] HitBoxes;
+    public FrameCapsuleDimensions CapsuleDimensions;
+    public float MoveInputAcceptance;
 
     public void Reset()
     {
-        frameId             = 0;
-        loopFrame           = 0;
-        cancelTags          = null;
-        attackHitBoxes      = null;
-        colliderBoxes       = null;
-        hitBoxes            = null;
-        capsuleDimensions   = new();
-        moveInputAcceptance = 0f;
+        FrameId             = 0;
+        LoopFrame           = 0;
+        CancelTags          = null;
+        AttackHitBoxes      = null;
+        ColliderBoxes       = null;
+        HitBoxes            = null;
+        CapsuleDimensions   = new();
+        MoveInputAcceptance = 0f;
     }
 
     public void Recycle()

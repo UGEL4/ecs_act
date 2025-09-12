@@ -116,10 +116,10 @@ public class DoAttackSystem : ReactiveSystem<GameEntity>
                     var result = hitTargetResult.hitResults[k];
                     //int attackBoxIndex = result.attackBoxIndex;
                     // 获取攻击框优先级
-                    int attackBoxPriority = curFrameInfo.attackHitBoxes[result.attackBoxIndex].priority;
+                    int attackBoxPriority = curFrameInfo.AttackHitBoxes[result.attackBoxIndex].priority;
                     //int hitBoxIndex = hitTargetResult.hitResults[k].hitBoxIndex;
                     // 获取受击框优先级
-                    int priority = targetCurFrameInfo.hitBoxes[result.hitBoxIndex].priority;
+                    int priority = targetCurFrameInfo.HitBoxes[result.hitBoxIndex].priority;
                     // 计算总优先级
                     int totalPriority = attackBoxPriority + priority;
                     // 直接比较并记录最优结果
@@ -137,8 +137,8 @@ public class DoAttackSystem : ReactiveSystem<GameEntity>
                     if (hitRecordInfo == null || (hitRecordInfo.canHitTimes > 0 && hitRecordInfo.cooldown <= 0))
                     {
                         var bestResult = hitTargetResult.hitResults[bestIndex];
-                        var attackBox = curFrameInfo.attackHitBoxes[bestResult.attackBoxIndex];
-                        var hitBox = targetCurFrameInfo.hitBoxes[bestResult.hitBoxIndex];
+                        var attackBox = curFrameInfo.AttackHitBoxes[bestResult.attackBoxIndex];
+                        var hitBox = targetCurFrameInfo.HitBoxes[bestResult.hitBoxIndex];
                         //attacker
                         ActionChangeInfo attackerChangeInfo = attackBox.selfActionChangeInfo.priority > hitBox.attackerActionChangeInfo.priority ?
                             attackBox.selfActionChangeInfo : hitBox.attackerActionChangeInfo;

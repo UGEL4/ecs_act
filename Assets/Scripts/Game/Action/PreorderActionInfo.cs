@@ -14,12 +14,23 @@ public struct PreorderActionInfo
     public int Priority;
 
     public int FromFrameIndex;
+    /// <summary>
+    /// 动作融合的百分比时间
+    /// </summary>
+    public float TransitionNormalized;
 
-    public PreorderActionInfo(string actionId, int priority = 0, int fromFrameIndex = 0)
+    /// <summary>
+    /// 新的action对应的动画，从百分之多少的位置开始播放
+    /// </summary>
+    public float FromNormalized;
+
+    public PreorderActionInfo(string actionId, int priority = 0, int fromFrameIndex = 0, float transitionNormalized = 0f, float fromNormalized = 0f)
     {
         ActionId = actionId;
         Priority = priority;
         FromFrameIndex = fromFrameIndex;
+        TransitionNormalized = transitionNormalized;
+        FromNormalized = fromNormalized;
     }
 
 }

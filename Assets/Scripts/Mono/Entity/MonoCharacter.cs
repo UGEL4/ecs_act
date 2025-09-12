@@ -171,13 +171,24 @@ public class MonoCharacter : MonoBehaviour, IViewController
 
     void AddTestActions()
     {
+        var CharacterCfg = Resources.Load<ACTGame.View.MonoCharacterConfig>("Prefabs/ScriptableObjects/MonoCharacterConfig/ch_02");
         List<ActionInfo> actionList = new();
-        var Idle = Resources.Load<EditActionInfo>("Prefabs/ScriptableObjects/ActionInfo/Idle");
+        foreach (var path in CharacterCfg.ActionList)
+        {
+            var ActionCfg = Resources.Load<ActionConfig>(path);
+            if (ActionCfg)
+            {
+                ActionInfo action = ActionUtility.CreateActionInfo(ActionCfg);
+                actionList.Add(action);
+            }
+        }
+        //var Idle = Resources.Load<EditActionInfo>("Prefabs/ScriptableObjects/ActionInfo/Idle");
+        /*var Idle = Resources.Load<ActionConfig>("Prefabs/ScriptableObjects/ActionConfig/ch_02/Idle");
         if (Idle)
         {
             ActionInfo action = ActionUtility.CreateActionInfo(Idle);
             actionList.Add(action);
-        }
+        }*/
         // ActionInfo action           = new ActionInfo();
         // action.name                 = "Idle";
         // action.animation            = "pl0000_00000";
@@ -196,12 +207,12 @@ public class MonoCharacter : MonoBehaviour, IViewController
         // action.ApplyGravity = true;
         // actionList.Add(action);
 
-        var Run = Resources.Load<EditActionInfo>("Prefabs/ScriptableObjects/ActionInfo/Run");
+        /*var Run = Resources.Load<ActionConfig>("Prefabs/ScriptableObjects/ActionConfig/ch_02/Run");
         if (Run)
         {
             ActionInfo action = ActionUtility.CreateActionInfo(Run);
             actionList.Add(action);
-        }
+        }*/
         // action           = new ActionInfo();
         // action.name      = "Walk";
         // action.animation = "pl0000_00002";
@@ -230,12 +241,12 @@ public class MonoCharacter : MonoBehaviour, IViewController
         // };
         // actionList.Add(action);
 
-        var JumpStart = Resources.Load<EditActionInfo>("Prefabs/ScriptableObjects/ActionInfo/JumpStart");
+        /*var JumpStart = Resources.Load<ActionConfig>("Prefabs/ScriptableObjects/ActionConfig/ch_02/JumpStart");
         if (JumpStart)
         {
             ActionInfo action = ActionUtility.CreateActionInfo(JumpStart);
             actionList.Add(action);
-        }
+        }*/
         // action           = new ActionInfo();
         // action.name      = "JumpStart";
         // action.animation = "pl0000_00016";
@@ -263,12 +274,12 @@ public class MonoCharacter : MonoBehaviour, IViewController
         // };
         // actionList.Add(action);
 
-        var JumpLoop = Resources.Load<EditActionInfo>("Prefabs/ScriptableObjects/ActionInfo/JumpLoop");
+        /*var JumpLoop = Resources.Load<ActionConfig>("Prefabs/ScriptableObjects/ActionConfig/ch_02/JumpLoop");
         if (JumpLoop)
         {
             ActionInfo action = ActionUtility.CreateActionInfo(JumpLoop);
             actionList.Add(action);
-        }
+        }*/
         // action           = new ActionInfo();
         // action.name      = "JumpLoop";
         // action.animation = "pl0000_00017";
@@ -291,12 +302,12 @@ public class MonoCharacter : MonoBehaviour, IViewController
         // action.ApplyGravity    = true;
         // actionList.Add(action);
 
-        var JumpLand = Resources.Load<EditActionInfo>("Prefabs/ScriptableObjects/ActionInfo/JumpLand");
+        /*var JumpLand = Resources.Load<ActionConfig>("Prefabs/ScriptableObjects/ActionConfig/ch_02/JumpLand");
         if (JumpLand)
         {
             ActionInfo action = ActionUtility.CreateActionInfo(JumpLand);
             actionList.Add(action);
-        }
+        }*/
         // action           = new ActionInfo();
         // action.name      = "JumpLand";
         // action.animation = "pl0000_00018";

@@ -49,13 +49,16 @@ public sealed class ActionUpdateSystem : IExecuteSystem
             {
                 if (ActionUtility.CanActionCancelCurrentAction(act, curAction, true, input, curFrame, out CancelData foundCancelData, out CancelTag cancelTag))
                 {
-                    preorderList.Add(new PreorderActionInfo(act.name, act.priority + foundCancelData.priority + cancelTag.priority, foundCancelData.startFrame));
+                    preorderList.Add(new PreorderActionInfo(act.name, act.priority + foundCancelData.Priority + cancelTag.Priority, foundCancelData.StartFrame,
+                    foundCancelData.FadeInPercentage, foundCancelData.AnimStartFromPercentage));
                 }
             }
             if (preorderList.Count <= 0 && (curAction.currentFrame == 0 || curAction.value.autoTerminate))
             {
                 // Debug.Log($"KeepAction:{curFrame}");
-                preorderList.Add(new PreorderActionInfo(curAction.value.autoNextActionName));
+                var NextAutoAction = curAction.value.nextAutoActionInfo;
+                preorderList.Add(new PreorderActionInfo(NextAutoAction.ActionName, 0, NextAutoAction.InFromFrame, 
+                NextAutoAction.FadeInPercentage, NextAutoAction.AnimStartFromPercentage));
             }
 
             if (preorderList.Count > 0)
@@ -67,10 +70,12 @@ public sealed class ActionUpdateSystem : IExecuteSystem
                 }
                 else
                 {
-                    ChangeAction(e, preorderList[0].ActionId, preorderList[0].FromFrameIndex);
+                    var preorderAction = preorderList[0];
+                    ChangeAction(e, preorderAction.ActionId, preorderAction.FromFrameIndex, preorderAction.TransitionNormalized, preorderAction.FromNormalized);
                 }
             }
             preorderList.Clear();
+            curAction.value.currentFrame = curAction.value.actionFrameInfos[curAction.currentFrame];
 
             // 更新当前帧的碰撞数据
             UpdateFrameHitBoxes(e, curAction.value.actionFrameInfos[curAction.currentFrame]);
@@ -114,7 +119,7 @@ public sealed class ActionUpdateSystem : IExecuteSystem
                 (MoveInputAcceptance <= 0 || acceptance.Rate < MoveInputAcceptance))
                 MoveInputAcceptance = acceptance.Rate;
         }*/
-        CurrentAction.MoveInputAcceptance = CurrentAction.value.currentFrame.moveInputAcceptance;
+        CurrentAction.MoveInputAcceptance = CurrentAction.value.currentFrame.MoveInputAcceptance;
     }
 
     void KeepAction(ActionInfo actionInfo)
@@ -122,7 +127,7 @@ public sealed class ActionUpdateSystem : IExecuteSystem
         // Debug.Log($"KeepAction:{actionInfo.name}");
     }
 
-    void ChangeAction(GameEntity target, string actionName, int fromFrameIndex)
+    void ChangeAction(GameEntity target, string actionName, int fromFrameIndex, float transitionNormalized, float fromNormalized)
     {
         ActionInfo foundAction      = null;
         List<ActionInfo> actionList = target.action.actions;
@@ -156,7 +161,7 @@ public sealed class ActionUpdateSystem : IExecuteSystem
                 var animationController = target.animationController.value;
                 if (animationController != null)
                 {
-                    animationController.PlayAnimation(foundAction.animation);
+                    animationController.PlayAnimation(foundAction.animation, transitionNormalized, 0, fromNormalized);
                 }
             }
             curAction.value = foundAction;
@@ -181,15 +186,15 @@ public sealed class ActionUpdateSystem : IExecuteSystem
     {
         var hitBoxComp = e.hitBox;
         hitBoxComp.values.Clear();
-        if (frameInfo.hitBoxes != null)
+        if (frameInfo.HitBoxes != null)
         {
-            hitBoxComp.values.AddRange(frameInfo.hitBoxes);
+            hitBoxComp.values.AddRange(frameInfo.HitBoxes);
         }
 
         var attackHitBoxComp = e.attackHitBox;
-        if (frameInfo.attackHitBoxes != null)
+        if (frameInfo.AttackHitBoxes != null)
         {
-            attackHitBoxComp.values.AddRange(frameInfo.attackHitBoxes);
+            attackHitBoxComp.values.AddRange(frameInfo.AttackHitBoxes);
         }
     }
 }

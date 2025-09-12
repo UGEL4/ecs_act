@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8494fa52f12229c4a8b8f93da62bdb5a, type: 3}
+  m_Name: JumpStart
+  m_EditorClassIdentifier: 
+  ActionName: JumpStart
+  FrameCount: 48
+  Animation: jump_start
+  CancelDatas:
+  - Tags:
+    - IdleAction
+    - RunAction
+    Priority: 1
+    StartFrame: 0
+    FadeInPercentage: 0
+    AnimStartFromPercentage: 0
+    TempCancelTags: []
+  BeCanceledTags:
+  - CancelTags:
+    - Tag: JumpStartLand
+      Priority: 0
+      IsNowActive: 1
+    ValidRange:
+      min: 0
+      max: 48
+  CommandList:
+  - keySequences: 09000000
+    validInFrameCount: 2
+  Priority: 1
+  AutoNextActionName: JumpLoop
+  AutoNextAction:
+    ActionName: JumpLoop
+    FadeOutPercentage: 0
+    FadeInPercentage: 0
+    AnimStartFromPercentage: 0
+    InFromFrame: 0
+  AutoTerminate: 0
+  KeepPlayingAnim: 1
+  HitInfo:
+    frameToHitAgain: 0
+    canHitCount: 0
+  RootMotionTween: {fileID: 0}
+  EnterActionEvent: {fileID: 11400000, guid: 24b8f03f9aefce54e95cac0eaaf49a10, type: 2}
+  ApplyGravity: 1
+  MoveInputAcceptances:
+  - FrameRange:
+      min: 0
+      max: 0
+    Rate: 1

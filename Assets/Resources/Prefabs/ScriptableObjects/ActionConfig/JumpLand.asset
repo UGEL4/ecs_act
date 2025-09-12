@@ -9,37 +9,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f4d64d38fca5dd479633cfbc27d6aa8, type: 3}
+  m_Script: {fileID: 11500000, guid: 8494fa52f12229c4a8b8f93da62bdb5a, type: 3}
   m_Name: JumpLand
   m_EditorClassIdentifier: 
   ActionName: JumpLand
-  FrameCount: 347
-  Animation: pl0000_00018
-  cancelDatas:
+  FrameCount: 10
+  Animation: jump_land
+  CancelDatas:
   - tags:
     - JumpStartLand
     - JumpLoopLand
     priority: 1
     startFrame: 0
     tempCancelTags: []
-  beCanceledTags:
-  - cancelTag:
-      tag: JumpLand
+  BeCanceledTags:
+  - cancelTags:
+    - tag: JumpLand
       priority: 1
       isNowActive: 1
     validRange:
       min: 0
-      max: 346
-  commandList: []
-  priority: 2
-  autoNextActionName: Idle
-  autoTerminate: 0
-  keepPlayingAnim: 0
-  hitInfo:
+      max: 10
+  CommandList: []
+  Priority: 2
+  AutoNextActionName: JumpLoop
+  AutoTerminate: 0
+  KeepPlayingAnim: 0
+  HitInfo:
     frameToHitAgain: 0
     canHitCount: 0
-  rootMotionTween: {fileID: 11400000, guid: d8045d4248c70354ba5d84d347d4bf15, type: 2}
-  enterActionEvent: {fileID: 0}
+  RootMotionTween: {fileID: 0}
+  EnterActionEvent: {fileID: 0}
   ApplyGravity: 1
   MoveInputAcceptances: []
-  frameCapsuleDimensions: []

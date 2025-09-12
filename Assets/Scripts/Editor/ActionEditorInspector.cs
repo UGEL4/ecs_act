@@ -1,3 +1,4 @@
+using ACTGame.Action;
 using UnityEditor;
 using UnityEngine;
 
@@ -59,7 +60,7 @@ using UnityEngine;
 
 public class ActionEditorWindow : EditorWindow
 {
-    private EditActionInfo actionInfo;
+    private ActionConfig actionInfo;
     private int currentFrame;
     private int lastFrame;
     private int maxFrame;
@@ -195,7 +196,7 @@ public class ActionEditorWindow : EditorWindow
             }
         }
         string resources = "/Resources/";
-        string path      = EditorUtility.OpenFilePanel("选择动作文件", Application.dataPath + resources + "Prefabs/ScriptableObjects/ActionInfo", "asset");
+        string path      = EditorUtility.OpenFilePanel("选择动作文件", Application.dataPath + resources + "Prefabs/ScriptableObjects/ActionConfig", "asset");
         if (string.IsNullOrEmpty(path))
         {
             EditorUtility.DisplayDialog("提示", "没有选择动作文件", "确定");
@@ -203,7 +204,7 @@ public class ActionEditorWindow : EditorWindow
         }
 
         string relativePath = "Assets" + path.Substring(Application.dataPath.Length);
-        actionInfo          = AssetDatabase.LoadAssetAtPath<EditActionInfo>(relativePath);
+        actionInfo          = AssetDatabase.LoadAssetAtPath<ActionConfig>(relativePath);
         if (actionInfo != null)
         {
             currentFrame = 0;
@@ -244,7 +245,7 @@ public class ActionEditorWindow : EditorWindow
         if (!string.IsNullOrEmpty(path))
         {
             // 创建副本
-            EditActionInfo newAsset = Instantiate(actionInfo);
+            ActionConfig newAsset = Instantiate(actionInfo);
 
             // 保存新资源
             AssetDatabase.CreateAsset(newAsset, path);
@@ -252,7 +253,7 @@ public class ActionEditorWindow : EditorWindow
             AssetDatabase.Refresh();
 
             // 加载新资源
-            actionInfo = AssetDatabase.LoadAssetAtPath<EditActionInfo>(path);
+            actionInfo = AssetDatabase.LoadAssetAtPath<ActionConfig>(path);
 
             // 重新创建嵌入编辑器
             if (_embeddedEditor != null) DestroyImmediate(_embeddedEditor);

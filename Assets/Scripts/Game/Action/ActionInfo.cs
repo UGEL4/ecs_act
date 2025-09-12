@@ -1,6 +1,20 @@
 using System;
 using System.Collections.Generic;
 
+namespace ACTGame
+{
+
+    [Serializable]
+    public struct NextAutoActionInfo
+    {
+        public string ActionName;
+        public float FadeOutPercentage;
+        public float FadeInPercentage;
+        public float AnimStartFromPercentage;
+        public int InFromFrame;
+    }
+}
+
 [Serializable]
 public sealed class ActionInfo
 {
@@ -15,7 +29,7 @@ public sealed class ActionInfo
 
     public int priority = 0;
     // 下一个自然动作
-    public string autoNextActionName = string.Empty;
+    public ACTGame.NextAutoActionInfo nextAutoActionInfo;
     public bool autoTerminate        = false;
     // public List<ActionFrame> mActionFrames;
     public bool keepPlayingAnim         = false;

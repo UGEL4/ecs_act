@@ -44,7 +44,7 @@ public static class PreorderActionComponentExtenstion
                 ActionInfo aInfo = GetActionById(AllActions, acInfo.param, out bool found);
                 if (found)
                 {
-                    self.value.Add(new PreorderActionInfo(aInfo.name, aInfo.priority + acInfo.priority, acInfo.stratFrameIndex));
+                    self.value.Add(new PreorderActionInfo(aInfo.name, aInfo.priority + acInfo.priority, acInfo.stratFrameIndex, acInfo.transNormalized, acInfo.fromNormalized));
                 }
                 break;
         }

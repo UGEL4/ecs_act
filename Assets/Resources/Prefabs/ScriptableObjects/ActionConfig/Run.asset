@@ -21,23 +21,33 @@ MonoBehaviour:
     - RunAction
     priority: 0
     startFrame: 0
+    fadeInPercentage: 0
     tempCancelTags: []
   - tags:
     - JumpLand
     priority: 2
     startFrame: 0
+    fadeInPercentage: 0
     tempCancelTags: []
   BeCanceledTags:
   - cancelTags:
     - tag: RunAction
       priority: 1
+      fadeOutPercentage: 0
       isNowActive: 1
     validRange:
       min: 0
       max: 66
-  CommandList: []
+  CommandList:
+  - keySequences: 06000000
+    validInFrameCount: 1
   Priority: 1
   AutoNextActionName: Idle
+  AutoNextAction:
+    ActionName: 
+    FadeOutPercentage: 0
+    FadeInPercentage: 0
+    InFromFrame: 0
   AutoTerminate: 1
   KeepPlayingAnim: 1
   HitInfo:

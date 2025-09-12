@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace ACTGame.Action
 {
-
+    [CreateAssetMenu(fileName = "ActionConfig", menuName = "动作编辑/ActionConfig")]
     public class ActionConfig : ScriptableObject
     {
         public string ActionName;
@@ -14,7 +14,7 @@ namespace ACTGame.Action
         public List<ActionCommand> CommandList      = new();
         public int Priority                         = 0;
         // 下一个自然动作
-        public string AutoNextActionName = string.Empty;
+        public NextAutoActionInfo AutoNextAction;
         public bool AutoTerminate        = false;
         public bool KeepPlayingAnim      = false;
         public HitInfo HitInfo;
@@ -29,20 +29,20 @@ namespace ACTGame.Action
             for (int i = 0; i < FrameCount; i++)
             {
                 ActionFrameInfo frame      = ActionFrameInfo.Allocate();
-                frame.frameId              = i;
-                frame.loopFrame            = 1;
+                frame.FrameId              = i;
+                frame.LoopFrame            = 1;
                 List<CancelTag> cancelTags = new();
                 foreach (var beTag in BeCanceledTags)
                 {
-                    if (beTag.validRange.min <= i && i <= beTag.validRange.max)
+                    if (beTag.ValidRange.min <= i && i <= beTag.ValidRange.max)
                     {
-                        foreach (var tag in beTag.cancelTags)
+                        foreach (var tag in beTag.CancelTags)
                         {
                             cancelTags.Add(tag);
                         }
                     }
                 }
-                frame.cancelTags = cancelTags.ToArray();
+                frame.CancelTags = cancelTags.ToArray();
 
                 // frame.capsuleDimensions = new FrameCapsuleDimensions {
                 //     frameRange = new FrameIndexRange(-1, -1),
@@ -57,13 +57,13 @@ namespace ACTGame.Action
                 //     }
                 // }
 
-                frame.moveInputAcceptance = 0f;
+                frame.MoveInputAcceptance = 0f;
                 foreach (var inputAcceptance in MoveInputAcceptances)
                 {
                     if (inputAcceptance.FrameRange.min <= i && i <= inputAcceptance.FrameRange.max &&
-                        (frame.moveInputAcceptance <= 0 || inputAcceptance.Rate < frame.moveInputAcceptance))
+                        (frame.MoveInputAcceptance <= 0 || inputAcceptance.Rate < frame.MoveInputAcceptance))
                     {
-                        frame.moveInputAcceptance = inputAcceptance.Rate;
+                        frame.MoveInputAcceptance = inputAcceptance.Rate;
                     }
                 }
 
@@ -82,7 +82,7 @@ namespace ACTGame.Action
             actionInfo.currentFrame       = actionInfo.actionFrameInfos.Count > 0 ? actionInfo.actionFrameInfos[0] : null;
             actionInfo.commandList        = CommandList;
             actionInfo.priority           = Priority;
-            actionInfo.autoNextActionName = AutoNextActionName;
+            actionInfo.nextAutoActionInfo = AutoNextAction;
             actionInfo.autoTerminate      = AutoTerminate;
             actionInfo.keepPlayingAnim    = KeepPlayingAnim;
             actionInfo.cancelDatas        = CancelDatas.ToArray();
