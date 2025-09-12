@@ -54,6 +54,7 @@
     <Compile Include="Assets\Scripts\KCC\KCCSettings.cs" />
     <Compile Include="Assets\Scripts\Generated\Debug\DebugComponentsLookup.cs" />
     <Compile Include="Assets\Scripts\Game\Action\ActionInfo.cs" />
+    <Compile Include="Assets\Scripts\Development\DevelopmentEditorScene.cs" />
     <Compile Include="Assets\KinematicCharacterController\Walkthrough\12- NoClip state\Scripts\MyCharacterController.cs" />
     <Compile Include="Assets\Scripts\ActionEditor\MoveInputAcceptance\MoveInputAcceptanceTrack.cs" />
     <Compile Include="Assets\Scripts\Generated\Game\Components\GameLevelCreateCommandComponent.cs" />
