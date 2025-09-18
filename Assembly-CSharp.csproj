@@ -55,6 +55,7 @@
     <Compile Include="Assets\Scripts\Generated\Debug\DebugComponentsLookup.cs" />
     <Compile Include="Assets\Scripts\Game\Action\ActionInfo.cs" />
     <Compile Include="Assets\Scripts\Development\DevelopmentEditorScene.cs" />
+    <Compile Include="Assets\Scripts\NewGame\Core\ActSystem.cs" />
     <Compile Include="Assets\KinematicCharacterController\Walkthrough\12- NoClip state\Scripts\MyCharacterController.cs" />
     <Compile Include="Assets\Scripts\ActionEditor\MoveInputAcceptance\MoveInputAcceptanceTrack.cs" />
     <Compile Include="Assets\Scripts\Generated\Game\Components\GameLevelCreateCommandComponent.cs" />
@@ -150,6 +151,7 @@
     <Compile Include="Assets\Scripts\ActionEditor\CancelTag\CancelTagClip.cs" />
     <Compile Include="Assets\Scripts\Component\Input\InputControllerComponent.cs" />
     <Compile Include="Assets\Scripts\Interface\Event\IUpdateEvent.cs" />
+    <Compile Include="Assets\Scripts\NewGame\Core\System\TimerComponentSystem.cs" />
     <Compile Include="Assets\Scripts\Generated\Game\Components\GameScaleListenerComponent.cs" />
     <Compile Include="Assets\Scripts\Generated\Events\Interfaces\IScaleListener.cs" />
     <Compile Include="Assets\Scripts\System\Log\DebugLogSystem.cs" />
@@ -223,6 +225,7 @@
     <Compile Include="Assets\Scripts\Generated\Game\Components\GameACTGameKCCPhysicalMoverComponent.cs" />
     <Compile Include="Assets\Scripts\ActionEditor\ActionDataClip.cs" />
     <Compile Include="Assets\KinematicCharacterController\Walkthrough\5- Adding velocities and impulses\Scripts\MyCharacterController.cs" />
+    <Compile Include="Assets\Scripts\NewGame\Core\Component\TimerComponent.cs" />
     <Compile Include="Assets\Scripts\Interface\Log\ILogService.cs" />
     <Compile Include="Assets\Scripts\Generated\Game\GameContext.cs" />
     <Compile Include="Assets\Scripts\Mono\World\UnityWorldViewService.cs" />
@@ -247,6 +250,7 @@
     <Compile Include="Assets\Scripts\ActionEditor\CancelData\CancelDataTrack.cs" />
     <Compile Include="Assets\Scripts\Generated\Events\Components\RotationListenerComponent.cs" />
     <Compile Include="Assets\Scripts\Interface\Animation\IAnimationController.cs" />
+    <Compile Include="Assets\Scripts\Generated\Game\Components\GameACTGameComponentTimerComponent.cs" />
     <Compile Include="Assets\Scripts\Game\Methods\ActionEventMethod.cs" />
     <Compile Include="Assets\KinematicCharacterController\Core\KCCSettings.cs" />
     <Compile Include="Assets\KinematicCharacterController\Walkthrough\8- Creating a moving platform\Scripts\MyPlayer.cs" />
@@ -277,6 +281,7 @@
     <Compile Include="Assets\Scripts\Component\KCC\KCCPhysicalMoverComponent.cs" />
     <Compile Include="Assets\Scripts\Generated\Game\GameAttribute.cs" />
     <Compile Include="Assets\Scripts\Generated\Game\Components\GameRotationListenerComponent.cs" />
+    <Compile Include="Assets\Scripts\NewGame\GameMain.cs" />
     <Compile Include="Assets\Scripts\Component\Gravity\JumpComponent.cs" />
     <Compile Include="Assets\Scripts\KCC\ReadOnlyAttribute.cs" />
     <Compile Include="Assets\Scripts\System\Action\ActionControllerSystem.cs" />
@@ -355,6 +360,7 @@
     <Compile Include="Assets\Scripts\Generated\Components\Interfaces\IIdEntity.cs" />
     <Compile Include="Assets\Scripts\Generated\Game\Components\GameTimerManagerComponent.cs" />
     <Compile Include="Assets\KinematicCharacterController\Walkthrough\11- Charging state\Scripts\MyPlayer.cs" />
+    <Compile Include="Assets\Scripts\NewGame\Core\ActGame.cs" />
     <Compile Include="Assets\Scripts\Mono\Level\MonoLevel.cs" />
     <Compile Include="Assets\KinematicCharacterController\ExampleCharacter\Scripts\ExampleCharacterCamera.cs" />
     <Compile Include="Assets\Scripts\Generated\Game\Components\GameActionComponent.cs" />
@@ -1485,6 +1491,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj" />
     <ProjectReference Include="SLATE.csproj" />
   </ItemGroup>
   <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />

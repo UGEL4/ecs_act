@@ -10,9 +10,9 @@ public class KCCSystem : IExecuteSystem
         this.contexts         = contexts;
         motorEntities         = contexts.game.GetGroup(GameMatcher.AllOf(
         GameMatcher.ACTGameKCCMotor,
-        GameMatcher.Timer));
+        GameMatcher.ACTGameComponentTimer));
         physicalMoverEntities = contexts.game.GetGroup(GameMatcher.AllOf(
-        GameMatcher.Timer,
+        GameMatcher.ACTGameComponentTimer,
         GameMatcher.ACTGameKCCPhysicalMover));
     }
 
@@ -20,17 +20,17 @@ public class KCCSystem : IExecuteSystem
     {
         var motors      = motorEntities.GetEntities();
         var movers      = physicalMoverEntities.GetEntities();
-        var timer       = contexts.game.timerManager.GetSceneTimer(contexts.game);
-        float deltaTime = 1.0f / timer.hertz;
-        PreSimulationInterpolationUpdate(deltaTime, motors, movers);
-        Simulate(deltaTime, motors, movers);
-        PostSimulationInterpolationUpdate(deltaTime, motors, movers);
+        //var timer       = contexts.game.timerManager.GetSceneTimer(contexts.game);
+        //float deltaTime = 1.0f / timer.hertz;
+        PreSimulationInterpolationUpdate(motors, movers);
+        Simulate(motors, movers);
+        PostSimulationInterpolationUpdate(motors, movers);
     }
 
     /// <summary>
     /// Remembers the point to interpolate from for KinematicCharacterMotors and PhysicsMovers
     /// </summary>
-    void PreSimulationInterpolationUpdate(float deltaTime, GameEntity[] motorEntities, GameEntity[] moverEntities)
+    void PreSimulationInterpolationUpdate(GameEntity[] motorEntities, GameEntity[] moverEntities)
     {
         // Save pre-simulation poses and place transform at transient pose
         for (int i = 0; i < motorEntities.Length; i++)
@@ -60,7 +60,7 @@ public class KCCSystem : IExecuteSystem
     /// <summary>
     /// Ticks characters and/or movers
     /// </summary>
-    void Simulate(float deltaTime, GameEntity[] motorEntities, GameEntity[] moverEntities)
+    void Simulate(GameEntity[] motorEntities, GameEntity[] moverEntities)
     {
 #pragma warning disable 0162
         // Update PhysicsMover velocities
@@ -68,7 +68,8 @@ public class KCCSystem : IExecuteSystem
         {
             if (!moverEntities[i].hasACTGameKCCPhysicalMover) continue;
             var mover = moverEntities[i].aCTGameKCCPhysicalMover.value;
-            mover.VelocityUpdate(deltaTime);
+            var timer = moverEntities[i].aCTGameComponentTimer;
+            mover.VelocityUpdate(1f / timer.hertz);
         }
 
         // Character controller update phase 1
@@ -76,7 +77,8 @@ public class KCCSystem : IExecuteSystem
         {
             var motor = motorEntities[i].aCTGameKCCMotor.value;
             //motor.BaseVelocity = motorEntities[i].velocity.value;
-            motor.UpdatePhase1(deltaTime);
+            var timer = motorEntities[i].aCTGameComponentTimer;
+            motor.UpdatePhase1(1f / timer.hertz);
         }
 
         // Simulate PhysicsMover displacement
@@ -94,8 +96,9 @@ public class KCCSystem : IExecuteSystem
         for (int i = 0; i < motorEntities.Length; i++)
         {
             var motor = motorEntities[i].aCTGameKCCMotor.value;
+            var timer = motorEntities[i].aCTGameComponentTimer;
 
-            motor.UpdatePhase2(deltaTime);
+            motor.UpdatePhase2(1f / timer.hertz);
 
             motor.Transform.SetPositionAndRotation(motor.TransientPosition, motor.TransientRotation);
             //motorEntities[i].velocity.value = motor.BaseVelocity;
@@ -106,7 +109,7 @@ public class KCCSystem : IExecuteSystem
     /// <summary>
     /// Initiates the interpolation for KinematicCharacterMotors and PhysicsMovers
     /// </summary>
-    void PostSimulationInterpolationUpdate(float deltaTime, GameEntity[] motorEntities, GameEntity[] moverEntities)
+    void PostSimulationInterpolationUpdate(GameEntity[] motorEntities, GameEntity[] moverEntities)
     {
         //_lastCustomInterpolationStartTime = Time.time;
         //_lastCustomInterpolationDeltaTime = deltaTime;

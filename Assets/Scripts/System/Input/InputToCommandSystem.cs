@@ -17,15 +17,16 @@ public class InputToCommandSystem : IExecuteSystem
     {
         foreach (var e in entities.GetEntities())
         {
-            if (!e.hasTimer)
+            if (!e.hasACTGameComponentTimer)
             {
                 continue;
             }
             var controller = e.inputController.instance;
-            var timer = e.timer;
+            //var timer = e.timer;
+            var timer = e.aCTGameComponentTimer;
             var commandComp = e.inputToCommand;
 
-            long now = timer.GetNow();
+            long now = timer.curFrame;
             int index = 0;
             long mRecordKeyKeepFrame = 30; //todo : globalconfig
             while (index < commandComp.commands.Count) //移除过期的指令

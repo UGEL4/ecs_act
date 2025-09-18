@@ -1538,6 +1538,10 @@ namespace Slate
                 var newGroup = cutscene.AddGroup<ActorGroup>(null).AddTrack<ActorActionTrack>();
                 CutsceneUtility.selectedObject = newGroup;
             }
+            if ( GUI.Button(addRect, "Add ACT Group") ) {
+                var newGroup = cutscene.AddGroup<ACT_SLATE>(null).AddTrack<ActorActionTrack>();
+                CutsceneUtility.selectedObject = newGroup;
+            }
 
             //clear picks
             if ( e.rawType == EventType.MouseUp ) {

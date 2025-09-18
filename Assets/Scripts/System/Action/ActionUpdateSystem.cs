@@ -16,7 +16,7 @@ public sealed class ActionUpdateSystem : IExecuteSystem
         actionEntities = contexts.game.GetGroup(GameMatcher.AllOf(
         // GameMatcher.Action,
         GameMatcher.CurrentAction,
-        GameMatcher.Timer,
+        GameMatcher.ACTGameComponentTimer,
         GameMatcher.InputToCommand));
     }
 
@@ -24,7 +24,8 @@ public sealed class ActionUpdateSystem : IExecuteSystem
     {
         foreach (var e in actionEntities.GetEntities())
         {
-            var timer  = e.timer;
+            //var timer  = e.timer;
+            var timer  = e.aCTGameComponentTimer;
             var action = e.action;
 
             long curFrame = timer.curFrame;

@@ -145,18 +145,28 @@ public class MonoCharacter : MonoBehaviour, IViewController
         gameEntity.ReplaceInputToCommand(entityId, new List<KeyRecord>());
 
         // updateLogic = new MainRoleUpdater(contexts, gameEntity);
-        var sceneTimer = contexts.game.timerManager.GetSceneTimer(contexts.game);
-        if (sceneTimer != null)
+        // var sceneTimer = contexts.game.timerManager.GetSceneTimer(contexts.game);
+        // if (sceneTimer != null)
+        // {
+        //     var index             = GameComponentsLookup.Timer;
+        //     var component         = (TimerComponent)gameEntity.CreateComponent(index, typeof(TimerComponent));
+        //     component.curFrame    = sceneTimer.GetNow();
+        //     component.hertz       = 60;
+        //     component.accumulator = 0;
+        //     component.isUnitTimer = true;
+        //     // component.NewFrameTimer(InvokeType.EntityUpdate, updateLogic);
+        //     gameEntity.ReplaceComponent(index, component);
+        //     contexts.game.timerManager.OnAddUnitTimer(entityId);
+        // }
         {
-            var index             = GameComponentsLookup.Timer;
-            var component         = (TimerComponent)gameEntity.CreateComponent(index, typeof(TimerComponent));
-            component.curFrame    = sceneTimer.GetNow();
+            var index             = GameComponentsLookup.ACTGameComponentTimer;
+            var component         = (ACTGame.Component.TimerComponent)gameEntity.CreateComponent(index, typeof(ACTGame.Component.TimerComponent));
+            component.curFrame    = 0;
             component.hertz       = 60;
             component.accumulator = 0;
             component.isUnitTimer = true;
             // component.NewFrameTimer(InvokeType.EntityUpdate, updateLogic);
             gameEntity.ReplaceComponent(index, component);
-            contexts.game.timerManager.OnAddUnitTimer(entityId);
         }
 
         float jumpTime   = characterController.MaxJumpTime;
@@ -354,7 +364,7 @@ public class MonoCharacter : MonoBehaviour, IViewController
         characterController.OnDestroyView();
         if (gameEntity != null)
         {
-            contexts.game.timerManager.OnRemoveUnitTimer(gameEntity.id.value);
+            //contexts.game.timerManager.OnRemoveUnitTimer(gameEntity.id.value);
             gameEntity.ReplaceAnimationController(null);
             gameEntity.ReplaceACTGameKCCMotor(null);
             gameEntity.ReplaceInputToCommand(0, new());

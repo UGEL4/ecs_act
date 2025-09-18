@@ -9,7 +9,7 @@ public class GravitySystem : IExecuteSystem
     public GravitySystem(Contexts contexts)
     {
         this.contexts = contexts;
-        entities      = contexts.game.GetGroup(GameMatcher.Gravity);
+        entities      = contexts.game.GetGroup(GameMatcher.AllOf(GameMatcher.Gravity, GameMatcher.ACTGameComponentTimer));
     }
 
     public void Execute()
@@ -31,7 +31,7 @@ public class GravitySystem : IExecuteSystem
             }
 
             var motor = e.aCTGameKCCMotor.value;
-            motor.BaseVelocity.y += -gravity.Gravity * 1f / e.timer.hertz;
+            motor.BaseVelocity.y += -gravity.Gravity * 1f / e.aCTGameComponentTimer.hertz;
         }
     }
 }

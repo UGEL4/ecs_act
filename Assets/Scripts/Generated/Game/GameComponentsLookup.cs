@@ -8,53 +8,55 @@
 //------------------------------------------------------------------------------
 public static class GameComponentsLookup {
 
-    public const int ACTGameKCCMotor = 0;
-    public const int ACTGameKCCPhysicalMover = 1;
-    public const int Action = 2;
-    public const int AnimationController = 3;
-    public const int AttackHitBox = 4;
-    public const int AttackHitResult = 5;
-    public const int AttackOrHitTag = 6;
-    public const int CreateWorldCmd = 7;
-    public const int CurrentAction = 8;
-    public const int DebugMessage = 9;
-    public const int Destroyed = 10;
-    public const int DestroyedListener = 11;
-    public const int Entity = 12;
-    public const int ForceMove = 13;
-    public const int Gravity = 14;
-    public const int HitBox = 15;
-    public const int HitRecord = 16;
-    public const int Id = 17;
-    public const int InputController = 18;
-    public const int InputToCommand = 19;
-    public const int Jump = 20;
-    public const int LevelAddEntityCmd = 21;
-    public const int Level = 22;
-    public const int LevelCreateCommand = 23;
-    public const int LevelLoaded = 24;
-    public const int Parent = 25;
-    public const int Position = 26;
-    public const int PositionListener = 27;
-    public const int PreorderAction = 28;
-    public const int RootMotion = 29;
-    public const int Rotation = 30;
-    public const int RotationListener = 31;
-    public const int Scale = 32;
-    public const int ScaleListener = 33;
-    public const int TempBeCancelTag = 34;
-    public const int Timer = 35;
-    public const int TimerManager = 36;
-    public const int TimerUpdateEvent = 37;
-    public const int TimerUpdateEventListener = 38;
-    public const int View = 39;
-    public const int World = 40;
-    public const int WorldId = 41;
-    public const int WorldTransform = 42;
+    public const int ACTGameComponentTimer = 0;
+    public const int ACTGameKCCMotor = 1;
+    public const int ACTGameKCCPhysicalMover = 2;
+    public const int Action = 3;
+    public const int AnimationController = 4;
+    public const int AttackHitBox = 5;
+    public const int AttackHitResult = 6;
+    public const int AttackOrHitTag = 7;
+    public const int CreateWorldCmd = 8;
+    public const int CurrentAction = 9;
+    public const int DebugMessage = 10;
+    public const int Destroyed = 11;
+    public const int DestroyedListener = 12;
+    public const int Entity = 13;
+    public const int ForceMove = 14;
+    public const int Gravity = 15;
+    public const int HitBox = 16;
+    public const int HitRecord = 17;
+    public const int Id = 18;
+    public const int InputController = 19;
+    public const int InputToCommand = 20;
+    public const int Jump = 21;
+    public const int LevelAddEntityCmd = 22;
+    public const int Level = 23;
+    public const int LevelCreateCommand = 24;
+    public const int LevelLoaded = 25;
+    public const int Parent = 26;
+    public const int Position = 27;
+    public const int PositionListener = 28;
+    public const int PreorderAction = 29;
+    public const int RootMotion = 30;
+    public const int Rotation = 31;
+    public const int RotationListener = 32;
+    public const int Scale = 33;
+    public const int ScaleListener = 34;
+    public const int TempBeCancelTag = 35;
+    public const int Timer = 36;
+    public const int TimerManager = 37;
+    public const int TimerUpdateEvent = 38;
+    public const int TimerUpdateEventListener = 39;
+    public const int View = 40;
+    public const int World = 41;
+    public const int WorldId = 42;
+    public const int WorldTransform = 43;
 
-    public const int TotalComponents = 43;
+    public const int TotalComponents = 44;
 
     public static readonly string[] componentNames = {
+        "ACTGameComponentTimer",
         "ACTGameKCCMotor",
         "ACTGameKCCPhysicalMover",
         "Action",
@@ -101,6 +103,7 @@ public static class GameComponentsLookup {
     };
 
     public static readonly System.Type[] componentTypes = {
+        typeof(ACTGame.Component.TimerComponent),
         typeof(ACTGame.KCCMotorComponent),
         typeof(ACTGame.KCCPhysicalMoverComponent),
         typeof(ActionComponent),

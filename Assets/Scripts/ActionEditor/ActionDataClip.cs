@@ -1,11 +1,12 @@
 using System.Collections.Generic;
+using ACT_SLATE;
 using Slate;
 
 namespace ACTGame
 {
-    [Attachable(typeof(ActionDataTrack))]
+    //[Attachable(typeof(ActionDataTrack))]
     [Category("Custom/ActionData")]
-    public class ActionDataClip : BaseActionClip
+    public class ActionDataClip : ACT_ParadoxNotionActionBase
     {
         public string ActionName;
         public string Animation;
